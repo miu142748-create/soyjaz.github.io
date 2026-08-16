@@ -8,8 +8,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        // Reduced scale to 0.85 to make the page much more compact
-        const viewport = page.getViewport({ scale: 0.85 });
+        const viewport = page.getViewport({ scale: 0.8 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -25,11 +24,10 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Adjusted StPageFlip dimensions to tightly match the compact scale
     const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
     const pageFlip = new PageFlipConstructor(bookElement, {
-        width: 340,  
-        height: 380, // Tighter height to eliminate excess whitespace
+        width: 320,  
+        height: 360, 
         size: "fixed",
         showCover: false,
         mobileScrollSupport: false,
@@ -38,7 +36,6 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-    // Setup Navigation Controls
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const pageInfo = document.getElementById('page-info');

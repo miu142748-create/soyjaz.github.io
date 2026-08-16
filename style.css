@@ -68,7 +68,7 @@ body {
             margin: 25px auto;
             background: #0d001a;
             color: #fff;
-            padding: 10px 20px 20px 20px;
+            padding: 10px 20px 15px 20px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
@@ -83,8 +83,9 @@ body {
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            margin-top: 5px;
+            margin: 0 auto;
             width: 100%;
+            height: auto !important;
         }
         #book {
             margin: 0 auto;
@@ -98,9 +99,15 @@ body {
             width: 100% !important;
             height: 100% !important;
         }
+        
+        /* Force StPageFlip internal wrappers to respect tight bounds */
         .-st-page-flip {
             margin: 0 auto !important;
+            max-height: 380px !important;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .-st-wrapper {
+            max-height: 380px !important;
         }
         
         .flipbook-nav {
@@ -148,7 +155,7 @@ body {
             background-color: #fff;
             color: #ff1493;
             transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0px #ff69b4;
+            box-shadow: 6px 6px 0px #ff69b4;
         }
         .research-box h3 {
             margin-top: 0;
@@ -156,7 +163,7 @@ body {
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
             font-size: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: center;
         }
         .contact-button {
