@@ -118,7 +118,6 @@ a, button {
     align-items: center;
     margin: 15px auto;
     width: 100%;
-    overflow: hidden; 
     position: relative;
 }
 #book {
@@ -128,13 +127,28 @@ a, button {
     background-color: white;
     overflow: hidden;
 }
-
-/* Prevents stretching and distortion by containing the PDF proportions */
 .page canvas {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important;
     display: block;
+}
+
+/* DESKTOP FIX: Restrict maximum vertical height so it doesn't stretch too tall */
+@media (min-width: 601px) {
+    .flipbook-container {
+        max-height: 750px;
+    }
+}
+
+/* MOBILE FIX: Restricts horizontal overflow/stretching on small screens */
+@media (max-width: 600px) {
+    .flipbook-container {
+        max-width: 100% !important;
+        overflow-x: hidden;
+    }
+    .stf__wrapper {
+        max-width: 100% !important;
+    }
 }
 
 .nav-controls {
