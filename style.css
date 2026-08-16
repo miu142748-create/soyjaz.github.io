@@ -68,7 +68,7 @@ body {
             margin: 25px auto;
             background: #0d001a;
             color: #fff;
-            padding: 10px 20px 15px 20px;
+            padding: 15px 20px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
@@ -79,42 +79,25 @@ body {
         }
 
         .flipbook-container {
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto;
             width: 100%;
-            margin-top: 5px;
-            text-align: center;
-        }
-        #pdf-viewer-container {
-            display: inline-block;
-            max-width: 100%;
         }
         #book {
             margin: 0 auto;
-            display: block;
         }
         .page {
             background-color: white;
+            overflow: hidden;
         }
         .page canvas {
-            display: block;
             width: 100% !important;
             height: 100% !important;
+            display: block;
         }
         
-        /* Force StPageFlip internal wrappers to respect tight bounds */
-        .-st-page-flip {
-            margin: 0 auto !important;
-            max-height: 380px !important;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-        .-st-wrapper {
-            max-height: 380px !important;
-        }
-        
-        .flipbook-nav {
-            margin-top: 5px !important;
-        }
-
         .nav-btn {
             background-color: #ff69b4;
             color: #0d001a;
@@ -134,10 +117,6 @@ body {
             transform: translate(-2px, -2px);
             box-shadow: 4px 4px 0px #ff69b4;
         }
-        .nav-btn:active {
-            transform: translate(0, 0);
-            box-shadow: 1px 1px 0px #ff69b4;
-        }
         .pdf-button {
             display: inline-block;
             background-color: #ff69b4;
@@ -156,7 +135,7 @@ body {
             background-color: #fff;
             color: #ff1493;
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #ff69b4;
+            box-shadow: 4px 4px 0px #ff69b4;
         }
         .research-box h3 {
             margin-top: 0;
@@ -166,27 +145,6 @@ body {
             font-size: 15px;
             margin-bottom: 10px;
             text-align: center;
-        }
-        .contact-button {
-            display: inline-block;
-            background-color: #ff69b4;
-            color: #0d001a;
-            padding: 12px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 10px;
-            font-family: 'Press Start 2P', monospace;
-            border-radius: 8px;
-            border: 3px solid #fff;
-            box-shadow: 4px 4px 0px #fff;
-            margin-top: 15px;
-            transition: transform 0.1s;
-        }
-        .contact-button:hover {
-            background-color: #fff;
-            color: #ff1493;
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #ff69b4;
         }
         .land-ack {
             display: block;

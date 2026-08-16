@@ -42,7 +42,6 @@
             object-fit: cover;
             border: 3px solid #fff;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            background-color: #ff69b4; /* Fallback color if image is missing */
         }
         .bio-box {
             background: #0d001a;
@@ -80,7 +79,7 @@
             margin: 25px auto;
             background: #0d001a;
             color: #fff;
-            padding: 20px;
+            padding: 15px 20px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
@@ -94,31 +93,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            margin-top: 15px;
+            margin: 10px auto;
             width: 100%;
         }
         #book {
             margin: 0 auto;
-            display: block;
         }
         .page {
             background-color: white;
+            overflow: hidden;
         }
         .page canvas {
-            display: block;
             width: 100% !important;
             height: 100% !important;
-        }
-        .-st-page-flip {
-            margin: 0 auto !important;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: block;
         }
         
-        .flipbook-nav {
-            margin-top: 15px !important;
-        }
-
         .nav-btn {
             background-color: #ff69b4;
             color: #0d001a;
@@ -138,10 +128,6 @@
             transform: translate(-2px, -2px);
             box-shadow: 4px 4px 0px #ff69b4;
         }
-        .nav-btn:active {
-            transform: translate(0, 0);
-            box-shadow: 1px 1px 0px #ff69b4;
-        }
         .pdf-button {
             display: inline-block;
             background-color: #ff69b4;
@@ -155,34 +141,12 @@
             border: 2px solid #fff;
             box-shadow: 3px 3px 0px #fff;
             transition: transform 0.1s;
-            margin: 5px;
         }
         .pdf-button:hover {
             background-color: #fff;
             color: #ff1493;
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #ff69b4;
-        }
-        .contact-button {
-            display: inline-block;
-            background-color: #ff69b4;
-            color: #0d001a;
-            padding: 10px 16px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 9px;
-            font-family: 'Press Start 2P', monospace;
-            border-radius: 6px;
-            border: 2px solid #fff;
-            box-shadow: 3px 3px 0px #fff;
-            transition: transform 0.1s;
-            margin: 5px;
-        }
-        .contact-button:hover {
-            background-color: #fff;
-            color: #ff1493;
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #ff69b4;
+            box-shadow: 4px 4px 0px #ff69b4;
         }
         .research-box h3 {
             margin-top: 0;
@@ -190,7 +154,7 @@
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
             font-size: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: center;
         }
         .land-ack {
@@ -217,7 +181,7 @@
 
     <div class="header-section">
         <div class="profile-flex">
-            <img src="./profile.jpg" alt="Profile" class="profile-img">
+            <img src="profile.jpg" alt="Profile" class="profile-img">
             <div class="bio-box">
                 Hi! I'm jazzie, a scholar, educator, and researcher specializing in technical writing, UX/UI design, and digital literacies.
             </div>
@@ -230,7 +194,7 @@
             <div id="book"></div>
         </div>
         
-        <div class="flipbook-nav">
+        <div class="flipbook-nav" style="margin-top: 15px;">
             <button id="prev-btn" class="nav-btn">[ PREV ]</button>
             <span id="page-info" style="margin: 0 15px; font-family: 'Press Start 2P', monospace; font-size: 9px; color: #fff;">Page 1 of 9</span>
             <button id="next-btn" class="nav-btn">[ NEXT ]</button>
@@ -238,7 +202,6 @@
         
         <div style="margin-top: 15px;">
             <a href="terrell-cv.pdf" target="_blank" class="pdf-button">[ DOWNLOAD PDF ]</a>
-            <a href="mailto:jterrell1@arizona.edu" class="contact-button">[ CONTACT ME ]</a>
         </div>
     </div>
 
