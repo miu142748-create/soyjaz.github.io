@@ -1,16 +1,40 @@
-/* Flipbook Canvas & Page Styling */
-.page {
-    background-color: white; /* Gives the PDF pages a solid white background */
-}
-
-.page canvas {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-/* StPageFlip container shadow effect */
-.-st-page-flip {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    margin: 0 auto;
-}
+/* Flipbook Container Box */
+        .flipbook-section {
+            margin-top: 25px;
+            background: #0d001a;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+            display: inline-block;
+            width: 90%;
+            max-width: 850px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .flipbook-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-top: 15px;
+            width: 100%;
+        }
+        #book {
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+        /* Flipbook Canvas & Page Styling */
+        .page {
+            background-color: white;
+        }
+        .page canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .-st-page-flip {
+            margin: 0 auto !important;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
