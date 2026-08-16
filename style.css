@@ -11,13 +11,13 @@ a, button {
     cursor: pointer;
 }
 
-/* Expanded wrapper width to accommodate the wider flipbook */
+/* Expanded wrapper width to give the flipbook maximum space */
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 920px;
+    max-width: 1020px;
     margin: 0 auto;
 }
 

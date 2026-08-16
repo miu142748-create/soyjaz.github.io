@@ -27,7 +27,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 3.0 });
+        const viewport = page.getViewport({ scale: 3.5 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -43,15 +43,15 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Locked strictly to single-page portrait mode
+    // Scaled up width and height to fill the box container nicely
     pageFlip = new St.PageFlip(bookElement, {
-        width: 760,  
-        height: 980, 
-        size: "fixed",         // Forces fixed single-page dimensions
-        minWidth: 760,
-        maxWidth: 760,
-        minHeight: 980,
-        maxHeight: 980,
+        width: 840,  
+        height: 1080, 
+        size: "stretch",
+        minWidth: 500,
+        maxWidth: 920,
+        minHeight: 650,
+        maxHeight: 1200,
         showCover: false,
         usePortrait: true,   
         mobileScrollSupport: false,
