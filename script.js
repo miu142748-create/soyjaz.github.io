@@ -44,13 +44,13 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Configured for a large, single-page portrait view
+    // Configured with a wider horizontal width for the single-page view
     pageFlip = new St.PageFlip(bookElement, {
-        width: 650,  
-        height: 900, 
+        width: 760,  
+        height: 980, 
         size: "stretch",
-        minWidth: 350,
-        maxWidth: 750,
+        minWidth: 400,
+        maxWidth: 820,
         minHeight: 500,
         maxHeight: 1100,
         showCover: false,

@@ -11,13 +11,13 @@ a, button {
     cursor: pointer;
 }
 
-/* Strict single-column stack wrapper */
+/* Expanded wrapper width to accommodate the wider flipbook */
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 850px;
+    max-width: 920px;
     margin: 0 auto;
 }
 
