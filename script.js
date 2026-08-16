@@ -1,16 +1,14 @@
-// Set the worker path for PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-const url = 'terrell-cv.pdf'; // Path to your PDF file in the repository
+const url = 'terrell-cv.pdf';
 const bookElement = document.getElementById('book');
 
 pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     const numPages = pdfDoc_.numPages;
 
-    // Loop through every page of your PDF and convert to canvas elements
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 1.5 }); // High-res scale
+        const viewport = page.getViewport({ scale: 1.5 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -30,7 +28,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     const pageFlip = new St.PageFlip(bookElement, {
         width: 450,  
         height: 620, 
-        size: "fixed", // Forces fixed single-page view
+        size: "fixed",
         showCover: false,
         mobileScrollSupport: false,
         maxShadowOpacity: 0.2
@@ -38,29 +36,31 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-    // Hook up navigation buttons and page counter
+    // Setup Navigation Controls
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const pageInfo = document.getElementById('page-info');
-
-    updatePageInfo();
-
-    prevBtn.addEventListener('click', () => {
-        pageFlip.flipPrev();
-    });
-
-    nextBtn.addEventListener('click', () => {
-        pageFlip.flipNext();
-    });
-
-    pageFlip.on('flip', (e) => {
-        updatePageInfo();
-    });
 
     function updatePageInfo() {
         const current = pageFlip.getCurrentPageIndex() + 1;
         pageInfo.textContent = `Page ${current} of ${numPages}`;
     }
+
+    updatePageInfo();
+
+    prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        pageFlip.flipPrev();
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        pageFlip.flipNext();
+    });
+
+    pageFlip.on('flip', () => {
+        updatePageInfo();
+    });
 
 }).catch(function(error) {
     console.error('Error loading PDF: ', error);
