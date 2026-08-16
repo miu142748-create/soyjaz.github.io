@@ -1,3 +1,28 @@
+/* Custom White Scrollbar for Webkit Browsers (Chrome, Safari, Brave, Edge) */
+html::-webkit-scrollbar {
+    width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+    background: #0d001a; 
+}
+
+html::-webkit-scrollbar-thumb {
+    background: #ffffff; 
+    border-radius: 6px;
+    border: 2px solid #0d001a; 
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: #ff69b4; 
+}
+
+/* Custom White Scrollbar for Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff #0d001a;
+}
+
 body {
     background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
     background-attachment: fixed;
@@ -11,17 +36,15 @@ a, button {
     cursor: pointer;
 }
 
-/* Expanded wrapper to fully match the larger flipbook size */
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 1100px;
+    max-width: 1250px;
     margin: 0 auto;
 }
 
-/* Universal Box Style for every section */
 .box {
     background: #0d001a;
     color: #fff;
@@ -34,15 +57,14 @@ a, button {
     text-align: center;
 }
 
-/* Transparent container for profile section (no outer box) */
 .profile-section {
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 10px 0;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px 0 !important;
 }
 
 .profile-flex {
@@ -50,11 +72,11 @@ a, button {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
 }
 .profile-img {
-    width: 130px;
-    height: 130px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #fff;
@@ -63,16 +85,16 @@ a, button {
 .bio-box {
     background: #0d001a;
     color: #fff;
-    padding: 24px;
+    padding: 18px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
     flex: 1;
-    min-width: 280px;
+    min-width: 260px;
     max-width: 600px;
     font-family: 'Quicksand', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.5;
     text-align: left;
     position: relative;
 }
@@ -90,42 +112,69 @@ a, button {
     50% { opacity: 0; }
 }
 
+/* ----- FLIPBOOK CORE CONTAINER ----- */
 .flipbook-container {
+    margin: 10px auto;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px auto;
-    width: 100%;
-    overflow: hidden; /* Clips any animation spilling outside the box */
     position: relative;
 }
+
 #book {
     margin: 0 auto;
 }
+
 .page {
     background-color: white;
     overflow: hidden;
 }
+
 .page canvas {
     width: 100% !important;
     height: 100% !important;
     display: block;
 }
 
-/* Navigation Controls Container */
+/* Mobile cleanup */
+@media (max-width: 600px) {
+    body {
+        padding: 5px !important;
+    }
+    .wrapper {
+        gap: 10px !important;
+    }
+    .box {
+        padding: 12px !important;
+        margin-bottom: 0px !important;
+        box-shadow: 3px 3px 0px rgba(0,0,0,0.8);
+    }
+    .profile-section {
+        padding: 0 !important;
+    }
+    .flipbook-container {
+        margin: 5px auto !important;
+        width: 100% !important;
+        min-height: 350px;
+    }
+}
+
 .nav-controls {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
-/* Automatically stack buttons vertically on mobile screens */
 @media (max-width: 600px) {
     .nav-controls {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
+        margin-top: 8px;
     }
 }
 
@@ -156,6 +205,6 @@ a, button {
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
     font-size: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     text-align: center;
 }
