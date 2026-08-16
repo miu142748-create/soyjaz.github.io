@@ -43,17 +43,20 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Increased base dimensions to ensure crisp, large rendering on desktop monitors
+    // Fully responsive proportions that adapt cleanly to desktop and mobile viewports
     pageFlip = new St.PageFlip(bookElement, {
-        width: 850,       
-        height: 1100,     
+        width: 600,  
+        height: 800, 
         size: "stretch",
-        minWidth: 300,
-        maxWidth: 1000,
-        minHeight: 400,
-        maxHeight: 1400,
+        minWidth: 250,
+        maxWidth: 800,
+        minHeight: 350,
+        maxHeight: 1050,
         showCover: false,
-        usePortrait: true
+        usePortrait: true,     
+        singlePageMode: true,  
+        mobileScrollSupport: true,
+        maxShadowOpacity: 0.3
     });
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
