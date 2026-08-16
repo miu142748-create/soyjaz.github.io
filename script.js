@@ -8,7 +8,8 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 1.5 });
+        // Reduced scale from 1.5 to 1.1 to decrease canvas height and close extra spacing
+        const viewport = page.getViewport({ scale: 1.1 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -24,11 +25,11 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize StPageFlip with a compact height to eliminate the top gap
+    // Adjusted StPageFlip dimensions to match the smaller scale cleanly
     const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
     const pageFlip = new PageFlipConstructor(bookElement, {
         width: 380,  
-        height: 450, // Compact height matching layout bounds
+        height: 480, 
         size: "fixed",
         showCover: false,
         mobileScrollSupport: false,

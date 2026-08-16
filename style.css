@@ -68,7 +68,7 @@ body {
             margin: 25px auto;
             background: #0d001a;
             color: #fff;
-            padding: 10px 20px 20px 20px; /* Reduced top padding to close gap */
+            padding: 10px 20px 20px 20px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
@@ -81,7 +81,7 @@ body {
         .flipbook-container {
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Aligns content to the top to eliminate top whitespace */
+            align-items: center;
             overflow: hidden;
             margin-top: 5px;
             width: 100%;
@@ -148,7 +148,7 @@ body {
             background-color: #fff;
             color: #ff1493;
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #ff69b4;
+            box-shadow: 4px 4px 0px #ff69b4;
         }
         .research-box h3 {
             margin-top: 0;
