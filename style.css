@@ -214,10 +214,11 @@ a, button {
     position: relative;
     display: inline-block;
     margin-bottom: 25px;
+    z-index: 1000;
 }
 
 .nav-dropdown {
-    display: none;
+    display: none !important;
     position: absolute;
     top: 100%;
     left: 50%;
@@ -228,14 +229,13 @@ a, button {
     border-radius: 8px;
     box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
     padding: 10px;
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 8px;
-    z-index: 100;
     min-width: 140px;
 }
 
 .nav-dropdown.show {
-    display: flex;
+    display: flex !important;
 }
 
 .nav-link {
@@ -252,6 +252,7 @@ a, button {
     display: block;
     text-align: center;
     transition: transform 0.1s;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
