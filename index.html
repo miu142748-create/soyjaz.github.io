@@ -93,22 +93,31 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 15px auto;
+            overflow: hidden;
+            margin-top: 15px;
             width: 100%;
         }
         #book {
             margin: 0 auto;
+            display: block;
         }
         .page {
             background-color: white;
-            overflow: hidden;
         }
         .page canvas {
+            display: block;
             width: 100% !important;
             height: 100% !important;
-            display: block;
+        }
+        .-st-page-flip {
+            margin: 0 auto !important;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
         
+        .flipbook-nav {
+            margin-top: 15px !important;
+        }
+
         .nav-btn {
             background-color: #ff69b4;
             color: #0d001a;
@@ -127,6 +136,10 @@
             color: #ff1493;
             transform: translate(-2px, -2px);
             box-shadow: 4px 4px 0px #ff69b4;
+        }
+        .nav-btn:active {
+            transform: translate(0, 0);
+            box-shadow: 1px 1px 0px #ff69b4;
         }
         .pdf-button {
             display: inline-block;
@@ -147,7 +160,7 @@
             background-color: #fff;
             color: #ff1493;
             transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0px #ff69b4;
+            box-shadow: 6px 6px 0px #ff69b4;
         }
         .contact-button {
             display: inline-block;
@@ -168,7 +181,7 @@
             background-color: #fff;
             color: #ff1493;
             transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0px #ff69b4;
+            box-shadow: 6px 6px 0px #ff69b4;
         }
         .research-box h3 {
             margin-top: 0;
@@ -176,7 +189,7 @@
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
             font-size: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center;
         }
         .land-ack {
@@ -216,7 +229,7 @@
             <div id="book"></div>
         </div>
         
-        <div class="flipbook-nav" style="margin-top: 15px;">
+        <div class="flipbook-nav">
             <button id="prev-btn" class="nav-btn">[ PREV ]</button>
             <span id="page-info" style="margin: 0 15px; font-family: 'Press Start 2P', monospace; font-size: 9px; color: #fff;">Page 1 of 9</span>
             <button id="next-btn" class="nav-btn">[ NEXT ]</button>

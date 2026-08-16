@@ -8,7 +8,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 1.2 }); // Clear high-res render scale
+        const viewport = page.getViewport({ scale: 1.5 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -26,12 +26,12 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
     const pageFlip = new PageFlipConstructor(bookElement, {
-        width: 380,  
-        height: 520, // Balanced vertical and horizontal dimensions for proper page turning view
+        width: 420,  
+        height: 580, 
         size: "fixed",
         showCover: false,
-        mobileScrollSupport: true,
-        maxShadowOpacity: 0.3
+        mobileScrollSupport: false,
+        maxShadowOpacity: 0.2
     });
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
@@ -45,19 +45,29 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         pageInfo.textContent = `Page ${current} of ${numPages}`;
     }
 
-    setTimeout(updatePageInfo, 100);
+    setTimeout(() => {
+        updatePageInfo();
+    }, 100);
 
     prevBtn.onclick = (e) => {
         e.preventDefault();
-        pageFlip.flipPrev();
+        try {
+            pageFlip.flipPrev();
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     nextBtn.onclick = (e) => {
         e.preventDefault();
-        pageFlip.flipNext();
+        try {
+            pageFlip.flipNext();
+        } catch (err) {
+            console.error(err);
+        }
     };
 
-    pageFlip.on('flip', () => {
+    pageFlip.on('flip', (e) => {
         updatePageInfo();
     });
 
