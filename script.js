@@ -46,14 +46,15 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     updatePageInfo();
 
+    // Use turnToPrevPage and turnToNextPage for reliable clicking
     prevBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        pageFlip.flipPrev('top');
+        pageFlip.turnToPrevPage();
     });
 
     nextBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        pageFlip.flipNext('top');
+        pageFlip.turnToNextPage();
     });
 
     pageFlip.on('flip', (e) => {
