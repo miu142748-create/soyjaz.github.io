@@ -43,20 +43,16 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Fully responsive proportions that adapt cleanly to desktop and mobile viewports
     pageFlip = new St.PageFlip(bookElement, {
-        width: 600,  
-        height: 800, 
+        width: 850,       
+        height: 1100,     
         size: "stretch",
-        minWidth: 250,
-        maxWidth: 800,
-        minHeight: 350,
-        maxHeight: 1050,
+        minWidth: 300,
+        maxWidth: 1200, 
+        minHeight: 400,
+        maxHeight: 1600,
         showCover: false,
-        usePortrait: true,     
-        singlePageMode: true,  
-        mobileScrollSupport: true,
-        maxShadowOpacity: 0.3
+        usePortrait: true
     });
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
