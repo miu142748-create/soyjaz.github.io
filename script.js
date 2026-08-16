@@ -24,18 +24,19 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize StPageFlip in standard spread mode to show 2 pages side by side
+    // Initialize StPageFlip in single-page mode
     const pageFlip = new St.PageFlip(bookElement, {
-        width: 400,  
-        height: 560, 
+        width: 420,  
+        height: 580, 
         size: "stretch",
         minWidth: 280,
-        maxWidth: 600,
+        maxWidth: 550,
         minHeight: 400,
-        maxHeight: 800,
+        maxHeight: 750,
         showCover: true,
         mobileScrollSupport: false,
-        maxShadowOpacity: 0.3
+        maxShadowOpacity: 0.3,
+        display: "single"
     });
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
@@ -44,36 +45,28 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     const nextBtn = document.getElementById('next-btn');
     const pageInfo = document.getElementById('page-info');
 
+    // Set initial page text
     updatePageInfo();
 
-    prevBtn.addEventListener('click', () => {
+    // Hook up button triggers safely inside the promise
+    prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         pageFlip.flipPrev();
     });
 
-    nextBtn.addEventListener('click', () => {
+    nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         pageFlip.flipNext();
     });
 
+    // Update counter whenever a page changes
     pageFlip.on('flip', (e) => {
         updatePageInfo();
     });
 
     function updatePageInfo() {
-        const currentPages = pageFlip.getPageDetails();
-        // currentPages returns an object or array containing visible page indices
-        let pageText = "";
-        
-        // StPageFlip layout can show 1 or 2 pages depending on view position
-        const visibleIndices = pageFlip.getPagesIndices();
-        const actualIndices = visibleIndices.map(i => i + 1);
-
-        if (actualIndices.length === 1 || actualIndices[0] === actualIndices[actualIndices.length - 1]) {
-            pageText = `Page ${actualIndices[0]} of ${numPages}`;
-        } else {
-            pageText = `Pages ${actualIndices[0]}–${actualIndices[actualIndices.length - 1]} of ${numPages}`;
-        }
-        
-        pageInfo.textContent = pageText;
+        const currentPage = pageFlip.getCurrentPageIndex() + 1;
+        pageInfo.textContent = `Page ${currentPage} of ${numPages}`;
     }
 
 }).catch(function(error) {
