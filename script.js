@@ -61,6 +61,14 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
+    // FIX: Collapse excess StPageFlip inline height on mobile screens
+    if (window.innerWidth <= 600) {
+        const stfWrapper = document.querySelector('.stf__wrapper');
+        if (stfWrapper) {
+            stfWrapper.style.height = 'auto';
+        }
+    }
+
     updatePageInfo();
 
     pageFlip.on('flip', (e) => {
