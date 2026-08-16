@@ -141,6 +141,12 @@ a, button {
         padding: 0 5px;
         box-sizing: border-box;
     }
+    .wrapper {
+        gap: 10px !important;
+    }
+    .box, .profile-section {
+        margin-bottom: 5px !important;
+    }
 }
 
 .nav-controls {
