@@ -1,37 +1,57 @@
-<style>
-  body {
-    background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
-    background-attachment: fixed;
-    background-repeat: repeat;
-  }
-  .glitter-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  .glitter-container img {
-    margin: 10px;
-  }
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>soy jaz</title>
+  <style>
+    body {
+      background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
+      background-attachment: fixed;
+      background-repeat: repeat;
+      font-family: monospace;
+      color: #ff1493;
+    }
+    .glitter-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .glitter-container img {
+      margin: 10px;
+    }
+    .pdf-box {
+      text-align: center;
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 2px dashed #ff69b4;
+    }
+    .pdf-button {
+      display: inline-block;
+      background-color: #ff69b4;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .pdf-button:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
 
 <div class="glitter-container">
   <!-- Banner / Header -->
   <div>
     <a href="https://www.glitter-graphics.com" target="_blank">
-      <img src="http://dl9.glitter-graphics.net/pub/152/152179h4qroi8q2b.gif" width="500" height="60" border="0" alt="Glitter Graphics">
-    </a>
-  </div>
-
-  <!-- Second Graphic -->
-  <div>
-    <a href="https://www.glitter-graphics.com" target="_blank">
-      <img src="http://dl5.glitter-graphics.net/pub/994/994065qwcskeyf6q.gif" width="136" height="37" border="0" alt="Glitter Graphics">
-    </a>
-  </div>
-
-  <!-- Third Graphic -->
-  <div>
-    <a href="https://www.glitter-graphics.com" target="_blank">
-      <img src="http://dl2.glitter-graphics.net/pub/3765/3765142f27d2iai7b.gif" width="206" height="163" border="0" alt="Glitter Graphics">
+      <img src="http://dl9.glitter-graphics.net/pub/152/152179h4qroi8q2b.gif" width="500" height="60" border="0" alt="Glitter Graphics" style="max-width: 100%; height: auto;">
     </a>
   </div>
 
@@ -48,3 +68,23 @@
     </a>
   </div>
 </div>
+
+<!-- PDF Section with a Guaranteed Clickable Button & Object Fallback -->
+<div class="pdf-box">
+  <p style="margin-bottom: 15px; font-weight: bold; font-size: 16px;">✨ Check out my PDF below! ✨</p>
+  
+  <!-- Direct link button which never fails -->
+  <a class="pdf-button" href="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/view?usp=sharing" target="_blank">
+    Open PDF Document 📄
+  </a>
+</div>
+
+<!-- Bottom Footer Glitter Graphic -->
+<div style="text-align: center; margin: 30px 0;">
+  <a href="https://www.glitter-graphics.com" target="_blank">
+    <img src="http://dl8.glitter-graphics.net/pub/434/434518xlbzh5vtds.gif" width="15" height="13" border="0">
+  </a>
+</div>
+
+</body>
+</html>
