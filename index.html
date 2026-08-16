@@ -1,124 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>soyjaz.com</title>
-  <style>
-    /* Universal clean, consistent font and sizing across all devices */
-    * {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soy Jaz</title>
+    
+    <!-- Tab Bar Icon (Favicon) -->
+    <link rel="icon" type="image/gif" href="http://dl8.glitter-graphics.net/pub/434/434518xlbzh5vtds.gif">
+    
+    <!-- Your Custom Soul Cursor Animation -->
+    <style type="text/css">
+        @keyframes rwdcur255537 {
+            0%,6.15%,100% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAuklEQVRYhe2Wyw6FMAgFD8b//2PFzdUgaUsp17DhbEyUOkNbHwSAMQ4Z10PZAYD57UD0MD+FPwIZ4DtbJvwlkAG/w7A34mfRM5CStO4Bx5ozcOA3Y9QZx6KZXo3O1BJIuAapmqZMSEDDW4BBzaHP6ZjTNNvJADBkpD8FJVACpsDsC6U/PCggJE4nmWbMXd31Xjgt+Ow9vQLiEIe7BYRIU2JlvyxvMC0R3KzrEtFvxW6XDJPyD1mpVP6aC61CKiLq1JKSAAAAAElFTkSuQmCC) 0 0, auto;}
+            6.25%,12.4% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA00lEQVRYhe2UQQ6FIAxEp37vf2Gj/QsRhQAdUMKGt9GE0hnaggBQlBFj/RUrAKiGHkS8Zldxb2CE8MUyUjwwMEL8QmEPYjdWO+REgR13xSRVqmeMkNWUc185WNMVCkwkYg4BfpaBhRDf8kv+Z0/lzhgPYFoQD+rTwebWSzHFE9Iz0LrfGoSs86+wesAY6GqSSX68ERjeAgvTgLvLrVUwHyP67WfudJSYfglpWBOsOFA5Ay5xsR014tUGHNmZqBV3e+rR4NMu3mwgNtEqPplMJhMA+ANRsCc6tAYysAAAAABJRU5ErkJggg==) 0 0, auto;}
+            12.5%,18.65% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAwUlEQVRYhe2VzRKDIAyEN63v/8IdTQ8VBx3zR8ZyyXfSAdllTYAAMHTIGE+xAADz2QPRofmo+GFghnDjNVP8ZGCGeBPk7lmEu2IlYS4DK/ZNSXOuXBOQxD+SmTvx7t2kJSC6vRPrvyd9zkbAWzOwaOIOVuMQMRM2xY0EPJAm4qqBlLox/rgBizLgqdJMl6gtuK/vY6Ab1OoPG4iYiKQWqgHnwqFNDf1fKYmRehnqAkHo71c5+HcXZI/qlIGiKIoizRd2/iYoUJCKIQAAAABJRU5ErkJggg==) 0 0, auto;}
+            18.75%,37.4% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAsUlEQVRYhe2Wyw6EIAxFb43//8daN+Iowb7QkDE9Wwn3UFoiAWDIkPK9ixkAmK8OREfmq+GHwIjgwjQy/CKghTOwMMAs9IxlTQ3ht1gMr2WpWn8TSlo5VQHpNEVCObEoUZowdO+eUt8xRcOfom7C7wlo5f1+BboF9lFbg/urDW6egNZjpGxs2ts1glYJa7hbwCLhCQ8J7BLNF9AbHhZOSUTCgb4xPP9ADH3OkyRJkv9mA5R6JyaLsxcgAAAAAElFTkSuQmCC) 0 0, auto;}
+            37.5%,43.65% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAyklEQVRYhe2U2xLCIAxEN7b//8MOxgdbBCQXigyOwz51SsiehAABYOgiY71LOwAw5wxE0XOoeQSYYXzqNtM8A5hhfhpy8i2Kk2ElIZaBgHdR5Kmm7IBkHkqY8uowcC/yfcRoACLsUXkNNBoc5nslJlT+ZTK7xPo78RDgUgPVw3UEA/f3J1gAPw9gXUUTwJpiQ5u12Z3cuI7V3J7kTdU1QLjMgcYZcB6H2fYiZ7uUTmz0eh3HAtQgOof1MkS4MJxfBZjovrS0tPQvegJGoCwiZ++aTgAAAABJRU5ErkJggg==) 0 0, auto;}
+            43.75%,49.9% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA3klEQVRYhe2W0Q6DIAxFT9Vk//+5yybdA2jQIAUXNFs4CQ+Ght5eSqMASh4x9r9iAlDdahBZczZNvgq4I/HCcGfyjYA7ki8odiM2Y7JDPApz9DmmrFJfiAMGKXRzuYJssMIrxC5r1t31KTzjM9XHmJgqQ+X7XgF4Aw8BFwSm3HQcuFUjIFeICyt3ldJSgInVCylrL6W5AMu+/3fAajJTQOlAOWAsOP8YjQJOvIbs8ysSkBBUJKLGtdoeEPzgsWKqDqwmM56LbI859QrEN9feiev/JRQ0rNvnSafT6fwuH7FPMClmoxeGAAAAAElFTkSuQmCC) 0 0, auto;}
+            50%,56.15% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAq0lEQVRYhe2WSRKAIAwEJxb//3I8QQkKWYDKQfrKMk1YlAAwxpDQPkUCAObagahkbg0vAhHBmSsyvBKICM8w5IO4jbYCIYStHjDsOT9EqTNO08clwB9VagM0fVwCXxO3AZo+PdKoUWIUrCX8FhyB7QLSIdkuIF0z9zugDBfnV1VA+6q9hy3qlNFWwiJsXpkkYa2W6wekJ+HZKvcfUCvhPCdzMMArvgeHw+Hf3MurJCxDtFFyAAAAAElFTkSuQmCC) 0 0, auto;}
+            56.25%,62.4% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAyUlEQVRYhe2W0Q6DIAxFb+f+/4cX7V6KAwelRUlfOIkxaum9YGkgAAwd6ny/xRsAmEsPRKfmVPHTQIRw4hUpXhiIEE8w+oU4jesKhBA2+wXgqHoG9uxxqw3k3+88WjFXTEXIwEdi07VXYvJ31ZgaXZOSuGqUZDzrhUyaiMXA3V2iGpjeB3ozDG9Ey8B0A48ct0Z3Ahnym1ZAEh1Pi5sNCJvDhLnFu05AXNyaCV05h45grZrwigPju+CvJkbEU6JhspVQ+/1isdD4AofVJC0b4Vb2AAAAAElFTkSuQmCC) 0 0, auto;}
+            62.5%,68.65% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA2klEQVRYhe1W0RKDMAgL6v//8K6yh1G9tm7Auo7trnsxVAxpGxACwHgNUt53YQMA5lID0ZFzaPJDQETijCUyeSEgInkGQzfiMNQ7EIKw1U/8BMxlx0DCaVq6+pAfftrldrWQm6qAgVsV2xhXBGbOBUCyuFsVIMm3i+dcxdRcJhENsUck6yWsLnB4I9J8EN4JhwvoPiJs6yHN8wgNrhwi1F3k6oeuvSUZu8/kKoWknrMldAgSW43CNde4ZkItLQ+bmc5cYnZd6J7470MokmxjgOdNN/DXu6qstI69fducAAAAASUVORK5CYII=) 0 0, auto;}
+            68.75%,87.4% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAvElEQVRYhe2W3Q6DIAxGT/fz/s+7sNndqBHmoMUQbnoS4wWE71ShQQCljjTGL/EAUM0dRPbMoeG7wIzgjdvM8ExgRvhmfAIa+b8GkK4K5YAAAAASUVORK5CYII=) 0 0, auto;}
+            87.5%,93.65% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAyklEQVRYhe2WzRKDIAyEN+r7v2+nrekFFTLGBBgbD3wX/4DdhJCRADCuIeN7FwsAMJceiHbNW8V3AxHCG1OkeGEgQnyDYRfibcgMhBAW/eARuI8dA1+koiVlHmf1pI2RuE5BWngSz3LMSzPTZSBFfvqej/s3RFu/mptjpsmI5JOEVyjBWFvRa8DEMhDeCYeB5xvwNhR9eqeBzMRaqWwe5+4tIGCuMOHOWlV6ubioC1at2bS/WnNqqZemU3AmRAD9/deKAe5t1YNBOD8PWC0dza6rIwAAAABJRU5ErkJggg==) 0 0, auto;}
+            93.75%,99.9% {cursor:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAx0lEQVRYhe2WSw7FIAhFL033v+NX3kTb2CAg1jDxTJpUhAvihwAwdMgYn+IEAOZWA9Edc2nwW*uAGfqwGgBAP0AGW0nUAAAAASUVORK5CYII=) 0 0, auto;}
+        }
+        body {
+            animation: rwdcur255537 2.6666666666667s linear infinite forwards;
+            background-color: #000000;
+            background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
+            background-attachment: fixed;
+            background-repeat: repeat;
+            color: #ffffff;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
 
-    body {
-      background-color: #ffe6f2;
-      text-align: center;
-      margin: 0;
-      padding: 15px;
-    }
+        /* Side-by-Side Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto 25px auto;
+        }
 
-    .glitter-container img {
-      max-width: 100%;
-      height: auto;
-      margin: 5px;
-    }
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px dashed #ff69b4;
+            box-shadow: 0px 0px 15px #ff69b4;
+        }
 
-    /* Mobile-friendly PDF container */
-    .pdf-box {
-      background: #ffffff;
-      border: 2px dashed #ff69b4;
-      border-radius: 12px;
-      padding: 15px;
-      margin: 20px auto;
-      max-width: 800px;
-      width: 100%;
-    }
+        /* Intro Box Styling */
+        .intro-box {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px dashed #ff69b4;
+            padding: 15px 20px;
+            border-radius: 15px;
+            color: #ffffff;
+            font-size: 16px;
+            box-shadow: 0px 0px 10px #ff69b4;
+            max-width: 450px;
+            text-align: left;
+        }
 
-    /* Big clickable mobile-first button */
-    .pdf-button {
-      display: inline-block;
-      background-color: #ff1493;
-      color: white;
-      padding: 14px 24px;
-      font-size: 18px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 30px;
-      box-shadow: 0 4px 10px rgba(255, 20, 147, 0.4);
-      margin-bottom: 15px;
-      transition: background 0.2s;
-    }
+        .intro-box span {
+            color: #ff69b4;
+            font-weight: bold;
+        }
 
-    .pdf-button:hover {
-      background-color: #e00b82;
-    }
+        /* PDF Viewer: Responsive width */
+        object {
+            width: 90%;
+            max-width: 900px;
+            height: 90vh;
+            border: 3px dashed #ff69b4;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0px 0px 15px #ff69b4;
+        }
 
-    /* Responsive iframe wrapper so it scales on mobile screens */
-    .iframe-wrapper {
-      position: relative;
-      width: 100%;
-      height: 600px;
-      background: #f9f9f9;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid #ddd;
-    }
+        /* Styled button background for opening PDF in new tab */
+        .pdf-link-container {
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px dashed #ff69b4;
+            padding: 10px 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px #ff69b4;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
 
-    .iframe-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+        .pdf-link-container a {
+            color: #ff69b4;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
 
-    @media (max-width: 768px) {
-      .iframe-wrapper {
-        height: 400px; /* Shorter height for mobile screens */
-      }
-    }
-  </style>
+        .pdf-link-container a:hover {
+            color: #ff1493;
+        }
+
+        /* Land Acknowledgement Note Style */
+        .land-acknowledgement {
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 2px dashed #ff69b4;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 30px auto 10px auto;
+            font-size: 13px;
+            box-shadow: 0px 0px 10px #ff69b4;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Header Graphic -->
-  <div class="glitter-container">
-    <div>
-      <img src="http://dl9.glitter-graphics.net/pub/152/152179h4qroi8q2b.gif" width="500" height="60" alt="Glitter Graphics">
+<div class="glitter-container" style="margin-bottom: 20px;">
+    <img src="https://text.glitter-graphics.net/heart/s.gif"><img src="https://text.glitter-graphics.net/heart/o.gif"><img src="https://text.glitter-graphics.net/heart/y.gif">
+    <img src="https://dl3.glitter-graphics.net/empty.gif" width="20">
+    <img src="https://text.glitter-graphics.net/heart/j.gif"><img src="https://text.glitter-graphics.net/heart/a.gif"><img src="https://text.glitter-graphics.net/heart/z.gif">
+</div>
+
+<!-- Profile Picture & Bio Section Side-by-Side -->
+<div class="profile-section">
+    <div class="profile-pic-container">
+        <img src="https://lh3.googleusercontent.com/d/1lm5NxPdpJTOa9so6V3rQ5z98QSP8B_d8" class="profile-pic">
     </div>
     
-    <!-- Glitter Text ("SOY JAZ") -->
-    <div style="margin-top: 15px;">
-      <img src="https://text.glitter-graphics.net/heart/s.gif" alt="S">
-      <img src="https://text.glitter-graphics.net/heart/o.gif" alt="O">
-      <img src="https://text.glitter-graphics.net/heart/y.gif" alt="Y">
-      <img src="https://dl3.glitter-graphics.net/empty.gif" width="20" alt="">
-      <img src="https://text.glitter-graphics.net/heart/j.gif" alt="J">
-      <img src="https://text.glitter-graphics.net/heart/a.gif" alt="A">
-      <img src="https://text.glitter-graphics.net/heart/z.gif" alt="Z">
+    <div class="intro-box">
+        Hello and welcome! My name is jazzie terrell, and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English
+        <br><br>
+        <div style="background-color: #000000; color: #ffffff; padding: 6px 10px; border-radius: 6px; text-align: center; font-weight: bold;">
+            ✨ Check out my CV below! ✨
+        </div>
     </div>
-  </div>
+</div>
 
-  <!-- PDF Section with Mobile Button & Responsive Iframe -->
-  <div class="pdf-box">
-    <p style="margin-bottom: 15px; font-weight: bold; font-size: 16px; color: #333;">✨ Check out my PDF below! ✨</p>
+<!-- PDF Object -->
+<object data="terrell-cv.pdf" type="application/pdf"></object>
 
-    <!-- Fallback/Direct Action Button for Mobile Users -->
-    <div>
-      <a class="pdf-button" href="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/view?usp=sharing" target="_blank">
-        Open PDF Document 📄
-      </a>
-    </div>
+<br>
 
-    <!-- Responsive Embedded Viewer -->
-    <div class="iframe-wrapper">
-      <iframe src="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/preview"></iframe>
-    </div>
-  </div>
+<!-- Open PDF Link with Background Box -->
+<div class="pdf-link-container">
+    <a href="terrell-cv.pdf" target="_blank">Open PDF in New Tab 📄</a>
+</div>
 
-  <!-- Footer Graphic -->
-  <div style="text-align: center; margin: 30px 0;">
-    <img src="http://dl8.glitter-graphics.net/pub/434/434518xlbzh5vtds.gif" width="15" height="13" alt="Footer Glitter">
-  </div>
+<!-- Land Acknowledgement Note -->
+<div class="land-acknowledgement">
+    Note: I am located on unceded Tohono O'Oodham and Yoeme land.
+</div>
 
 </body>
 </html>
