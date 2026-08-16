@@ -34,15 +34,24 @@
             padding: 20px;
         }
 
-        /* Side-by-Side Profile Section */
-        .profile-section {
+        /* Main Wrapper to split Left and Right */
+        .main-container {
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 20px;
+            align-items: flex-start;
+            gap: 40px;
             flex-wrap: wrap;
-            max-width: 800px;
-            margin: 0 auto 25px auto;
+            max-width: 1300px;
+            margin: 20px auto 0 auto;
+        }
+
+        /* Left Column: Bio & Pic */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            max-width: 350px;
         }
 
         .profile-pic {
@@ -54,29 +63,58 @@
             box-shadow: 0px 0px 15px #ff69b4;
         }
 
-        /* Intro Box Styling */
-        .intro-box {
-            background-color: rgba(0, 0, 0, 0.8);
+        /* Speech Bubble Blurb */
+        .speech-bubble {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.85);
             border: 2px dashed #ff69b4;
-            padding: 15px 20px;
+            padding: 18px 20px;
             border-radius: 15px;
             color: #ffffff;
-            font-size: 16px;
+            font-size: 15px;
             box-shadow: 0px 0px 10px #ff69b4;
-            max-width: 450px;
             text-align: left;
+            max-width: 300px;
         }
 
-        .intro-box span {
+        /* Speech bubble pointer pointing up towards the profile picture */
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent #ff69b4 transparent;
+        }
+
+        .speech-bubble span {
             color: #ff69b4;
             font-weight: bold;
         }
 
+        /* Right Column: CV Preview & Link */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            min-width: 300px;
+            max-width: 800px;
+        }
+
+        .cv-title {
+            color: #ff69b4;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
         /* PDF Viewer: Responsive width */
         object {
-            width: 90%;
-            max-width: 900px;
-            height: 90vh;
+            width: 100%;
+            height: 80vh;
             border: 3px dashed #ff69b4;
             border-radius: 8px;
             background-color: white;
@@ -86,12 +124,12 @@
         /* Styled button background for opening PDF in new tab */
         .pdf-link-container {
             display: inline-block;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85);
             border: 2px dashed #ff69b4;
             padding: 10px 20px;
             border-radius: 15px;
             box-shadow: 0px 0px 10px #ff69b4;
-            margin-top: 20px;
+            margin-top: 15px;
             margin-bottom: 20px;
         }
 
@@ -109,33 +147,40 @@
 </head>
 <body>
 
-<div class="glitter-container" style="margin-bottom: 20px;">
+<!-- Top Banner -->
+<div class="glitter-container" style="margin-bottom: 10px;">
     <img src="https://text.glitter-graphics.net/heart/s.gif"><img src="https://text.glitter-graphics.net/heart/o.gif"><img src="https://text.glitter-graphics.net/heart/y.gif">
     <img src="https://dl3.glitter-graphics.net/empty.gif" width="20">
     <img src="https://text.glitter-graphics.net/heart/j.gif"><img src="https://text.glitter-graphics.net/heart/a.gif"><img src="https://text.glitter-graphics.net/heart/z.gif">
 </div>
 
-<!-- Profile Picture & Bio Section Side-by-Side -->
-<div class="profile-section">
-    <div class="profile-pic-container">
-        <img src="https://lh3.googleusercontent.com/d/1lm5NxPdpJTOa9so6V3rQ5z98QSP8B_d8" class="profile-pic">
-    </div>
+<!-- Main Split Container -->
+<div class="main-container">
     
-    <div class="intro-box">
-        Hello and welcome! My name is jazzie terrell, and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English
+    <!-- Left Column: Picture & Speech Bubble Blurb -->
+    <div class="left-column">
+        <div class="profile-pic-container">
+            <img src="https://lh3.googleusercontent.com/d/1lm5NxPdpJTOa9so6V3rQ5z98QSP8B_d8" class="profile-pic">
+        </div>
+        
+        <div class="speech-bubble">
+            Hello! I'm a <span>PhD candidate in rhetoric, composition, and the teaching of english</span>.
+        </div>
     </div>
-</div>
 
-<div style="color: #ff69b4; font-weight: bold; margin-bottom: 15px;">✨ Check out my CV below! ✨</div>
+    <!-- Right Column: CV Preview & Link -->
+    <div class="right-column">
+        <div class="cv-title">✨ Check out my CV below! ✨</div>
 
-<!-- PDF Object -->
-<object data="https://drive.google.com/file/d/1syiWk6LjFxcQeX8iib7n7JOSku9xWuCv/preview" type="application/pdf"></object>
+        <!-- PDF Object -->
+        <object data="https://drive.google.com/file/d/1syiWk6LjFxcQeX8iib7n7JOSku9xWuCv/preview" type="application/pdf"></object>
 
-<br>
+        <!-- Open PDF Link with Background Box -->
+        <div class="pdf-link-container">
+            <a href="https://drive.google.com/file/d/1syiWk6LjFxcQeX8iib7n7JOSku9xWuCv/view?usp=sharing" target="_blank">Open PDF in New Tab 📄</a>
+        </div>
+    </div>
 
-<!-- Open PDF Link with Background Box -->
-<div class="pdf-link-container">
-    <a href="https://drive.google.com/file/d/1syiWk6LjFxcQeX8iib7n7JOSku9xWuCv/view?usp=sharing" target="_blank">Open PDF in New Tab 📄</a>
 </div>
 
 </body>
