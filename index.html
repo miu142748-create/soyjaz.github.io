@@ -25,6 +25,18 @@
             margin-top: 30px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
+        .bio-box {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px;
+            border-radius: 12px;
+            display: inline-block;
+            width: 90%;
+            max-width: 700px;
+            color: #333;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
         .content-box {
             margin-top: 30px;
             background: rgba(255, 255, 255, 0.9);
@@ -60,19 +72,27 @@
             display: inline-block;
             width: 90%;
             max-width: 950px;
+            margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
+
+    <!-- Glitter Text at the Very Top -->
+    <div style="margin-top: 30px;">
+        <a href="https://www.glitter-graphics.com/myspace/text_generator.php" target="_blank"><img src="https://text.glitter-graphics.net/heart/s.gif" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="20" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" border="0"></a>
+    </div>
 
     <!-- Profile Picture -->
     <div>
         <img src="pfp.png" alt="Profile Picture" class="profile-img">
     </div>
 
-    <!-- Glitter Text ("SOY JAZ") -->
-    <div style="margin-top: 25px;">
-        <a href="https://www.glitter-graphics.com/myspace/text_generator.php" target="_blank"><img src="https://text.glitter-graphics.net/heart/s.gif" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="20" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" border="0"></a>
+    <!-- Short Bio -->
+    <div>
+        <div class="bio-box">
+            <p style="margin: 0;">✨ [Insert your little bio text here!] ✨</p>
+        </div>
     </div>
 
     <!-- PDF Section with Button and Preview -->
@@ -89,8 +109,10 @@
     </div>
 
     <!-- Land Acknowledgement Section -->
-    <div class="land-ack">
-        <p><strong>Land Acknowledgement:</strong> [Insert your land acknowledgement text here]</p>
+    <div>
+        <div class="land-ack">
+            <p style="margin: 0;"><strong>Land Acknowledgement:</strong> [Insert your land acknowledgement text here]</p>
+        </div>
     </div>
 
 </body>
