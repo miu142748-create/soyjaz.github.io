@@ -27,7 +27,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 3.5 });
+        const viewport = page.getViewport({ scale: 2.5 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -43,15 +43,15 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Configured for optimal portrait proportions and smooth responsive scaling
+    // Configured with exact standard portrait ratio (850x1100) and full mobile touch support
     pageFlip = new St.PageFlip(bookElement, {
         width: 850,  
         height: 1100, 
         size: "stretch",
-        minWidth: 300,
-        maxWidth: 1100,
+        minWidth: 280,
+        maxWidth: 1000,
         minHeight: 400,
-        maxHeight: 1400,
+        maxHeight: 1300,
         showCover: false,
         usePortrait: true,   
         mobileScrollSupport: true,
