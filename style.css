@@ -1,0 +1,16 @@
+/* Flipbook Canvas & Page Styling */
+.page {
+    background-color: white; /* Gives the PDF pages a solid white background */
+}
+
+.page canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* StPageFlip container shadow effect */
+.-st-page-flip {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+}
