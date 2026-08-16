@@ -1,19 +1,17 @@
-// Set the worker path for PDF.js so it can process the PDF file safely
+// Set the worker path for PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
 const url = 'terrell-cv.pdf'; // Path to your PDF file in the repository
 const bookElement = document.getElementById('book');
 
-// Load the PDF document asynchronously
 pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     const numPages = pdfDoc_.numPages;
 
-    // Loop through every page of your PDF
+    // Loop through every page of your PDF and convert to canvas elements
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 1.5 }); // Adjust scale for crisp text quality
+        const viewport = page.getViewport({ scale: 1.5 }); // High-res scale
 
-        // Create a wrapper div for each page required by StPageFlip
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
 
@@ -22,29 +20,47 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         canvas.height = viewport.height;
         canvas.width = viewport.width;
 
-        // Render the PDF page onto the HTML canvas element
         await page.render({ canvasContext: context, viewport: viewport }).promise;
         
         pageDiv.appendChild(canvas);
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize the StPageFlip engine once all pages are fully loaded
+    // Initialize StPageFlip for single-page mode
     const pageFlip = new St.PageFlip(bookElement, {
-        width: 400,  // Single page width (adjust if needed to fit your layout)
-        height: 560, // Single page height (adjust if needed)
-        size: "stretch",
-        minWidth: 250,
-        maxWidth: 600,
-        minHeight: 350,
-        maxHeight: 800,
-        maxShadowOpacity: 0.5,
-        showCover: true,
-        mobileScrollSupport: false
+        width: 450,  
+        height: 620, 
+        size: "fixed", // Forces fixed single-page view
+        showCover: false,
+        mobileScrollSupport: false,
+        maxShadowOpacity: 0.2
     });
 
-    // Feed the generated HTML pages into the flipbook container
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+    // Hook up navigation buttons and page counter
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const pageInfo = document.getElementById('page-info');
+
+    updatePageInfo();
+
+    prevBtn.addEventListener('click', () => {
+        pageFlip.flipPrev();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        pageFlip.flipNext();
+    });
+
+    pageFlip.on('flip', (e) => {
+        updatePageInfo();
+    });
+
+    function updatePageInfo() {
+        const current = pageFlip.getCurrentPageIndex() + 1;
+        pageInfo.textContent = `Page ${current} of ${numPages}`;
+    }
 
 }).catch(function(error) {
     console.error('Error loading PDF: ', error);
