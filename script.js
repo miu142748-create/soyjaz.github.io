@@ -40,21 +40,19 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
     const pageInfo = document.getElementById('page-info');
-
     updatePageInfo();
 
-    // Use turnToPrevPage and turnToNextPage for reliable clicking
-    prevBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        pageFlip.turnToPrevPage();
-    });
-
-    nextBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        pageFlip.turnToNextPage();
+    // Global event delegation to guarantee clicks are intercepted and handled
+    document.addEventListener('click', (e) => {
+        if (e.target && e.target.id === 'next-btn') {
+            e.preventDefault();
+            pageFlip.flipNext('top');
+        }
+        if (e.target && e.target.id === 'prev-btn') {
+            e.preventDefault();
+            pageFlip.flipPrev('top');
+        }
     });
 
     pageFlip.on('flip', (e) => {
