@@ -140,13 +140,19 @@ a, button {
     }
 }
 
-/* MOBILE FIX: Restricts horizontal overflow/stretching on small screens */
+/* MOBILE PORTRAIT FIX FOR STPAGEFLIP */
 @media (max-width: 600px) {
     .flipbook-container {
-        max-width: 100% !important;
-        overflow-x: hidden;
+        width: 100% !important;
+        overflow: hidden !important;
     }
     .stf__wrapper {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1.414 !important;
+    }
+    .stf__parent {
+        width: 100% !important;
         max-width: 100% !important;
     }
 }
