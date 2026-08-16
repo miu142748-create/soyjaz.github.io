@@ -27,7 +27,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 2.0 });
+        const viewport = page.getViewport({ scale: 3.5 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -43,18 +43,18 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Configured with standard single-page aspect ratio (3:4)
+    // Forced single-page stretch mode matching the container bounds
     pageFlip = new St.PageFlip(bookElement, {
-        width: 550,           
-        height: 733,          
+        width: 900,  
+        height: 1160, 
         size: "stretch",
-        minWidth: 280,
+        minWidth: 400,
         maxWidth: 1000,
-        minHeight: 350,
-        maxHeight: 1333,
+        minHeight: 500,
+        maxHeight: 1300,
         showCover: false,
-        usePortrait: true,    // Renders 1 page on mobile portrait and 2 pages on wide desktop
-        mobileScrollSupport: true,
+        usePortrait: true,   
+        mobileScrollSupport: false,
         maxShadowOpacity: 0.3
     });
 
@@ -62,7 +62,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     updatePageInfo();
 
-    pageFlip.on('flip', () => {
+    pageFlip.on('flip', (e) => {
         updatePageInfo();
     });
 
