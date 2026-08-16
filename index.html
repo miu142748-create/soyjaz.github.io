@@ -9,7 +9,7 @@
     <!-- Import Quicksand and Press Start 2P Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     
-    <!-- Include PDF.js and StPageFlip libraries for the flipbook -->
+    <!-- Include PDF.js and StPageFlip libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
@@ -26,25 +26,36 @@
         a, button {
             cursor: pointer;
         }
-        /* Fully stacked container styling to force single-column layout */
-        .site-container {
+
+        /* Strict single-column stack wrapper */
+        .wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
             max-width: 850px;
-            margin: 25px auto;
+            margin: 0 auto;
         }
-        .header-section {
+
+        /* Universal Box Style for every section */
+        .box {
+            background: #0d001a;
+            color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
             width: 100%;
+            box-sizing: border-box;
+            text-align: center;
         }
+
         .profile-flex {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
             gap: 20px;
-            width: 100%;
         }
         .profile-img {
             width: 130px;
@@ -83,24 +94,12 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
-        
-        .stacked-box {
-            background: #0d001a;
-            color: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
-            width: 100%;
-            box-sizing: border-box;
-            text-align: center;
-        }
 
         .flipbook-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 10px auto;
+            margin: 15px auto;
             width: 100%;
         }
         #book {
@@ -116,46 +115,27 @@
             display: block;
         }
         
-        .nav-btn {
+        .nav-btn, .pdf-button {
             background-color: #ff69b4;
             color: #0d001a;
-            padding: 8px 14px;
+            padding: 10px 16px;
             font-weight: bold;
             font-size: 9px;
             font-family: 'Press Start 2P', monospace;
             border-radius: 6px;
             border: 2px solid #fff;
             box-shadow: 3px 3px 0px #fff;
-            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
             transition: transform 0.1s;
         }
-        .nav-btn:hover {
+        .nav-btn:hover, .pdf-button:hover {
             background-color: #fff;
             color: #ff1493;
             transform: translate(-2px, -2px);
             box-shadow: 4px 4px 0px #ff69b4;
         }
-        .pdf-button {
-            display: inline-block;
-            background-color: #ff69b4;
-            color: #0d001a;
-            padding: 10px 16px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 9px;
-            font-family: 'Press Start 2P', monospace;
-            border-radius: 6px;
-            border: 2px solid #fff;
-            box-shadow: 3px 3px 0px #fff;
-            transition: transform 0.1s;
-            margin-top: 15px;
-        }
-        .pdf-button:hover {
-            background-color: #fff;
-            color: #ff1493;
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #ff69b4;
-        }
+
         .research-box h3 {
             margin-top: 0;
             color: #ff69b4;
@@ -165,35 +145,20 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        .land-ack {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 14px;
-            color: #fff;
-            line-height: 1.5;
-            background: #0d001a;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
-            width: 100%;
-            text-align: center;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-        }
     </style>
 </head>
 <body>
 
     <!-- Glitter Text ("SOY JAZ") -->
-    <div style="margin-top: 25px;">
+    <div style="margin-top: 25px; margin-bottom: 25px;">
         <img src="https://text.glitter-graphics.net/heart/s.gif" alt="s" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" alt="y" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="15" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" alt="j" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" alt="a" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" alt="z" border="0">
     </div>
 
-    <!-- Main Stacked Wrapper -->
-    <div class="site-container">
+    <!-- Main Stacked Column Container -->
+    <div class="wrapper">
 
         <!-- Profile Section -->
-        <div class="header-section">
+        <div class="box">
             <div class="profile-flex">
                 <img src="pfp.png" alt="Profile Picture of jazzie holding a dog" class="profile-img">
                 <div class="bio-box">
@@ -202,53 +167,58 @@
             </div>
         </div>
 
-        <!-- Interactive Flipbook Section with Navigation & Download at bottom -->
-        <div class="stacked-box">
+        <!-- Flipbook Section -->
+        <div class="box">
             <p style="margin-top: 0; color: #ff69b4; font-weight: 700; font-size: 15px;">✨ Interactive CV Flipbook ✨</p>
+            
             <div class="flipbook-container">
-                <div id="book">
-                    <!-- PDF pages dynamically loaded via script.js -->
-                </div>
+                <div id="book"></div>
             </div>
-            <!-- Navigation Buttons and Counter -->
-            <div class="flipbook-nav" style="margin-top: 15px;">
+
+            <!-- Navigation Buttons & Counter -->
+            <div style="margin-top: 15px;">
                 <button id="prev-btn" class="nav-btn">[ PREV ]</button>
-                <span id="page-info" style="color: #fff; margin: 0 15px; font-size: 13px;">Pages 1-2 of X</span>
+                <span id="page-info" style="color: #fff; margin: 0 15px; font-size: 13px;">Pages 1-2</span>
                 <button id="next-btn" class="nav-btn">[ NEXT ]</button>
             </div>
-            <!-- Download Button moved here -->
-            <div>
+
+            <!-- Download Button -->
+            <div style="margin-top: 15px;">
                 <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document">
                     [ DOWNLOAD PDF ]
                 </a>
             </div>
+
+            <!-- Little note about clickable links -->
+            <p style="font-size: 12px; color: #ffb6c1; margin-top: 10px; font-style: italic;">
+                (Note: Links inside the flipbook preview are view-only. Use the download button above or contact section below for clickable links!)
+            </p>
         </div>
 
-        <!-- Research Section -->
-        <div class="stacked-box research-box">
+        <!-- Research Interests Section -->
+        <div class="box research-box">
             <h3>✨ Research Interests ✨</h3>
             <p style="margin: 0; font-size: 15px; line-height: 1.6;">Feminist Pedagogy | Digital Literacy | Borderland Rhetorics | Community-Led Research</p>
         </div>
 
         <!-- Contact Section -->
-        <div class="stacked-box">
+        <div class="box">
             <p style="margin-bottom: 8px; color: #ff69b4;">✨ Get in touch! ✨</p>
             <div style="margin: 10px 0;" aria-hidden="true">
                 <img src="http://dl4.glitter-graphics.net/pub/536/536374qelg9xv2hk.gif" alt="" width="38" height="35" border="0">
             </div>
-            <a class="pdf-button" href="mailto:jterrell1@arizona.edu" aria-label="Send me an email" style="margin-top: 5px;">
+            <a class="pdf-button" href="mailto:jterrell1@arizona.edu" aria-label="Send me an email">
                 [ SEND ME AN EMAIL ]
             </a>
         </div>
 
         <!-- Land Acknowledgement Section -->
-        <div class="land-ack">
+        <div class="box" style="margin-bottom: 35px;">
             <p style="margin: 0;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
         </div>
 
     </div>
 
-    <!-- Link your external JS script -->
     <script src="script.js"></script>
 </body>
 </html>
