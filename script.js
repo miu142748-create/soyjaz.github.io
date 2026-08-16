@@ -61,7 +61,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-    // FIX: Force collapse StPageFlip height when on portrait mobile
+    // FIX: Only apply height constraints on actual mobile portrait screens
     if (window.innerWidth <= 600 && window.innerHeight > window.innerWidth) {
         const stfWrapper = document.querySelector('.stf__wrapper');
         const stfParent = document.querySelector('.stf__parent');
