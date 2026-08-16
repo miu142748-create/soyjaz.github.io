@@ -24,8 +24,9 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize StPageFlip for single-page mode
-    const pageFlip = new St.PageFlip(bookElement, {
+    // Initialize StPageFlip safely
+    const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
+    const pageFlip = new PageFlipConstructor(bookElement, {
         width: 450,  
         height: 620, 
         size: "fixed",
