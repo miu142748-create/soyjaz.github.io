@@ -2,6 +2,26 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 
 const url = 'terrell-cv.pdf';
 const bookElement = document.getElementById('book');
+const pageInfo = document.getElementById('page-info');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+let pageFlip;
+
+// Hook up button listeners immediately so they are always active
+prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (pageFlip) {
+        pageFlip.flipPrev();
+    }
+});
+
+nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (pageFlip) {
+        pageFlip.flipNext();
+    }
+});
 
 pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     const numPages = pdfDoc_.numPages;
@@ -24,7 +44,8 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    const pageFlip = new St.PageFlip(bookElement, {
+    // Initialize StPageFlip in single-page mode
+    pageFlip = new St.PageFlip(bookElement, {
         width: 420,  
         height: 580, 
         size: "stretch",
@@ -40,20 +61,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-    const pageInfo = document.getElementById('page-info');
     updatePageInfo();
-
-    // Global event delegation to guarantee clicks are intercepted and handled
-    document.addEventListener('click', (e) => {
-        if (e.target && e.target.id === 'next-btn') {
-            e.preventDefault();
-            pageFlip.flipNext('top');
-        }
-        if (e.target && e.target.id === 'prev-btn') {
-            e.preventDefault();
-            pageFlip.flipPrev('top');
-        }
-    });
 
     pageFlip.on('flip', (e) => {
         updatePageInfo();
