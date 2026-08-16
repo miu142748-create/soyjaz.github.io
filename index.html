@@ -22,10 +22,13 @@
         <img src="https://text.glitter-graphics.net/heart/s.gif" alt="s" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" alt="y" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="15" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" alt="j" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" alt="a" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" alt="z" border="0">
     </div>
 
-    <!-- Navigation Bar -->
-    <div style="margin-bottom: 25px; display: flex; justify-content: center; gap: 15px;">
-        <a class="pdf-button" href="index.html" style="background-color: #fff; color: #ff1493;">[ HOME ]</a>
-        <a class="pdf-button" href="portfolio.html">[ PORTFOLIO ]</a>
+    <!-- Nested Hamburger Navigation Bar -->
+    <div class="nav-container">
+        <button id="menu-toggle" class="nav-btn">[ ≡ MENU ]</button>
+        <div id="nav-dropdown" class="nav-dropdown">
+            <a class="nav-link" href="index.html" style="background-color: #fff; color: #ff1493;">[ HOME ]</a>
+            <a class="nav-link" href="portfolio.html">[ PORTFOLIO ]</a>
+        </div>
     </div>
 
     <!-- Main Stacked Column Container -->
@@ -85,13 +88,25 @@
             </a>
         </div>
 
-<!-- Land Acknowledgement Section -->
+        <!-- Land Acknowledgement Section -->
         <div class="box" style="margin-bottom: 35px;">
             <p style="margin: 0; font-size: 13px; color: #ffb6c1;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
         </div>
 
     </div>
 
+    <!-- Toggle Script for Hamburger Menu -->
+    <script>
+        const toggleBtn = document.getElementById('menu-toggle');
+        const dropdown = document.getElementById('nav-dropdown');
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('show');
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

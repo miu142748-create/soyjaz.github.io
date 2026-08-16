@@ -18,10 +18,13 @@
         <img src="https://text.glitter-graphics.net/heart/p.gif" alt="p" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/r.gif" alt="r" border="0"><img src="https://text.glitter-graphics.net/heart/t.gif" alt="t" border="0"><img src="https://text.glitter-graphics.net/heart/f.gif" alt="f" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/l.gif" alt="l" border="0"><img src="https://text.glitter-graphics.net/heart/i.gif" alt="i" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0">
     </div>
 
-    <!-- Navigation Bar -->
-    <div style="margin-bottom: 25px; display: flex; justify-content: center; gap: 15px;">
-        <a class="pdf-button" href="index.html">[ HOME ]</a>
-        <a class="pdf-button" href="portfolio.html" style="background-color: #fff; color: #ff1493;">[ PORTFOLIO ]</a>
+    <!-- Nested Hamburger Navigation Bar -->
+    <div class="nav-container">
+        <button id="menu-toggle" class="nav-btn">[ ≡ MENU ]</button>
+        <div id="nav-dropdown" class="nav-dropdown">
+            <a class="nav-link" href="index.html">[ HOME ]</a>
+            <a class="nav-link" href="portfolio.html" style="background-color: #fff; color: #ff1493;">[ PORTFOLIO ]</a>
+        </div>
     </div>
 
     <!-- Main Stacked Column Container -->
@@ -66,10 +69,22 @@
 
         <!-- Land Acknowledgement Section -->
         <div class="box" style="margin-bottom: 35px;">
-            <p style="margin: 0;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
+            <p style="margin: 0; font-size: 13px; color: #ffb6c1;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
         </div>
 
     </div>
 
+    <!-- Toggle Script for Hamburger Menu -->
+    <script>
+        const toggleBtn = document.getElementById('menu-toggle');
+        const dropdown = document.getElementById('nav-dropdown');
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('show');
+        });
+    </script>
 </body>
 </html>
