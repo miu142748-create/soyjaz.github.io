@@ -21,7 +21,7 @@
             padding: 15px;
         }
         /* Make sure clickable elements also keep or use a pointer cursor */
-        a, button, iframe {
+        a, button {
             cursor: pointer;
         }
         .header-section {
@@ -61,7 +61,7 @@
         .content-box {
             margin-top: 25px;
             background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
+            padding: 20px;
             border-radius: 12px;
             display: inline-block;
             width: 95%;
@@ -101,6 +101,23 @@
             height: 100%;
             border: none;
         }
+        
+        /* MOBILE OPTIMIZATION: Hides the cramped iframe preview on mobile screens and shows a friendly message instead */
+        @media screen and (max-width: 768px) {
+            .pdf-container {
+                display: none;
+            }
+            .mobile-notice {
+                display: block !important;
+                font-size: 13px;
+                color: #666;
+                margin-top: 8px;
+            }
+        }
+        .mobile-notice {
+            display: none;
+        }
+
         .land-ack {
             margin-top: 25px;
             font-size: 14px;
@@ -135,11 +152,12 @@
 
     <!-- PDF Section with Button and Preview Wrapper -->
     <div class="content-box">
-        <p style="margin-bottom: 15px; font-weight: 700; font-size: 18px; color: #333;">✨ Check out my CV below! ✨</p>
+        <p style="margin-bottom: 10px; font-weight: 700; font-size: 18px; color: #333;">✨ Check out my CV below! ✨</p>
         
         <a class="pdf-button" href="terrell-cv.pdf" target="_blank">
             Open PDF Document 📄
         </a>
+        <p class="mobile-notice">Tap the button above to view your full CV cleanly on your phone screen!</p>
         
         <div class="pdf-container">
             <iframe src="terrell-cv.pdf"></iframe>
@@ -155,3 +173,4 @@
 
 </body>
 </html>
+
