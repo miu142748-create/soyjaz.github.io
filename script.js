@@ -24,7 +24,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize StPageFlip safely
+    // Initialize StPageFlip
     const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
     const pageFlip = new PageFlipConstructor(bookElement, {
         width: 450,  
@@ -37,7 +37,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-    // Setup Navigation Controls using direct page indices
+    // Setup Navigation Controls
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const pageInfo = document.getElementById('page-info');
@@ -47,25 +47,30 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         pageInfo.textContent = `Page ${current} of ${numPages}`;
     }
 
-    updatePageInfo();
+    // Wait a brief moment for the flipbook to finish initial layout calculation
+    setTimeout(() => {
+        updatePageInfo();
+    }, 100);
 
-    prevBtn.addEventListener('click', (e) => {
+    prevBtn.onclick = (e) => {
         e.preventDefault();
-        const currentIndex = pageFlip.getCurrentPageIndex();
-        if (currentIndex > 0) {
-            pageFlip.flip(currentIndex - 1);
+        try {
+            pageFlip.flipPrev();
+        } catch (err) {
+            console.error(err);
         }
-    });
+    };
 
-    nextBtn.addEventListener('click', (e) => {
+    nextBtn.onclick = (e) => {
         e.preventDefault();
-        const currentIndex = pageFlip.getCurrentPageIndex();
-        if (currentIndex < numPages - 1) {
-            pageFlip.flip(currentIndex + 1);
+        try {
+            pageFlip.flipNext();
+        } catch (err) {
+            console.error(err);
         }
-    });
+    };
 
-    pageFlip.on('flip', () => {
+    pageFlip.on('flip', (e) => {
         updatePageInfo();
     });
 
