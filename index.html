@@ -7,12 +7,24 @@
     <style>
         body {
             background-color: #000000;
-            background-image: url('https://www.glitter-graphics.com/graphics/1324'); /* Classic starry background */
+            background-image: url('https://www.glitter-graphics.com/graphics/1324');
             color: #ffffff;
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
             margin: 0;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glitter-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
         }
 
         .glitter-container img {
@@ -29,6 +41,7 @@
             margin: 30px auto;
             color: #ff1493;
             box-shadow: 0px 0px 15px #ff69b4;
+            text-align: center;
         }
 
         .pdf-button {
@@ -52,9 +65,16 @@
             border: 2px dashed #ff69b4;
             border-radius: 8px;
             background-color: white;
-            width: 80%;
+            width: 80vw;
+            max-width: 800px;
             height: 600px;
             margin-top: 20px;
+        }
+
+        .iframe-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
@@ -67,13 +87,13 @@
     </div>
     
     <!-- Glitter Text ("SOY JAZ") -->
-    <div style="margin-top: 15px;">
+    <div style="margin-top: 15px; display: flex; justify-content: center; align-items: center;">
         <img src="https://text.glitter-graphics.net/heart/s.gif" border="0" alt="S">
         <img src="https://text.glitter-graphics.net/heart/o.gif" border="0" alt="O">
         <img src="https://text.glitter-graphics.net/heart/y.gif" border="0" alt="Y">
         <img src="https://dl3.glitter-graphics.net/empty.gif" width="20" border="0" alt="">
         <img src="https://text.glitter-graphics.net/heart/j.gif" border="0" alt="J">
-        <img src="https://text.glinton-graphics.net/heart/a.gif" border="0" alt="A"> <!-- Fixed reference -->
+        <img src="https://text.glitter-graphics.net/heart/a.gif" border="0" alt="A">
         <img src="https://text.glitter-graphics.net/heart/z.gif" border="0" alt="Z">
     </div>
 </div>
@@ -87,12 +107,12 @@
 </div>
 
 <!-- Embedded PDF Viewer Frame -->
-<div>
+<div class="iframe-container">
     <iframe src="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/preview"></iframe>
 </div>
 
 <!-- Bottom Footer Graphic -->
-<div style="text-align: center; margin: 30px 0;">
+<div style="text-align: center; margin: 30px 0; width: 100%;">
     <img src="http://dl8.glitter-graphics.net/pub/434/434518xlbzh5vtds.gif" width="15" height="13" border="0">
 </div>
 
