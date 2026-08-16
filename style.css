@@ -204,3 +204,15 @@ a, button {
     margin-bottom: 8px;
     text-align: center;
 }
+
+/* Force StPageFlip internal elements to drop excess height on mobile */
+@media (max-width: 600px) {
+    .stf__wrapper {
+        height: auto !important;
+        max-height: 480px !important; /* Adjust this if pages look too short */
+        margin: 0 auto !important;
+    }
+    .stf__parent {
+        height: auto !important;
+    }
+}
