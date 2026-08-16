@@ -37,7 +37,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-    // Setup Navigation Controls
+    // Setup Navigation Controls using direct page indices
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const pageInfo = document.getElementById('page-info');
@@ -51,12 +51,18 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     prevBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        pageFlip.flipPrev();
+        const currentIndex = pageFlip.getCurrentPageIndex();
+        if (currentIndex > 0) {
+            pageFlip.flip(currentIndex - 1);
+        }
     });
 
     nextBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        pageFlip.flipNext();
+        const currentIndex = pageFlip.getCurrentPageIndex();
+        if (currentIndex < numPages - 1) {
+            pageFlip.flip(currentIndex + 1);
+        }
     });
 
     pageFlip.on('flip', () => {
