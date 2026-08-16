@@ -1,5 +1,4 @@
-<style>
-        body {
+body {
             background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
             background-attachment: fixed;
             background-repeat: repeat;
@@ -63,7 +62,6 @@
             50% { opacity: 0; }
         }
         
-        /* Guaranteed Stacking Container */
         .stacked-box {
             display: block;
             clear: both;
@@ -105,7 +103,10 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
         
-        /* Navigation Buttons & PDF Button */
+        .flipbook-nav {
+            margin-top: 5px !important;
+        }
+
         .nav-btn {
             background-color: #ff69b4;
             color: #0d001a;
@@ -147,7 +148,7 @@
             background-color: #fff;
             color: #ff1493;
             transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0px #ff69b4;
+            box-shadow: 6px 6px 0px #ff69b4;
         }
         .research-box h3 {
             margin-top: 0;
@@ -197,4 +198,3 @@
             text-align: center;
             box-sizing: border-box;
         }
-    </style>

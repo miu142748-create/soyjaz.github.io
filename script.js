@@ -24,11 +24,11 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize StPageFlip
+    // Initialize StPageFlip with a tighter height to remove extra space
     const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
     const pageFlip = new PageFlipConstructor(bookElement, {
-        width: 450,  
-        height: 620, 
+        width: 420,  
+        height: 520, 
         size: "fixed",
         showCover: false,
         mobileScrollSupport: false,
@@ -47,7 +47,6 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         pageInfo.textContent = `Page ${current} of ${numPages}`;
     }
 
-    // Wait a brief moment for the flipbook to finish initial layout calculation
     setTimeout(() => {
         updatePageInfo();
     }, 100);
