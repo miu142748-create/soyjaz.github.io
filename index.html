@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOY JAZ</title>
+    <title>soy jaz</title>
+    <!-- Butterfly Favicon -->
+    <link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f98b.png" type="image/png">
     <!-- Import Google Font for cross-device consistency -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <style>
         body {
+            /* Restored custom cursor image */
+            cursor: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif'), auto;
             background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
             background-attachment: fixed;
             background-repeat: repeat;
@@ -15,6 +19,10 @@
             text-align: center;
             margin: 0;
             padding: 15px;
+        }
+        /* Make sure clickable elements also keep or use a pointer cursor */
+        a, button, iframe {
+            cursor: pointer;
         }
         .header-section {
             display: flex;
