@@ -82,13 +82,14 @@
             transform: scale(1.05);
         }
 
-        iframe {
+        /* Object viewer styling for full page flow */
+        object {
             border: 3px dashed #ff69b4;
             border-radius: 8px;
             background-color: white;
             width: 100%;
             max-width: 900px;
-            height: 800px;
+            height: 1250px; /* Expands tall enough to display your pages smoothly */
             margin-top: 15px;
             box-shadow: 0px 0px 15px #ff69b4;
         }
@@ -113,8 +114,10 @@
 <div class="unified-pdf-container">
     <div class="text-highlight">✨ Check out my PDF below! ✨</div>
     
-    <!-- Embedded PDF Viewer Frame -->
-    <iframe src="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/preview"></iframe>
+    <!-- Embedded PDF Object (Scrolls with the page) -->
+    <object data="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/preview" type="application/pdf">
+        <p>Your browser does not support PDFs. <a href="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/view?usp=sharing">Download the PDF</a>.</p>
+    </object>
 
     <!-- Open PDF Document Button at the Bottom -->
     <a class="pdf-button" href="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/view?usp=sharing" target="_blank">
