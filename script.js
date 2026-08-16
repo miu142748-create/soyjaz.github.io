@@ -24,11 +24,11 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize StPageFlip with a tighter height to remove extra space
+    // Initialize StPageFlip with a compact height to eliminate the top gap
     const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
     const pageFlip = new PageFlipConstructor(bookElement, {
-        width: 420,  
-        height: 520, 
+        width: 380,  
+        height: 450, // Compact height matching layout bounds
         size: "fixed",
         showCover: false,
         mobileScrollSupport: false,

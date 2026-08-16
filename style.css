@@ -68,7 +68,7 @@ body {
             margin: 25px auto;
             background: #0d001a;
             color: #fff;
-            padding: 20px;
+            padding: 10px 20px 20px 20px; /* Reduced top padding to close gap */
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
@@ -81,9 +81,9 @@ body {
         .flipbook-container {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Aligns content to the top to eliminate top whitespace */
             overflow: hidden;
-            margin-top: 15px;
+            margin-top: 5px;
             width: 100%;
         }
         #book {
