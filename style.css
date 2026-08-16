@@ -1,148 +1,76 @@
-body {
-    background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
-    background-attachment: fixed;
-    background-repeat: repeat;
-    font-family: 'Quicksand', sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 15px;
-}
-a, button {
-    cursor: pointer;
-}
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-/* Expanded wrapper width to give the flipbook maximum space */
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    max-width: 1020px;
-    margin: 0 auto;
-}
+const url = 'terrell-cv.pdf';
+const bookElement = document.getElementById('book');
+const pageInfo = document.getElementById('page-info');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
 
-/* Universal Box Style for every section */
-.box {
-    background: #0d001a;
-    color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-}
+let pageFlip;
 
-.profile-flex {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-.profile-img {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-.bio-box {
-    background: #0d001a;
-    color: #fff;
-    padding: 24px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
-    flex: 1;
-    min-width: 280px;
-    max-width: 600px;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    text-align: left;
-    position: relative;
-}
-.bio-box::after {
-    content: '▼';
-    position: absolute;
-    bottom: 6px;
-    right: 10px;
-    font-size: 12px;
-    color: #ff69b4;
-    animation: blink 1s infinite;
-}
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.flipbook-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 15px auto;
-    width: 100%;
-}
-#book {
-    margin: 0 auto;
-}
-.page {
-    background-color: white;
-    overflow: hidden;
-}
-.page canvas {
-    width: 100% !important;
-    height: 100% !important;
-    display: block;
-}
-
-/* Navigation Controls Container */
-.nav-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-/* Automatically stack buttons vertically on mobile screens */
-@media (max-width: 600px) {
-    .nav-controls {
-        flex-direction: column;
-        gap: 12px;
+prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (pageFlip) {
+        pageFlip.flipPrev();
     }
-}
+});
 
-.nav-btn, .pdf-button {
-    background-color: #ff69b4;
-    color: #0d001a;
-    padding: 10px 16px;
-    font-weight: bold;
-    font-size: 9px;
-    font-family: 'Press Start 2P', monospace;
-    border-radius: 6px;
-    border: 2px solid #fff;
-    box-shadow: 3px 3px 0px #fff;
-    text-decoration: none;
-    display: inline-block;
-    transition: transform 0.1s;
-}
-.nav-btn:hover, .pdf-button:hover {
-    background-color: #fff;
-    color: #ff1493;
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0px #ff69b4;
-}
+nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (pageFlip) {
+        pageFlip.flipNext();
+    }
+});
 
-.research-box h3 {
-    margin-top: 0;
-    color: #ff69b4;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    margin-bottom: 10px;
-    text-align: center;
-}
+pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
+    const numPages = pdfDoc_.numPages;
+
+    for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+        const page = await pdfDoc_.getPage(pageNum);
+        const viewport = page.getViewport({ scale: 3.5 });
+
+        const pageDiv = document.createElement('div');
+        pageDiv.className = 'page';
+
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        await page.render({ canvasContext: context, viewport: viewport }).promise;
+        
+        pageDiv.appendChild(canvas);
+        bookElement.appendChild(pageDiv);
+    }
+
+    // Forced single-page stretch mode matching the container bounds
+    pageFlip = new St.PageFlip(bookElement, {
+        width: 900,  
+        height: 1160, 
+        size: "stretch",
+        minWidth: 400,
+        maxWidth: 1000,
+        minHeight: 500,
+        maxHeight: 1300,
+        showCover: false,
+        usePortrait: true,   
+        mobileScrollSupport: false,
+        maxShadowOpacity: 0.3
+    });
+
+    pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+    updatePageInfo();
+
+    pageFlip.on('flip', (e) => {
+        updatePageInfo();
+    });
+
+    function updatePageInfo() {
+        const currentPage = pageFlip.getCurrentPageIndex() + 1;
+        pageInfo.textContent = `Page ${currentPage} of ${numPages}`;
+    }
+
+}).catch(function(error) {
+    console.error('Error loading PDF: ', error);
+});

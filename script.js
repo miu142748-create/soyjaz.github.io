@@ -43,15 +43,15 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Scaled up width and height to fill the box container nicely
+    // Forced single-page stretch mode matching the container bounds
     pageFlip = new St.PageFlip(bookElement, {
-        width: 840,  
-        height: 1080, 
+        width: 900,  
+        height: 1160, 
         size: "stretch",
-        minWidth: 500,
-        maxWidth: 920,
-        minHeight: 650,
-        maxHeight: 1200,
+        minWidth: 400,
+        maxWidth: 1000,
+        minHeight: 500,
+        maxHeight: 1300,
         showCover: false,
         usePortrait: true,   
         mobileScrollSupport: false,
