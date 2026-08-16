@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jazzie m. terrell - CV</title>
-    <!-- Include PDF.js and StPageFlip libraries -->
+    <title>soy jaz</title>
+    <!-- Butterfly Favicon -->
+    <link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f98b.png" type="image/png">
+    <!-- Import Quicksand and Press Start 2P Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Include PDF.js and StPageFlip libraries for the flipbook -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/page-flip@0.7.2/dist/js/page-flip.browser.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+
     <style>
         body {
+            /* Background image with starry space theme */
             background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
             background-attachment: fixed;
             background-repeat: repeat;
@@ -22,33 +28,32 @@
             cursor: pointer;
         }
         .header-section {
-            display: block;
-            margin: 25px auto;
-            width: 90%;
-            max-width: 850px;
-            clear: both;
-        }
-        .profile-flex {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
             gap: 20px;
+            margin-top: 25px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            max-width: 850px;
         }
         .profile-img {
             width: 130px;
             height: 130px;
-            border-radius: 50%;
+            border-radius: 50%; /* Circle style */
             object-fit: cover;
-            border: 3px solid #fff;
+            border: 3px solid #fff; /* Keeping profile pic border crisp white */
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
+        /* Bio Box with Quicksand Font, Dark Base, and Thin White Border */
         .bio-box {
             background: #0d001a;
             color: #fff;
             padding: 24px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.4); /* Thin white border */
             box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
             flex: 1;
             min-width: 280px;
@@ -59,6 +64,7 @@
             text-align: left;
             position: relative;
         }
+        /* Retro Dialogue Triangle/Pointer Effect */
         .bio-box::after {
             content: '▼';
             position: absolute;
@@ -72,43 +78,84 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
         }
-        
-        .stacked-box {
-            display: block;
-            clear: both;
-            margin: 25px auto;
+        /* CV Content Box with Quicksand Font */
+        .content-box {
+            margin-top: 25px;
             background: #0d001a;
             color: #fff;
-            padding: 15px 20px;
+            padding: 20px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+            display: inline-block;
             width: 90%;
             max-width: 850px;
             box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
             text-align: center;
         }
-
+        .content-box p {
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .pdf-button {
+            display: inline-block;
+            background-color: #ff69b4;
+            color: #0d001a;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 10px;
+            font-family: 'Press Start 2P', monospace;
+            border-radius: 8px;
+            border: 3px solid #fff;
+            box-shadow: 4px 4px 0px #fff;
+            margin-top: 15px;
+            transition: transform 0.1s;
+        }
+        .pdf-button:hover {
+            background-color: #fff;
+            color: #ff1493;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #ff69b4;
+        }
+        /* Flipbook Container Box */
+        .flipbook-section {
+            margin-top: 25px;
+            background: #0d001a;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+            display: inline-block;
+            width: 90%;
+            max-width: 850px;
+            box-sizing: border-box;
+        }
         .flipbook-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 10px auto;
-            width: 100%;
+            overflow: hidden;
+            margin-top: 15px;
         }
         #book {
             margin: 0 auto;
         }
+        /* Flipbook Canvas & Page Styling */
         .page {
             background-color: white;
-            overflow: hidden;
         }
         .page canvas {
+            display: block;
             width: 100% !important;
             height: 100% !important;
-            display: block;
         }
-        
+        .-st-page-flip {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+        }
+        /* Navigation Buttons */
         .nav-btn {
             background-color: #ff69b4;
             color: #0d001a;
@@ -128,25 +175,25 @@
             transform: translate(-2px, -2px);
             box-shadow: 4px 4px 0px #ff69b4;
         }
-        .pdf-button {
-            display: inline-block;
-            background-color: #ff69b4;
-            color: #0d001a;
-            padding: 10px 16px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 9px;
-            font-family: 'Press Start 2P', monospace;
-            border-radius: 6px;
-            border: 2px solid #fff;
-            box-shadow: 3px 3px 0px #fff;
-            transition: transform 0.1s;
+        .nav-btn:active {
+            transform: translate(0, 0);
+            box-shadow: 1px 1px 0px #ff69b4;
         }
-        .pdf-button:hover {
-            background-color: #fff;
-            color: #ff1493;
-            transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0px #ff69b4;
+        /* Research Box Centered */
+        .research-box {
+            margin-top: 25px;
+            background: #0d001a;
+            color: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+            display: inline-block;
+            width: 90%;
+            max-width: 850px;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
         }
         .research-box h3 {
             margin-top: 0;
@@ -154,13 +201,49 @@
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
             font-size: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center;
         }
+        /* Contact Section */
+        .contact-box {
+            margin-top: 25px;
+            background: #0d001a;
+            color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+            display: inline-block;
+            width: 90%;
+            max-width: 850px;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+        }
+        .contact-button {
+            display: inline-block;
+            background-color: #ff69b4;
+            color: #0d001a;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 10px;
+            font-family: 'Press Start 2P', monospace;
+            border-radius: 8px;
+            border: 3px solid #fff;
+            box-shadow: 4px 4px 0px #fff;
+            margin-top: 15px;
+            transition: transform 0.1s;
+        }
+        .contact-button:hover {
+            background-color: #fff;
+            color: #ff1493;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #ff69b4;
+        }
+        /* Land Acknowledgement */
         .land-ack {
-            display: block;
-            clear: both;
-            margin: 25px auto 35px auto;
+            margin-top: 25px;
             font-family: 'Quicksand', sans-serif;
             font-size: 14px;
             color: #fff;
@@ -170,8 +253,10 @@
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+            display: inline-block;
             width: 90%;
             max-width: 850px;
+            margin-bottom: 35px;
             text-align: center;
             box-sizing: border-box;
         }
@@ -179,36 +264,66 @@
 </head>
 <body>
 
+    <!-- Glitter Text ("SOY JAZ") -->
+    <div style="margin-top: 25px;">
+        <img src="https://text.glitter-graphics.net/heart/s.gif" alt="s" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" alt="y" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="15" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" alt="j" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" alt="a" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" alt="z" border="0">
+    </div>
+
+    <!-- Profile Section -->
     <div class="header-section">
-        <div class="profile-flex">
-            <img src="profile.jpg" alt="Profile" class="profile-img">
-            <div class="bio-box">
-                Hi! I'm jazzie, a scholar, educator, and researcher specializing in technical writing, UX/UI design, and digital literacies.
+        <img src="pfp.png" alt="Profile Picture of jazzie holding a dog" class="profile-img">
+        <div class="bio-box">
+            <p style="margin: 0;">Hello, and welcome! My name is jazzie terrell and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English.</p>
+        </div>
+    </div>
+
+    <!-- CV Download Button Section -->
+    <div class="content-box">
+        <p style="margin-bottom: 8px; color: #ff69b4;">✨ Download my CV below! ✨</p>
+        <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document">
+            [ DOWNLOAD PDF ]
+        </a>
+    </div>
+
+    <!-- Interactive Single-Page Flipbook Section -->
+    <div class="flipbook-section">
+        <p style="margin-top: 0; color: #ff69b4; font-weight: 700; font-size: 15px;">✨ Interactive CV Flipbook ✨</p>
+        <div class="flipbook-container">
+            <div id="book">
+                <!-- PDF pages dynamically loaded via script.js -->
             </div>
         </div>
-    </div>
-
-    <div class="stacked-box research-box">
-        <h3>✨ Interactive CV Flipbook ✨</h3>
-        <div class="flipbook-container">
-            <div id="book"></div>
-        </div>
-        
+        <!-- Navigation Buttons and Counter -->
         <div class="flipbook-nav" style="margin-top: 15px;">
             <button id="prev-btn" class="nav-btn">[ PREV ]</button>
-            <span id="page-info" style="margin: 0 15px; font-family: 'Press Start 2P', monospace; font-size: 9px; color: #fff;">Page 1 of 9</span>
+            <span id="page-info" style="color: #fff; margin: 0 15px; font-size: 13px;">Page 1</span>
             <button id="next-btn" class="nav-btn">[ NEXT ]</button>
         </div>
-        
-        <div style="margin-top: 15px;">
-            <a href="terrell-cv.pdf" target="_blank" class="pdf-button">[ DOWNLOAD PDF ]</a>
+    </div>
+
+    <!-- Research Section -->
+    <div class="research-box">
+        <h3>✨ Research Interests ✨</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6;">Feminist Pedagogy | Digital Literacy | Borderland Rhetorics | Community-Led Research</p>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-box">
+        <p style="margin-bottom: 8px; color: #ff69b4;">✨ Get in touch! ✨</p>
+        <div style="margin: 10px 0;" aria-hidden="true">
+            <img src="http://dl4.glitter-graphics.net/pub/536/536374qelg9xv2hk.gif" alt="" width="38" height="35" border="0">
         </div>
+        <a class="contact-button" href="mailto:jterrell1@arizona.edu" aria-label="Send me an email">
+            [ SEND ME AN EMAIL ]
+        </a>
     </div>
 
+    <!-- Land Acknowledgement Section -->
     <div class="land-ack">
-        Land acknowledgment text...
+        <p style="margin: 0;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
     </div>
 
+    <!-- Link your external JS script -->
     <script src="script.js"></script>
 </body>
 </html>
