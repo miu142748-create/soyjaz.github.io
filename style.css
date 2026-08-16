@@ -159,3 +159,29 @@ a, button {
     margin-bottom: 10px;
     text-align: center;
 }
+
+
+/* Custom White Scrollbar for Webkit Browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0d001a; /* Matches your dark background */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff; /* Solid white bar */
+    border-radius: 6px;
+    border: 2px solid #0d001a; /* Creates a clean retro spacing effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff69b4; /* Turns pink when hovered */
+}
+
+/* Custom White Scrollbar for Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff #0d001a;
+}
