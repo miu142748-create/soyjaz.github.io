@@ -128,10 +128,12 @@ a, button {
     background-color: white;
     overflow: hidden;
 }
-/* Let PageFlip handle sizing cleanly without distortion */
+
+/* Prevents stretching and distortion by containing the PDF proportions */
 .page canvas {
     width: 100% !important;
     height: 100% !important;
+    object-fit: contain !important;
     display: block;
 }
 
