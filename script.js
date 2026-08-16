@@ -8,7 +8,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 1.0 });
+        const viewport = page.getViewport({ scale: 1.2 }); // Clear high-res render scale
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -26,8 +26,8 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
     const pageFlip = new PageFlipConstructor(bookElement, {
-        width: 400,  
-        height: 540, 
+        width: 380,  
+        height: 520, // Balanced vertical and horizontal dimensions for proper page turning view
         size: "fixed",
         showCover: false,
         mobileScrollSupport: true,
