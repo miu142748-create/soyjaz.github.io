@@ -24,7 +24,6 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize StPageFlip in single-page mode
     const pageFlip = new St.PageFlip(bookElement, {
         width: 420,  
         height: 580, 
@@ -45,10 +44,8 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     const nextBtn = document.getElementById('next-btn');
     const pageInfo = document.getElementById('page-info');
 
-    // Set initial page text
     updatePageInfo();
 
-    // Hook up button triggers safely inside the promise
     prevBtn.addEventListener('click', (e) => {
         e.preventDefault();
         pageFlip.flipPrev();
@@ -59,7 +56,6 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         pageFlip.flipNext();
     });
 
-    // Update counter whenever a page changes
     pageFlip.on('flip', (e) => {
         updatePageInfo();
     });
