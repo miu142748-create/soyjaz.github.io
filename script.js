@@ -27,8 +27,8 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        // Boosted scale to 3.5 for high-resolution text clarity
-        const viewport = page.getViewport({ scale: 3.5 });
+        // High-resolution scale for crisp text rendering
+        const viewport = page.getViewport({ scale: 3.0 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -44,13 +44,13 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Scaled up dimensions to make the flipbook much bigger and readable
+    // Configured for a large, single-page portrait view
     pageFlip = new St.PageFlip(bookElement, {
-        width: 780,  
-        height: 1020, 
+        width: 650,  
+        height: 900, 
         size: "stretch",
-        minWidth: 400,
-        maxWidth: 820,
+        minWidth: 350,
+        maxWidth: 750,
         minHeight: 500,
         maxHeight: 1100,
         showCover: false,
