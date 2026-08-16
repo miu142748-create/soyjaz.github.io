@@ -43,18 +43,18 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Configured for ultra-wide horizontal single-page view
+    // Responsive configuration that scales safely on mobile and desktop
     pageFlip = new St.PageFlip(bookElement, {
-        width: 1200,  
-        height: 1050, 
+        width: 1000,  
+        height: 1100, 
         size: "stretch",
-        minWidth: 600,
-        maxWidth: 1400,
-        minHeight: 500,
-        maxHeight: 1200,
+        minWidth: 280,   /* Allows it to shrink nicely on phones */
+        maxWidth: 1250,  /* Allows it to get very wide on desktop */
+        minHeight: 400,
+        maxHeight: 1350,
         showCover: false,
         usePortrait: true,   
-        mobileScrollSupport: false,
+        mobileScrollSupport: true, /* Enabled for smooth mobile touch */
         maxShadowOpacity: 0.3
     });
 
