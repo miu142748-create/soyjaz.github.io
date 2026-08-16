@@ -264,22 +264,20 @@
     </div>
 
     <!-- Contact Section -->
-    <div class="stacked-box contact-box">
-        <p style="margin-bottom: 8px; color: #ff69b4; font-weight: 700;">✨ Get in touch! ✨</p>
-        <div style="margin: 10px 0;" aria-hidden="true">
-            <img src="http://dl4.glitter-graphics.net/pub/536/536374qelg9xv2hk.gif" alt="" width="38" height="35" border="0">
-        </div>
-        <a class="contact-button" href="mailto:jterrell1@arizona.edu" aria-label="Send me an email">
-            [ SEND ME AN EMAIL ]
-        </a>
+    <div class="stacked-box research-box">
+    <h3>✨ Interactive CV Viewer ✨</h3>
+    <div class="flipbook-container">
+        <!-- Replaced the old flipbook div with a clean single-page container -->
+        <div id="pdf-viewer-container"></div>
     </div>
-
-    <!-- Land Acknowledgement Section -->
-    <div class="land-ack">
-        <p style="margin: 0;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
+    
+    <div class="flipbook-nav" style="margin-top: 15px;">
+        <button id="prev-btn" class="nav-btn">[ PREV ]</button>
+        <span id="page-info" style="margin: 0 15px; font-family: 'Press Start 2P', monospace; font-size: 9px; color: #fff;">Page 1 of 9</span>
+        <button id="next-btn" class="nav-btn">[ NEXT ]</button>
     </div>
-
-    <!-- Link your external JS script -->
-    <script src="script.js"></script>
-</body>
-</html>
+    
+    <div style="margin-top: 15px;">
+        <a href="terrell-cv.pdf" target="_blank" class="pdf-button">[ DOWNLOAD PDF ]</a>
+    </div>
+</div>

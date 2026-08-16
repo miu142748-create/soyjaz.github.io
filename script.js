@@ -1,76 +1,60 @@
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
 const url = 'terrell-cv.pdf';
-const bookElement = document.getElementById('book');
+const viewerContainer = document.getElementById('pdf-viewer-container');
 
-pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
-    const numPages = pdfDoc_.numPages;
+let pdfDoc = null;
+let pageNum = 1;
+const numPagesTotal = 9; // Update if your total page count changes
 
-    for (let pageNum = 1; pageNum <= numPages; pageNum++) {
-        const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 0.8 });
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const pageInfo = document.getElementById('page-info');
 
-        const pageDiv = document.createElement('div');
-        pageDiv.className = 'page';
+// Render a specific page cleanly into the container
+async function renderPage(num) {
+    const page = await pdfDoc.getPage(num);
+    const viewport = page.getViewport({ scale: 1.1 });
 
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+    viewerContainer.innerHTML = ''; // Clear previous page
 
-        await page.render({ canvasContext: context, viewport: viewport }).promise;
-        
-        pageDiv.appendChild(canvas);
-        bookElement.appendChild(pageDiv);
-    }
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    canvas.style.display = 'block';
+    canvas.style.margin = '0 auto';
+    canvas.style.maxWidth = '100%';
+    canvas.style.height = 'auto';
+    canvas.style.boxShadow = '0 0 15px rgba(0,0,0,0.5)';
+    canvas.style.borderRadius = '4px';
 
-    const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
-    const pageFlip = new PageFlipConstructor(bookElement, {
-        width: 320,  
-        height: 360, 
-        size: "fixed",
-        showCover: false,
-        mobileScrollSupport: false,
-        maxShadowOpacity: 0.2
-    });
+    viewerContainer.appendChild(canvas);
 
-    pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+    await page.render({ canvasContext: context, viewport: viewport }).promise;
+    
+    pageInfo.textContent = `Page ${num} of ${pdfDoc.numPages}`;
+}
 
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const pageInfo = document.getElementById('page-info');
-
-    function updatePageInfo() {
-        const current = pageFlip.getCurrentPageIndex() + 1;
-        pageInfo.textContent = `Page ${current} of ${numPages}`;
-    }
-
-    setTimeout(() => {
-        updatePageInfo();
-    }, 100);
-
-    prevBtn.onclick = (e) => {
-        e.preventDefault();
-        try {
-            pageFlip.flipPrev();
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
-    nextBtn.onclick = (e) => {
-        e.preventDefault();
-        try {
-            pageFlip.flipNext();
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
-    pageFlip.on('flip', (e) => {
-        updatePageInfo();
-    });
-
+// Load the PDF document
+pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+    pdfDoc = pdfDoc_;
+    renderPage(pageNum);
 }).catch(function(error) {
     console.error('Error loading PDF: ', error);
 });
+
+// Button Controls
+prevBtn.onclick = (e) => {
+    e.preventDefault();
+    if (pageNum <= 1) return;
+    pageNum--;
+    renderPage(pageNum);
+};
+
+nextBtn.onclick = (e) => {
+    e.preventDefault();
+    if (pageNum >= pdfDoc.numPages) return;
+    pageNum++;
+    renderPage(pageNum);
+};

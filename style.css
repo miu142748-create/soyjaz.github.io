@@ -79,13 +79,14 @@ body {
         }
 
         .flipbook-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            margin: 0 auto;
+            display: block;
             width: 100%;
-            height: auto !important;
+            margin-top: 5px;
+            text-align: center;
+        }
+        #pdf-viewer-container {
+            display: inline-block;
+            max-width: 100%;
         }
         #book {
             margin: 0 auto;
