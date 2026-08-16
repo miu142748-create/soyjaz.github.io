@@ -43,17 +43,17 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Configured for single-page portrait layout
+    // Configured with larger dimensions for a bigger single-page portrait layout
     pageFlip = new St.PageFlip(bookElement, {
-        width: 600,  // Single page target width
-        height: 800, // Single page target height
+        width: 680,  
+        height: 920, 
         size: "stretch",
-        minWidth: 300,
-        maxWidth: 800,
-        minHeight: 400,
-        maxHeight: 1000,
+        minWidth: 350,
+        maxWidth: 900,
+        minHeight: 450,
+        maxHeight: 1200,
         showCover: false,
-        usePortrait: true,   // Forces the library into single-page/portrait viewing mode
+        usePortrait: true,   
         mobileScrollSupport: false,
         maxShadowOpacity: 0.3
     });
