@@ -34,6 +34,17 @@
             padding: 20px;
         }
 
+        /* Side-by-Side Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto 25px auto;
+        }
+
         .profile-pic {
             width: 150px;
             height: 150px;
@@ -41,20 +52,19 @@
             border-radius: 50%;
             border: 3px dashed #ff69b4;
             box-shadow: 0px 0px 15px #ff69b4;
-            margin-bottom: 15px;
         }
 
         /* Intro Box Styling */
         .intro-box {
             background-color: rgba(0, 0, 0, 0.8);
             border: 2px dashed #ff69b4;
-            padding: 12px 20px;
+            padding: 15px 20px;
             border-radius: 15px;
             color: #ffffff;
             font-size: 16px;
             box-shadow: 0px 0px 10px #ff69b4;
-            max-width: 600px;
-            margin: 0 auto 20px auto;
+            max-width: 450px;
+            text-align: left;
         }
 
         .intro-box span {
@@ -99,19 +109,21 @@
 </head>
 <body>
 
-<div class="glitter-container">
+<div class="glitter-container" style="margin-bottom: 20px;">
     <img src="https://text.glitter-graphics.net/heart/s.gif"><img src="https://text.glitter-graphics.net/heart/o.gif"><img src="https://text.glitter-graphics.net/heart/y.gif">
     <img src="https://dl3.glitter-graphics.net/empty.gif" width="20">
     <img src="https://text.glitter-graphics.net/heart/j.gif"><img src="https://text.glitter-graphics.net/heart/a.gif"><img src="https://text.glitter-graphics.net/heart/z.gif">
 </div>
 
-<div class="profile-pic-container">
-    <img src="https://lh3.googleusercontent.com/d/1lm5NxPdpJTOa9so6V3rQ5z98QSP8B_d8" class="profile-pic">
-</div>
-
-<!-- Intro Box -->
-<div class="intro-box">
-    Hello and welcome! My name is jazzie terrell, and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English.
+<!-- Profile Picture & Bio Section Side-by-Side -->
+<div class="profile-section">
+    <div class="profile-pic-container">
+        <img src="https://lh3.googleusercontent.com/d/1lm5NxPdpJTOa9so6V3rQ5z98QSP8B_d8" class="profile-pic">
+    </div>
+    
+    <div class="intro-box">
+        Hello! I'm a <span>PhD candidate in rhetoric, composition, and the teaching of english</span>.
+    </div>
 </div>
 
 <div style="color: #ff69b4; font-weight: bold; margin-bottom: 15px;">✨ Check out my CV below! ✨</div>
