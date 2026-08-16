@@ -16,14 +16,24 @@
             margin: 0;
             padding: 20px;
         }
-        .pdf-box {
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ff69b4;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .content-box {
             margin-top: 30px;
             background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 12px;
             display: inline-block;
-            width: 80%;
-            max-width: 800px;
+            width: 90%;
+            max-width: 950px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         .pdf-button {
             display: inline-block;
@@ -39,26 +49,48 @@
         .pdf-button:hover {
             background-color: #ff1493;
         }
+        .land-ack {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            width: 90%;
+            max-width: 950px;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Profile Picture -->
+    <div>
+        <img src="pfp.png" alt="Profile Picture" class="profile-img">
+    </div>
+
     <!-- Glitter Text ("SOY JAZ") -->
-    <div style="margin-top: 40px;">
+    <div style="margin-top: 25px;">
         <a href="https://www.glitter-graphics.com/myspace/text_generator.php" target="_blank"><img src="https://text.glitter-graphics.net/heart/s.gif" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="20" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" border="0"></a>
     </div>
 
     <!-- PDF Section with Button and Preview -->
-    <div class="pdf-box">
-        <p style="margin-bottom: 15px; font-weight: 700; font-size: 16px; color: #333;">✨ Check out my CV below! ✨</p>
+    <div class="content-box">
+        <p style="margin-bottom: 15px; font-weight: 700; font-size: 18px; color: #333;">✨ Check out my CV below! ✨</p>
         
         <a class="pdf-button" href="terrell-cv.pdf" target="_blank">
             Open PDF Document 📄
         </a>
         
         <div style="margin-top: 20px;">
-            <iframe src="terrell-cv.pdf" width="100%" height="600px" style="border: 2px dashed #ff69b4; border-radius: 8px;"></iframe>
+            <iframe src="terrell-cv.pdf" width="100%" height="700px" style="border: 2px dashed #ff69b4; border-radius: 8px;"></iframe>
         </div>
+    </div>
+
+    <!-- Land Acknowledgement Section -->
+    <div class="land-ack">
+        <p><strong>Land Acknowledgement:</strong> [Insert your land acknowledgement text here]</p>
     </div>
 
 </body>
