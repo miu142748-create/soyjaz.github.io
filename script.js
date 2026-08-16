@@ -61,12 +61,12 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-    // FIX: Collapse excess StPageFlip inline height on mobile screens
-    if (window.innerWidth <= 600) {
+    // FIX: Force collapse StPageFlip height when on portrait mobile
+    if (window.innerWidth <= 600 && window.innerHeight > window.innerWidth) {
         const stfWrapper = document.querySelector('.stf__wrapper');
-        if (stfWrapper) {
-            stfWrapper.style.height = 'auto';
-        }
+        const stfParent = document.querySelector('.stf__parent');
+        if (stfWrapper) stfWrapper.style.maxHeight = '520px';
+        if (stfParent) stfParent.style.maxHeight = '520px';
     }
 
     updatePageInfo();

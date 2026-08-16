@@ -216,3 +216,14 @@ a, button {
         height: auto !important;
     }
 }
+
+/* Fix excessive vertical space in portrait/vertical mobile mode */
+@media (max-width: 600px) and (orientation: portrait) {
+    .flipbook-container {
+        max-height: 520px !important;
+        overflow: hidden !important;
+    }
+    .stf__wrapper {
+        max-height: 520px !important;
+    }
+}
