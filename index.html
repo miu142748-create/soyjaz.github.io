@@ -35,15 +35,6 @@
             </div>
         </div>
 
-        <!-- Navigation Bar (Under Pic and Bio) -->
-        <div class="nav-container">
-            <button id="menu-toggle" class="nav-btn">[ PAGES ]</button>
-            <div id="nav-dropdown" class="nav-dropdown">
-                <a class="nav-link" href="index.html" style="background-color: #fff; color: #ff1493;">HOME</a>
-                <a class="nav-link" href="portfolio.html">PORTFOLIO</a>
-            </div>
-        </div>
-
         <!-- Research Interests Section -->
         <div class="box research-box">
             <h3>✨ Research Interests ✨</h3>
@@ -69,12 +60,17 @@
             </div>
         </div>
 
-        <!-- Separate Download PDF Box -->
+        <!-- Combined CV & Portfolio Box -->
         <div class="box">
-            <p style="margin-top: 0; margin-bottom: 12px; color: #ff69b4; font-weight: 700; font-size: 14px;">✨ View PDF ✨</p>
-            <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document">
-                [ DOWNLOAD PDF ]
-            </a>
+            <p style="margin-top: 0; margin-bottom: 12px; color: #ff69b4; font-weight: 700; font-size: 14px;">✨ Explore My Work ✨</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document">
+                    [ DOWNLOAD PDF CV ]
+                </a>
+                <a class="pdf-button" href="portfolio.html">
+                    [ INSTRUCTIONAL DESIGN PORTFOLIO ]
+                </a>
+            </div>
         </div>
 
         <!-- Contact Section -->
@@ -95,18 +91,6 @@
 
     </div>
 
-    <!-- Toggle Script for Hamburger Menu -->
-    <script>
-        const toggleBtn = document.getElementById('menu-toggle');
-        const dropdown = document.getElementById('nav-dropdown');
-        toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('show');
-        });
-        document.addEventListener('click', () => {
-            dropdown.classList.remove('show');
-        });
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
