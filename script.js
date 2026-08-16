@@ -1,85 +1,66 @@
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
 const url = 'terrell-cv.pdf';
-const viewerContainer = document.getElementById('pdf-viewer-container');
+const bookElement = document.getElementById('book');
 
-let pdfDoc = null;
-let pageNum = 1;
-let pageRendering = false;
-let pageNumPending = null;
+pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
+    const numPages = pdfDoc_.numPages;
 
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const pageInfo = document.getElementById('page-info');
+    for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+        const page = await pdfDoc_.getPage(pageNum);
+        const viewport = page.getViewport({ scale: 1.0 });
 
-function renderPage(num) {
-    pageRendering = true;
-    
-    pdfDoc.getPage(num).then(function(page) {
-        const viewport = page.getViewport({ scale: 1.1 });
-        
-        viewerContainer.innerHTML = ''; // Clear container
+        const pageDiv = document.createElement('div');
+        pageDiv.className = 'page';
 
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
         canvas.height = viewport.height;
         canvas.width = viewport.width;
-        canvas.style.display = 'block';
-        canvas.style.margin = '0 auto';
-        canvas.style.maxWidth = '100%';
-        canvas.style.height = 'auto';
-        canvas.style.boxShadow = '0 0 15px rgba(0,0,0,0.5)';
-        canvas.style.borderRadius = '4px';
 
-        viewerContainer.appendChild(canvas);
-
-        const renderContext = {
-            canvasContext: context,
-            viewport: viewport
-        };
+        await page.render({ canvasContext: context, viewport: viewport }).promise;
         
-        const renderTask = page.render(renderContext);
-        renderTask.promise.then(function() {
-            pageRendering = false;
-            if (pageNumPending !== null) {
-                renderPage(pageNumPending);
-                pageNumPending = null;
-            }
-        });
+        pageDiv.appendChild(canvas);
+        bookElement.appendChild(pageDiv);
+    }
+
+    const PageFlipConstructor = window.St ? window.St.PageFlip : window.PageFlip;
+    const pageFlip = new PageFlipConstructor(bookElement, {
+        width: 400,  
+        height: 540, 
+        size: "fixed",
+        showCover: false,
+        mobileScrollSupport: true,
+        maxShadowOpacity: 0.3
     });
 
-    pageInfo.textContent = `Page ${num} of ${pdfDoc.numPages}`;
-}
+    pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-function queueRenderPage(num) {
-    if (pageRendering) {
-        pageNumPending = num;
-    } else {
-        renderPage(num);
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const pageInfo = document.getElementById('page-info');
+
+    function updatePageInfo() {
+        const current = pageFlip.getCurrentPageIndex() + 1;
+        pageInfo.textContent = `Page ${current} of ${numPages}`;
     }
-}
 
-// Load PDF
-pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
-    pdfDoc = pdfDoc_;
-    renderPage(pageNum);
+    setTimeout(updatePageInfo, 100);
+
+    prevBtn.onclick = (e) => {
+        e.preventDefault();
+        pageFlip.flipPrev();
+    };
+
+    nextBtn.onclick = (e) => {
+        e.preventDefault();
+        pageFlip.flipNext();
+    };
+
+    pageFlip.on('flip', () => {
+        updatePageInfo();
+    });
+
 }).catch(function(error) {
-    console.error('Error loading PDF:', error);
+    console.error('Error loading PDF: ', error);
 });
-
-// Controls
-prevBtn.onclick = (e) => {
-    e.preventDefault();
-    if (!pdfDoc) return;
-    if (pageNum <= 1) return;
-    pageNum--;
-    queueRenderPage(pageNum);
-};
-
-nextBtn.onclick = (e) => {
-    e.preventDefault();
-    if (!pdfDoc) return;
-    if (pageNum >= pdfDoc.numPages) return;
-    pageNum++;
-    queueRenderPage(pageNum);
-};

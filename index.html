@@ -3,16 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>soy jaz</title>
-    <!-- Butterfly Favicon -->
-    <link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f98b.png" type="image/png">
-    <!-- Import Quicksand and Press Start 2P Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-    
+    <title>jazzie m. terrell - CV</title>
     <!-- Include PDF.js and StPageFlip libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@0.7.2/dist/js/page-flip.browser.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
@@ -78,14 +73,13 @@
             50% { opacity: 0; }
         }
         
-        /* Guaranteed Stacking Container */
         .stacked-box {
             display: block;
             clear: both;
             margin: 25px auto;
             background: #0d001a;
             color: #fff;
-            padding: 20px;
+            padding: 15px 20px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
@@ -99,29 +93,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            margin-top: 15px;
+            margin: 10px auto;
             width: 100%;
         }
         #book {
             margin: 0 auto;
-            display: flex;
-            justify-content: center;
         }
         .page {
             background-color: white;
+            overflow: hidden;
         }
         .page canvas {
-            display: block;
             width: 100% !important;
             height: 100% !important;
-        }
-        .-st-page-flip {
-            margin: 0 auto !important;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: block;
         }
         
-        /* Navigation Buttons & PDF Button */
         .nav-btn {
             background-color: #ff69b4;
             color: #0d001a;
@@ -141,10 +128,6 @@
             transform: translate(-2px, -2px);
             box-shadow: 4px 4px 0px #ff69b4;
         }
-        .nav-btn:active {
-            transform: translate(0, 0);
-            box-shadow: 1px 1px 0px #ff69b4;
-        }
         .pdf-button {
             display: inline-block;
             background-color: #ff69b4;
@@ -163,7 +146,7 @@
             background-color: #fff;
             color: #ff1493;
             transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #ff69b4;
+            box-shadow: 4px 4px 0px #ff69b4;
         }
         .research-box h3 {
             margin-top: 0;
@@ -171,29 +154,8 @@
             font-family: 'Quicksand', sans-serif;
             font-weight: 700;
             font-size: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: center;
-        }
-        .contact-button {
-            display: inline-block;
-            background-color: #ff69b4;
-            color: #0d001a;
-            padding: 12px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 10px;
-            font-family: 'Press Start 2P', monospace;
-            border-radius: 8px;
-            border: 3px solid #fff;
-            box-shadow: 4px 4px 0px #fff;
-            margin-top: 15px;
-            transition: transform 0.1s;
-        }
-        .contact-button:hover {
-            background-color: #fff;
-            color: #ff1493;
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px #ff69b4;
         }
         .land-ack {
             display: block;
@@ -217,67 +179,36 @@
 </head>
 <body>
 
-    <!-- Glitter Text ("SOY JAZ") -->
-    <div style="margin-top: 25px;">
-        <img src="https://text.glitter-graphics.net/heart/s.gif" alt="s" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" alt="y" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="15" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" alt="j" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" alt="a" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" alt="z" border="0">
-    </div>
-
-    <!-- Profile Section -->
     <div class="header-section">
         <div class="profile-flex">
-            <img src="pfp.png" alt="Profile Picture of jazzie holding a dog" class="profile-img">
+            <img src="profile.jpg" alt="Profile" class="profile-img">
             <div class="bio-box">
-                <p style="margin: 0;">Hello, and welcome! My name is jazzie terrell and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English.</p>
+                Hi! I'm jazzie, a scholar, educator, and researcher specializing in technical writing, UX/UI design, and digital literacies.
             </div>
         </div>
     </div>
 
-    <!-- Interactive Single-Page Flipbook Section -->
-    <div class="stacked-box">
-        <p style="margin-top: 0; color: #ff69b4; font-weight: 700; font-size: 15px;">✨ Interactive CV Flipbook ✨</p>
-        
+    <div class="stacked-box research-box">
+        <h3>✨ Interactive CV Flipbook ✨</h3>
         <div class="flipbook-container">
-            <div id="book">
-                <!-- PDF pages dynamically loaded via script.js -->
-            </div>
+            <div id="book"></div>
         </div>
-
-        <!-- Navigation Buttons and Counter -->
-        <div class="flipbook-nav" style="margin-top: 20px;">
+        
+        <div class="flipbook-nav" style="margin-top: 15px;">
             <button id="prev-btn" class="nav-btn">[ PREV ]</button>
-            <span id="page-info" style="color: #fff; margin: 0 15px; font-size: 13px;">Page 1</span>
+            <span id="page-info" style="margin: 0 15px; font-family: 'Press Start 2P', monospace; font-size: 9px; color: #fff;">Page 1 of 9</span>
             <button id="next-btn" class="nav-btn">[ NEXT ]</button>
         </div>
-
-        <!-- Download PDF Button at the bottom of the flipbook -->
-        <div style="margin-top: 20px;">
-            <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document">
-                [ DOWNLOAD PDF ]
-            </a>
+        
+        <div style="margin-top: 15px;">
+            <a href="terrell-cv.pdf" target="_blank" class="pdf-button">[ DOWNLOAD PDF ]</a>
         </div>
     </div>
 
-    <!-- Research Section -->
-    <div class="stacked-box research-box">
-        <h3>✨ Research Interests ✨</h3>
-        <p style="margin: 0; font-size: 15px; line-height: 1.6;">Feminist Pedagogy | Digital Literacy | Borderland Rhetorics | Community-Led Research</p>
+    <div class="land-ack">
+        Land acknowledgment text...
     </div>
 
-    <!-- Contact Section -->
-    <div class="stacked-box research-box">
-    <h3>✨ Interactive CV Viewer ✨</h3>
-    <div class="flipbook-container">
-        <!-- Replaced the old flipbook div with a clean single-page container -->
-        <div id="pdf-viewer-container"></div>
-    </div>
-    
-    <div class="flipbook-nav" style="margin-top: 15px;">
-        <button id="prev-btn" class="nav-btn">[ PREV ]</button>
-        <span id="page-info" style="margin: 0 15px; font-family: 'Press Start 2P', monospace; font-size: 9px; color: #fff;">Page 1 of 9</span>
-        <button id="next-btn" class="nav-btn">[ NEXT ]</button>
-    </div>
-    
-    <div style="margin-top: 15px;">
-        <a href="terrell-cv.pdf" target="_blank" class="pdf-button">[ DOWNLOAD PDF ]</a>
-    </div>
-</div>
+    <script src="script.js"></script>
+</body>
+</html>
