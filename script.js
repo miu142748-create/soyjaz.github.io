@@ -5,56 +5,81 @@ const viewerContainer = document.getElementById('pdf-viewer-container');
 
 let pdfDoc = null;
 let pageNum = 1;
-const numPagesTotal = 9; // Update if your total page count changes
+let pageRendering = false;
+let pageNumPending = null;
 
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const pageInfo = document.getElementById('page-info');
 
-// Render a specific page cleanly into the container
-async function renderPage(num) {
-    const page = await pdfDoc.getPage(num);
-    const viewport = page.getViewport({ scale: 1.1 });
-
-    viewerContainer.innerHTML = ''; // Clear previous page
-
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-    canvas.style.display = 'block';
-    canvas.style.margin = '0 auto';
-    canvas.style.maxWidth = '100%';
-    canvas.style.height = 'auto';
-    canvas.style.boxShadow = '0 0 15px rgba(0,0,0,0.5)';
-    canvas.style.borderRadius = '4px';
-
-    viewerContainer.appendChild(canvas);
-
-    await page.render({ canvasContext: context, viewport: viewport }).promise;
+function renderPage(num) {
+    pageRendering = true;
     
+    pdfDoc.getPage(num).then(function(page) {
+        const viewport = page.getViewport({ scale: 1.1 });
+        
+        viewerContainer.innerHTML = ''; // Clear container
+
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        canvas.style.display = 'block';
+        canvas.style.margin = '0 auto';
+        canvas.style.maxWidth = '100%';
+        canvas.style.height = 'auto';
+        canvas.style.boxShadow = '0 0 15px rgba(0,0,0,0.5)';
+        canvas.style.borderRadius = '4px';
+
+        viewerContainer.appendChild(canvas);
+
+        const renderContext = {
+            canvasContext: context,
+            viewport: viewport
+        };
+        
+        const renderTask = page.render(renderContext);
+        renderTask.promise.then(function() {
+            pageRendering = false;
+            if (pageNumPending !== null) {
+                renderPage(pageNumPending);
+                pageNumPending = null;
+            }
+        });
+    });
+
     pageInfo.textContent = `Page ${num} of ${pdfDoc.numPages}`;
 }
 
-// Load the PDF document
+function queueRenderPage(num) {
+    if (pageRendering) {
+        pageNumPending = num;
+    } else {
+        renderPage(num);
+    }
+}
+
+// Load PDF
 pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
     pdfDoc = pdfDoc_;
     renderPage(pageNum);
 }).catch(function(error) {
-    console.error('Error loading PDF: ', error);
+    console.error('Error loading PDF:', error);
 });
 
-// Button Controls
+// Controls
 prevBtn.onclick = (e) => {
     e.preventDefault();
+    if (!pdfDoc) return;
     if (pageNum <= 1) return;
     pageNum--;
-    renderPage(pageNum);
+    queueRenderPage(pageNum);
 };
 
 nextBtn.onclick = (e) => {
     e.preventDefault();
+    if (!pdfDoc) return;
     if (pageNum >= pdfDoc.numPages) return;
     pageNum++;
-    renderPage(pageNum);
+    queueRenderPage(pageNum);
 };
