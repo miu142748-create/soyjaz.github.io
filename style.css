@@ -116,33 +116,36 @@ a, button {
 .flipbook-container {
     margin: 10px auto;
     width: 100%;
-    max-width: 1200px; /* Expanded for a large, readable 2-page spread */
-    aspect-ratio: 1700 / 1100; /* EXACT shape of a 2-page spread to eliminate all vertical dead space */
+    max-width: 1100px;
+    min-height: 400px; /* Provides explicit initial height so StPageFlip measures orientation accurately */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    background: transparent;
 }
+
 #book {
     margin: 0 auto;
-    width: 100%;
-    height: 100%;
 }
+
 .page {
     background-color: white;
     overflow: hidden;
 }
+
 .page canvas {
     width: 100% !important;
     height: 100% !important;
     display: block;
 }
 
-/* Responsive cleanup for mobile screens */
+/* Mobile cleanup */
 @media (max-width: 600px) {
     body {
         padding: 5px !important;
     }
     .wrapper {
-        gap: 8px !important;
+        gap: 10px !important;
     }
     .box {
         padding: 12px !important;
@@ -151,12 +154,11 @@ a, button {
     }
     .profile-section {
         padding: 0 !important;
-        margin-bottom: 0px !important;
     }
     .flipbook-container {
         margin: 5px auto !important;
         width: 100% !important;
-        aspect-ratio: 850 / 1100 !important; /* EXACT shape of a 1-page portrait */
+        min-height: 350px;
     }
 }
 

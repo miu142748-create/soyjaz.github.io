@@ -43,23 +43,26 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
+    // Configured with standard single-page aspect ratio (3:4)
     pageFlip = new St.PageFlip(bookElement, {
-        width: 850,       
-        height: 1100,     
+        width: 550,           
+        height: 733,          
         size: "stretch",
-        minWidth: 300,
-        maxWidth: 1200, 
-        minHeight: 400,
-        maxHeight: 1600,
+        minWidth: 280,
+        maxWidth: 1000,
+        minHeight: 350,
+        maxHeight: 1333,
         showCover: false,
-        usePortrait: true
+        usePortrait: true,    // Renders 1 page on mobile portrait and 2 pages on wide desktop
+        mobileScrollSupport: true,
+        maxShadowOpacity: 0.3
     });
 
     pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
     updatePageInfo();
 
-    pageFlip.on('flip', (e) => {
+    pageFlip.on('flip', () => {
         updatePageInfo();
     });
 
