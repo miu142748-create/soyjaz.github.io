@@ -27,7 +27,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 3.5 });
+        const viewport = page.getViewport({ scale: 2.0 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -43,18 +43,17 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Forced single-page stretch mode matching the container bounds
     pageFlip = new St.PageFlip(bookElement, {
-        width: 900,  
-        height: 1160, 
+        width: 550,           
+        height: 733,          
         size: "stretch",
-        minWidth: 400,
+        minWidth: 280,
         maxWidth: 1000,
-        minHeight: 500,
-        maxHeight: 1300,
+        minHeight: 350,
+        maxHeight: 1333,
         showCover: false,
-        usePortrait: true,   
-        mobileScrollSupport: false,
+        usePortrait: true,    
+        mobileScrollSupport: true,
         maxShadowOpacity: 0.3
     });
 
@@ -62,7 +61,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     updatePageInfo();
 
-    pageFlip.on('flip', (e) => {
+    pageFlip.on('flip', () => {
         updatePageInfo();
     });
 
