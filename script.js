@@ -48,12 +48,12 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     prevBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        pageFlip.flipPrev();
+        pageFlip.flipPrev('top');
     });
 
     nextBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        pageFlip.flipNext();
+        pageFlip.flipNext('top');
     });
 
     pageFlip.on('flip', (e) => {
