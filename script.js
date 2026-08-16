@@ -8,7 +8,6 @@ const nextBtn = document.getElementById('next-btn');
 
 let pageFlip;
 
-// Hook up button listeners immediately so they are always active
 prevBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (pageFlip) {
@@ -28,7 +27,8 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        const viewport = page.getViewport({ scale: 1.5 });
+        // Increased scale from 1.5 to 2.0 for sharper high-res text
+        const viewport = page.getViewport({ scale: 2.0 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -44,15 +44,15 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize StPageFlip in single-page mode
+    // Increased width and height to make the flipbook bigger on screen
     pageFlip = new St.PageFlip(bookElement, {
-        width: 420,  
-        height: 580, 
+        width: 520,  
+        height: 700, 
         size: "stretch",
-        minWidth: 280,
-        maxWidth: 550,
+        minWidth: 300,
+        maxWidth: 700,
         minHeight: 400,
-        maxHeight: 750,
+        maxHeight: 900,
         showCover: true,
         mobileScrollSupport: false,
         maxShadowOpacity: 0.3,
