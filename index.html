@@ -3,61 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOY JAZ</title>
-    <!-- Import Google Font for cross-device consistency -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-    <style>
+    <title>Soy Jaz</title>
+    
+    <!-- Tab Bar Icon (Favicon) -->
+    <link rel="icon" type="image/gif" href="http://dl8.glitter-graphics.net/pub/434/434518xlbzh5vtds.gif">
+    
+    <!-- Custom Styles -->
+    <style type="text/css">
         body {
+            background-color: #000000;
             background-image: url('http://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
             background-attachment: fixed;
             background-repeat: repeat;
-            font-family: 'Quicksand', sans-serif;
+            color: #ffffff;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif;
             text-align: center;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
+            -webkit-text-size-adjust: 100%;
         }
-        .pdf-box {
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 12px;
-            display: inline-block;
-            width: 80%;
+
+        /* Side-by-Side Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
             max-width: 800px;
+            margin: 0 auto 20px auto;
+            padding: 0 10px;
         }
-        .pdf-button {
+
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px dashed #ff69b4;
+            box-shadow: 0px 0px 15px #ff69b4;
+        }
+
+        /* Intro Box Styling */
+        .intro-box {
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 2px dashed #ff69b4;
+            padding: 15px;
+            border-radius: 15px;
+            color: #ffffff;
+            font-size: 15px;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif;
+            box-shadow: 0px 0px 10px #ff69b4;
+            max-width: 400px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .intro-box span {
+            color: #ff69b4;
+            font-weight: bold;
+        }
+
+        /* Mobile-Friendly PDF Container */
+        .pdf-container {
+            width: 92%;
+            max-width: 800px;
+            height: 75vh;
+            margin: 0 auto;
+            border: 3px dashed #ff69b4;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 15px #ff69b4;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Fallback for phones where iframe/objects fail */
+        .mobile-pdf-fallback {
+            padding: 20px;
+            color: #000000;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        /* Styled Button for Opening PDF */
+        .pdf-link-container {
             display: inline-block;
-            background-color: #ff69b4;
-            color: white;
-            padding: 12px 24px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 2px dashed #ff69b4;
+            padding: 12px 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px #ff69b4;
+            margin: 20px 0;
+        }
+
+        .pdf-link-container a {
+            color: #ff69b4;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
         }
-        .pdf-button:hover {
-            background-color: #ff1493;
+
+        .pdf-link-container a:hover {
+            color: #ff1493;
+        }
+
+        /* Land Acknowledgement Note Style */
+        .land-acknowledgement {
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 2px dashed #ff69b4;
+            color: #ffffff;
+            padding: 12px 15px;
+            border-radius: 15px;
+            max-width: 550px;
+            margin: 20px auto 10px auto;
+            font-size: 12px;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+            box-shadow: 0px 0px 10px #ff69b4;
+            box-sizing: border-box;
+        }
+
+        /* Responsive adjustments for smaller phones */
+        @media (max-width: 600px) {
+            .profile-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .intro-box {
+                text-align: center;
+                max-width: 90%;
+            }
+            .pdf-container {
+                height: 60vh;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Clean Heading -->
-    <h1 style="color: #ff1493; font-size: 42px; font-weight: 700; text-shadow: 2px 2px 4px #ffffff; margin-top: 40px;">SOY JAZ</h1>
+<div class="glitter-container" style="margin: 15px 0;">
+    <img src="https://text.glitter-graphics.net/heart/s.gif"><img src="https://text.glitter-graphics.net/heart/o.gif"><img src="https://text.glitter-graphics.net/heart/y.gif">
+    <img src="https://dl3.glitter-graphics.net/empty.gif" width="15">
+    <img src="https://text.glitter-graphics.net/heart/j.gif"><img src="https://text.glitter-graphics.net/heart/a.gif"><img src="https://text.glitter-graphics.net/heart/z.gif">
+</div>
 
-    <!-- PDF Section with Button and Preview -->
-    <div class="pdf-box">
-        <p style="margin-bottom: 15px; font-weight: 700; font-size: 16px; color: #333;">✨ Check out my PDF below! ✨</p>
-        
-        <a class="pdf-button" href="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/view?usp=sharing" target="_blank">
-            Open PDF Document 📄
-        </a>
-        
-        <div style="margin-top: 20px;">
-            <iframe src="https://drive.google.com/file/d/1aG1bavvp7FZw7ZOkGEw140BwKlAzueqi/preview" width="100%" height="600px" style="border: 2px dashed #ff69b4; border-radius: 8px;"></iframe>
+<!-- Profile Picture & Bio Section Side-by-Side -->
+<div class="profile-section">
+    <div class="profile-pic-container">
+        <img src="https://lh3.googleusercontent.com/d/1lm5NxPdpJTOa9so6V3rQ5z98QSP8B_d8" class="profile-pic">
+    </div>
+    
+    <div class="intro-box">
+        Hello and welcome! My name is jazzie terrell, and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English.
+        <br><br>
+        <div style="background-color: #000000; color: #ffffff; padding: 6px 10px; border-radius: 6px; text-align: center; font-weight: bold;">
+            ✨ Check out my CV below! ✨
         </div>
     </div>
+</div>
+
+<!-- Mobile-Friendly PDF Viewer (Iframe with Fallback) -->
+<div class="pdf-container">
+    <iframe src="terrell-cv.pdf" type="application/pdf">
+        <div class="mobile-pdf-fallback">
+            <p>Your browser doesn't support embedded PDFs directly.</p>
+            <a href="terrell-cv.pdf" target="_blank" style="color: #ff1493; font-weight: bold;">Click here to open the CV PDF</a>
+        </div>
+    </iframe>
+</div>
+
+<br>
+
+<!-- Open PDF Link Button -->
+<div class="pdf-link-container">
+    <a href="terrell-cv.pdf" target="_blank">Open PDF in New Tab 📄</a>
+</div>
+
+<!-- Land Acknowledgement Note -->
+<div class="land-acknowledgement">
+    Note: I am located on unceded Tohono O'Oodham and Yoeme land.
+</div>
 
 </body>
 </html>
+<style>
+  /* Forces the same font across your entire website */
+  * {
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif, cursive !important;
+  }
+
+  body {
+    background-color: #ffe6f2; /* Light pink background vibe */
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  /* Rest of your styles... */
+</style>
