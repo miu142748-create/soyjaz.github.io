@@ -137,3 +137,40 @@ body {
         padding: 8px 12px;
     }
 }
+
+/* Ensure the outer wrapper centers and expands properly */
+.flipbook-container {
+    width: 100%;
+    max-width: 700px; /* Expands to fit the wide layout */
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Force StPageFlip book element to take up full available width */
+#book {
+    width: 100% !important;
+    height: auto !important;
+    box-shadow: 0 0 20px rgba(255, 128, 223, 0.5);
+    margin: 0 auto;
+}
+
+/* Force each page container to fill the parent slot */
+.page {
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Force PDF.js Canvas to stretch flush edge-to-edge */
+.page canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain; /* Prevents distortion while filling space */
+    display: block;
+}
