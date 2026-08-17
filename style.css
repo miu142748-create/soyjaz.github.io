@@ -1,3 +1,9 @@
+html {
+    -webkit-text-size-adjust: 100%; /* Prevents iOS Safari from blowing up text in landscape */
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 /* Custom White Scrollbar for Webkit Browsers (Chrome, Safari, Brave, Edge) */
 html::-webkit-scrollbar {
     width: 12px;
