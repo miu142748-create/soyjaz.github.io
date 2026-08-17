@@ -51,23 +51,16 @@ a, button, .pdf-button, .nav-btn, .profile-img {
    text-align: center;
 }
 
-/* Flexbox Layout for Profile Picture and Bio Side-by-Side */
-.profile-flex {
-   display: flex;
-   align-items: center;
-   gap: 20px;
-   width: 100%;
-}
-
-/* Profile Picture Styling */
+/* Standalone Centered Profile Picture Styling */
 .profile-img {
-   width: 110px;
-   height: 110px;
+   width: 120px;
+   height: 120px;
    border-radius: 50%;
    border: 3px solid #ff99e6;
    object-fit: cover;
-   box-shadow: 0 0 10px rgba(255, 128, 223, 0.4);
-   flex-shrink: 0;
+   box-shadow: 0 0 12px rgba(255, 128, 223, 0.5);
+   display: inline-block;
+   margin-bottom: 15px;
 }
 
 /* Primary Link Buttons (VIEW CV, Portfolio, Email) */
@@ -218,11 +211,6 @@ a:focus-visible, button:focus-visible {
        width: 95%;
        padding-left: 10px;
        padding-right: 10px;
-   }
-
-   .profile-flex {
-       flex-direction: column;
-       text-align: center;
    }
 
    .profile-img {
