@@ -4,7 +4,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs
 const pdfUrl = 'terrell-cv.pdf';
 let pageFlip = null;
 
-// Initialize StPageFlip in strict portrait/single-page mode
+// Initialize StPageFlip in strict portrait/single-page cover mode
 function initFlipbook() {
     pageFlip = new St.PageFlip(document.getElementById('book'), {
         width: 450,
@@ -14,12 +14,13 @@ function initFlipbook() {
         maxWidth: 500,
         minHeight: 400,
         maxHeight: 700,
-        showCover: false,      // Disables offset 2-page spread
-        usePortrait: true,     // Forces single-page view on all screen sizes
+        showCover: true,          // Forces single page display on ALL screens
+        usePortrait: true,        // Disables 2-page landscape spreads
         startPage: 0,
         drawShadow: true,
         flippingTime: 800,
-        useMouseEvents: true
+        useMouseEvents: true,
+        showPageCorners: false    // Clean edges for single-page view
     });
 
     // Render PDF Pages into the Flipbook

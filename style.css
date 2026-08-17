@@ -171,9 +171,8 @@ a:focus-visible, button:focus-visible {
 }
 
 /* Override StPageFlip dynamic element centering */
-.stpageflip-container,
-.stpageflip-wrapper,
-#book .stpageflip-container {
+#book .stpageflip-container,
+#book .stpageflip-wrapper {
    margin: 0 auto !important;
    left: 0 !important;
    right: 0 !important;
@@ -186,7 +185,7 @@ a:focus-visible, button:focus-visible {
    display: flex;
    justify-content: center;
    align-items: center;
-   margin: 0 auto;
+   margin: 0 auto !important;
    padding: 0;
 }
 
