@@ -21,7 +21,7 @@
            background-attachment: fixed;
        }
 
-       /* Responsive Video/Audio Container (16:9 Aspect Ratio) */
+       /* Responsive Video Container (16:9 Aspect Ratio) */
        .media-container {
            position: relative;
            padding-bottom: 56.25%;
@@ -40,6 +40,21 @@
            width: 100%;
            height: 100%;
            border: 0;
+       }
+
+       /* Track Selector Dropdown Styling */
+       .track-select {
+           background: #000000;
+           color: #ff80df;
+           border: 2px solid #ff80df;
+           padding: 8px 12px;
+           font-family: 'Quicksand', sans-serif;
+           font-weight: 700;
+           border-radius: 6px;
+           width: 100%;
+           max-width: 320px;
+           margin-bottom: 10px;
+           cursor: pointer;
        }
    </style>
 </head>
@@ -63,51 +78,69 @@
            </a>
        </div>
 
-       <!-- Media Player Box -->
+       <!-- Track Selector & Player Box -->
        <div class="box" style="text-align: center;">
-           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 16px;">✨ Featured Track ✨</p>
+           <label for="track-picker" style="display: block; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 8px;">✨ Select Track ✨</label>
+           
+           <select id="track-picker" class="track-select" onchange="switchTrack(this.value)">
+               <option value="kfc">Cain Culto ft. Sudan Archives - KFC Santería</option>
+               <option value="anarchist">Against Me! - Baby, I'm an Anarchist!</option>
+           </select>
 
-           <!-- Embedded Responsive YouTube Player -->
+           <!-- Responsive Embedded Player -->
            <div class="media-container">
                <iframe 
-                   src="https://www.youtube.com/embed/k-1jhOtyNVM" 
-                   title="YouTube Audio Player"
+                   id="video-player"
+                   src="https://www.youtube.com/embed/7vRuKjyX0ws?cc_load_policy=1&cc_lang_pref=en" 
+                   title="YouTube Audio Player with Closed Captions"
                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                    allowfullscreen>
                </iframe>
            </div>
        </div>
 
-       <!-- Accessible Full Transcript / Lyrics Box (WCAG 2.2 Best Practice) -->
+       <!-- Accessible Full Transcript Box (WCAG 2.2) -->
        <div class="box">
-           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; text-align: center;">📜 Full Track Transcript & Captions</p>
-           <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin: 0;">
-               Add your full text transcript, audio notes, or lyrics here for screen-reader accessibility and WCAG compliance.
-           </p>
-       </div>
-
-       <!-- Contact Section -->
-       <div class="box" style="text-align: center;">
-           <p style="margin-bottom: 8px; color: #ff80df; font-weight: 700;">✨ Get in touch! ✨</p>
-           <div style="margin: 10px 0;" aria-hidden="true">
-               <img src="http://dl4.glitter-graphics.net/pub/536/536374qelg9xv2hk.gif" alt="" width="38" height="35" border="0">
+           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; text-align: center;">📜 Track Structure & Highlights</p>
+           
+           <!-- Track 1 Transcript -->
+           <div id="transcript-kfc" style="font-size: 13px; line-height: 1.6; color: #ffffff; text-align: left;">
+               <p><strong>Track:</strong> KFC Santería (feat. Sudan Archives)</p>
+               <p><strong>[00:00 - Intro]:</strong> West African fiddle riffs and heavy hip-hop bass beat intro.</p>
+               <p><strong>[00:20 - Chorus]:</strong> Energetic vocal refrains emphasizing independence and confidence.</p>
+               <p><strong>[00:50 - Violin Breakdown]:</strong> Sudan Archives plays fiddle under full moon blue light imagery.</p>
            </div>
-           <a class="pdf-button" href="mailto:jterrell1@arizona.edu" style="font-weight: 700;" aria-label="Send me an email">
-               [ SEND ME AN EMAIL ]
-           </a>
+
+           <!-- Track 2 Transcript -->
+           <div id="transcript-anarchist" style="font-size: 13px; line-height: 1.6; color: #ffffff; text-align: left; display: none;">
+               <p><strong>Track:</strong> Baby, I'm an Anarchist!</p>
+               <p><strong>[00:00 - Intro]:</strong> Acoustic guitar strumming intro with high-energy punk tempo.</p>
+               <p><strong>[00:14 - Verse 1]:</strong> Reflections on political activism and ideological divides.</p>
+               <p><strong>[00:27 - Chorus]:</strong> <em>"'Cause baby, I'm an anarchist, and you're a spineless liberal / We marched together for the eight-hour day and held hands in the streets of Seattle..."</em></p>
+           </div>
        </div>
 
-       <!-- Land Acknowledgement Section -->
-       <div class="box">
-           <p style="margin: 0; font-size: 13px; color: #ffffff;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
-       </div>
-
-       <!-- WCAG Compliance Notice -->
-       <div class="box" style="margin-bottom: 35px;">
-           <p style="margin: 0; font-size: 12px; color: #ffffff; font-style: italic; text-align: center;">Note: This website is consistently being updated for accessibility alignment with WCAG 2.2 guidelines</p>
-       </div>
 
    </div>
+
+   <!-- Script to Switch Video & Transcript Display -->
+   <script>
+       function switchTrack(trackKey) {
+           const player = document.getElementById('video-player');
+           const transcriptKfc = document.getElementById('transcript-kfc');
+           const transcriptAnarchist = document.getElementById('transcript-anarchist');
+
+           if (trackKey === 'kfc') {
+               player.src = "https://www.youtube.com/embed/7vRuKjyX0ws?cc_load_policy=1&cc_lang_pref=en";
+               transcriptKfc.style.display = 'block';
+               transcriptAnarchist.style.display = 'none';
+           } else if (trackKey === 'anarchist') {
+               player.src = "https://www.youtube.com/embed/BUTUS2aS5js?cc_load_policy=1&cc_lang_pref=en";
+               transcriptKfc.style.display = 'none';
+               transcriptAnarchist.style.display = 'block';
+           }
+       }
+   </script>
 
 </body>
 </html>
