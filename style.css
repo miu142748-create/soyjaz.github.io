@@ -103,7 +103,7 @@ body {
     color: #000000;
 }
 
-/* Flipbook container and page adjustments */
+/* Flipbook container and page adjustments to fill container */
 .flipbook-container {
     display: flex;
     justify-content: center;
@@ -114,16 +114,20 @@ body {
 
 #book {
     margin: 0 auto;
+    width: 100% !important;
 }
 
 .page {
     background-color: #000000;
     overflow: hidden;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .page canvas {
     width: 100% !important;
     height: 100% !important;
+    object-fit: contain;
     display: block;
 }
 
