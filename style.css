@@ -206,7 +206,7 @@ a:focus-visible, button:focus-visible {
    text-align: center;
 }
 
-/* Mobile & Small Screen Tweaks */
+/* Mobile & Small Screen Layout Adjustments */
 @media screen and (max-width: 650px) {
    .wrapper {
        width: 95%;
@@ -242,5 +242,16 @@ a:focus-visible, button:focus-visible {
 
    #page-info {
        font-size: 10px !important;
+   }
+
+   /* MOBILE-ONLY FLIPBOOK FIX: Force top alignment to reveal full page */
+   .flipbook-container {
+       align-items: flex-start !important;
+       justify-content: center !important;
+   }
+
+   #book {
+       transform-origin: top center !important;
+       margin-top: 0 !important;
    }
 }

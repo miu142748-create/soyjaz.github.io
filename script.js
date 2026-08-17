@@ -6,7 +6,7 @@ if (typeof pdfjsLib !== 'undefined') {
 const pdfUrl = 'terrell-cv.pdf';
 let pageFlip = null;
 
-// Scale handler recalculates container bounds dynamically
+// Mobile-only scale handler: leaves desktop completely unaffected
 function rescaleFlipbook() {
     const container = document.querySelector('.flipbook-container');
     const book = document.getElementById('book');
@@ -15,16 +15,20 @@ function rescaleFlipbook() {
     const baseWidth = 600;
     const baseHeight = 775;
 
-    // Get true width of surrounding content box
-    const parentWidth = container.parentElement ? container.parentElement.clientWidth - 20 : container.clientWidth;
+    // Check width of container on mobile screens
+    const availableWidth = container.clientWidth;
 
-    if (parentWidth < baseWidth && parentWidth > 0) {
-        const scale = parentWidth / baseWidth;
+    if (window.innerWidth <= 650 && availableWidth > 0) {
+        const scale = availableWidth / baseWidth;
         book.style.transform = `scale(${scale})`;
         book.style.transformOrigin = 'top center';
+        
+        // Match container height to exact scaled height so buttons fit underneath naturally
         container.style.height = `${baseHeight * scale}px`;
     } else {
+        // Desktop setting (100% original size, no scaling)
         book.style.transform = 'scale(1)';
+        book.style.transformOrigin = 'top center';
         container.style.height = `${baseHeight}px`;
     }
 }
