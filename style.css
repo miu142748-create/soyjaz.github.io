@@ -54,8 +54,8 @@ body {
     flex-shrink: 0;
 }
 
-/* Custom retro buttons / links */
-.pdf-button {
+/* Unified retro button style for all major and navigation buttons */
+.pdf-button, .nav-btn {
     display: inline-block;
     background-color: #000000;
     color: #ff80df;
@@ -66,32 +66,24 @@ body {
     font-size: 11px;
     font-weight: 700;
     text-align: center;
+    cursor: pointer;
     border-radius: 8px;
     transition: all 0.2s ease-in-out;
     box-sizing: border-box;
 }
 
-.pdf-button:hover {
+.pdf-button:hover, .nav-btn:hover {
     background-color: #ff80df;
     color: #000000;
 }
 
-/* Nav buttons for the flipbook */
-.nav-btn {
-    background-color: #000000;
-    color: #ff80df;
-    border: 2px solid #ff80df;
-    padding: 8px 14px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.2s ease-in-out;
-}
-
-.nav-btn:hover {
-    background-color: #ff80df;
-    color: #000000;
+/* Flipbook controls styling */
+.nav-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 /* WCAG 2.2 Compliant Keyboard Focus States */
@@ -126,16 +118,7 @@ a:focus-visible, button:focus-visible {
         gap: 6px;
     }
 
-    .pdf-button {
+    .pdf-button, .nav-btn {
         width: 100%;
     }
-}
-
-/* Flipbook controls styling */
-.nav-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 15px;
 }
