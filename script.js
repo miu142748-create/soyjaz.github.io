@@ -19,7 +19,7 @@ nextBtn.addEventListener('click', (e) => {
     if (pageFlip) pageFlip.flipNext();
 });
 
-// Render PDF and Initialize Flipbook
+// Render PDF and Initialize Single-Page Flipbook
 pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     const numPages = pdfDoc_.numPages;
 
@@ -43,15 +43,15 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize PageFlip locked to portrait proportions (500x647 = 8.5x11 ratio)
+    // Initialize PageFlip with height > width to force single-page mode
     pageFlip = new St.PageFlip(bookElement, {
-        width: 500,           // Single page portrait width
-        height: 647,          // Single page portrait height
+        width: 480,           // Base page width
+        height: 620,          // Base page height (height > width prevents side-by-side)
         size: "stretch",      // Scaled fluidly inside .flipbook-container
-        minWidth: 300,
-        maxWidth: 600,
+        minWidth: 280,
+        maxWidth: 550,
         minHeight: 400,
-        maxHeight: 800,
+        maxHeight: 750,
         drawShadow: true,
         showCover: false,
         usePortrait: true,    // Enforces single page layout
