@@ -37,10 +37,10 @@ body {
     min-height: 100vh;
 }
 
-/* Main Stacked Column Container - Expanded for full width */
+/* Main Stacked Column Container */
 .wrapper {
-    max-width: 1200px; /* Increased from 700px to allow full CV visibility */
-    width: 95%;        /* Increased from 90% */
+    max-width: 800px; /* Sized comfortably to host a large single CV page */
+    width: 95%;
     margin: 0 auto 40px auto;
     padding: 20px;
     display: flex;
@@ -51,8 +51,8 @@ body {
 
 /* Main content container box styling */
 .box {
-    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent dark background */
-    border: 2px solid #ff80df;            /* Pink retro border */
+    background-color: rgba(0, 0, 0, 0.75);
+    border: 2px solid #ff80df;
     border-radius: 8px;
     padding: 20px;
     text-align: center;
@@ -81,7 +81,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Unified retro button style for all major and navigation buttons */
+/* Unified retro button style */
 .pdf-button, .nav-btn {
     display: inline-block;
     background-color: #000000;
@@ -104,13 +104,16 @@ body {
     color: #000000;
 }
 
-/* Flipbook container and page adjustments - Fixed to fill available height & width */
+/* Single-Page Flipbook Container */
 .flipbook-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 80vh; /* Gives the canvas explicit vertical space to expand */
+    max-width: 600px; /* Constrains width so StPageFlip stays strictly in 1-page mode */
+    height: 80vh;     /* Fills maximum vertical space inside the screen */
+    max-height: 800px;
+    margin: 0 auto;
     overflow: hidden;
     box-sizing: border-box;
 }
@@ -131,7 +134,7 @@ body {
 .page canvas {
     width: 100% !important;
     height: 100% !important;
-    object-fit: fill; /* Fills container completely without leaving blank gaps */
+    object-fit: contain; /* Keeps full CV page visible without distortion */
     display: block;
 }
 
@@ -144,7 +147,7 @@ body {
     margin-top: 15px;
 }
 
-/* WCAG 2.2 Compliant Keyboard Focus States */
+/* WCAG 2.2 Keyboard Focus States */
 a:focus-visible, button:focus-visible {
     outline: 3px solid #ff80df;
     outline-offset: 4px;
@@ -152,17 +155,13 @@ a:focus-visible, button:focus-visible {
 
 /* Responsive adjustments for mobile */
 @media (max-width: 600px) {
-    body {
-        align-items: center;
-    }
-
     .wrapper {
         width: 100%;
         padding: 10px;
     }
 
     .flipbook-container {
-        min-height: 50vh; /* Responsive height scaling for smaller screens */
+        height: 65vh; /* Scales down gracefully on mobile screens */
     }
 
     .profile-flex {
@@ -172,12 +171,6 @@ a:focus-visible, button:focus-visible {
 
     .profile-img {
         margin-bottom: 10px;
-    }
-
-    .research-interests-text {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
     }
 
     .pdf-button, .nav-btn {
