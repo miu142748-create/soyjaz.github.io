@@ -1,16 +1,31 @@
-/* Authentic Y2K Retro Pink Pointer Cursor */
+/* ==========================================================================
+   Y2K RETRO CURSOR CONFIGURATION (SVG Data URI - Never fails to load)
+   ========================================================================== */
+
+/* OPTION A: PINK RETRO PIXEL CURSOR (Currently Active) */
 body {
    font-family: 'Quicksand', sans-serif;
    color: #ffffff;
    margin: 0;
    padding: 0;
-   cursor: url('https://cur.cursors-4u.net/user/use-1/use160.cur'), auto !important;
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ff99e6" stroke="%23ffffff" stroke-width="1.5"/></svg>'), auto !important;
 }
 
-/* Hover Cursor for Interactive Elements */
 a, button, .pdf-button, .nav-btn, .profile-img {
-   cursor: url('https://cur.cursors-4u.net/user/use-1/use160.cur'), pointer !important;
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ff99e6" stroke="%23ffffff" stroke-width="1.5"/></svg>'), pointer !important;
 }
+
+/* 
+OPTION B: WHITE RETRO PIXEL CURSOR 
+(To use White instead of Pink, comment out Option A above and uncomment below)
+
+body {
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ffffff" stroke="%23ff99e6" stroke-width="1.5"/></svg>'), auto !important;
+}
+a, button, .pdf-button, .nav-btn, .profile-img {
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ffffff" stroke="%23ff99e6" stroke-width="1.5"/></svg>'), pointer !important;
+}
+*/
 
 /* Global Reset and Mobile Font Size Locking */
 * {
@@ -51,7 +66,7 @@ a, button, .pdf-button, .nav-btn, .profile-img {
    text-align: center;
 }
 
-/* Standalone Profile Picture (Borders and Glowing Box Removed) */
+/* Standalone Profile Picture (No Borders, Outlines, or Boxes) */
 .profile-img {
    width: 130px;
    height: 130px;
@@ -155,14 +170,14 @@ a:focus-visible, button:focus-visible {
    align-items: center;
 }
 
-/* Flipbook Inner Box */
+/* Flipbook Inner Box - Seamless Frame (No Border or Outer Box Shadow) */
 #book {
    width: 100% !important;
    height: 620px !important;
-   border: 2px solid #ff99e6;
-   border-radius: 8px;
-   box-shadow: 0 0 15px rgba(255, 128, 223, 0.4);
-   background-color: #ffffff;
+   border: none !important;
+   border-radius: 0px !important;
+   box-shadow: none !important;
+   background-color: transparent !important;
    overflow: hidden;
    margin: 0 auto !important;
 }
