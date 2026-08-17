@@ -1,15 +1,15 @@
-/* Custom Left-Hand Cursor */
+/* Authentic Y2K Retro Pink Pointer Cursor */
 body {
    font-family: 'Quicksand', sans-serif;
    color: #ffffff;
    margin: 0;
    padding: 0;
-   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">👈</text></svg>') 0 12, auto !important;
+   cursor: url('https://cur.cursors-4u.net/user/use-1/use160.cur'), auto !important;
 }
 
 /* Hover Cursor for Interactive Elements */
 a, button, .pdf-button, .nav-btn, .profile-img {
-   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">👈</text></svg>') 0 12, pointer !important;
+   cursor: url('https://cur.cursors-4u.net/user/use-1/use160.cur'), pointer !important;
 }
 
 /* Global Reset and Mobile Font Size Locking */
@@ -51,14 +51,14 @@ a, button, .pdf-button, .nav-btn, .profile-img {
    text-align: center;
 }
 
-/* Standalone Centered Profile Picture Styling */
+/* Standalone Profile Picture (Borders and Glowing Box Removed) */
 .profile-img {
-   width: 120px;
-   height: 120px;
+   width: 130px;
+   height: 130px;
    border-radius: 50%;
-   border: 3px solid #ff99e6;
+   border: none !important;
+   box-shadow: none !important;
    object-fit: cover;
-   box-shadow: 0 0 12px rgba(255, 128, 223, 0.5);
    display: inline-block;
    margin-bottom: 15px;
 }
@@ -214,8 +214,8 @@ a:focus-visible, button:focus-visible {
    }
 
    .profile-img {
-       width: 100px;
-       height: 100px;
+       width: 110px;
+       height: 110px;
        margin-bottom: 10px;
    }
 
