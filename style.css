@@ -1,189 +1,91 @@
-/* Custom Retro White Scrollbar */
-html {
-    scrollbar-width: thin;
-    scrollbar-color: #ffffff rgba(0, 0, 0, 0.75);
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.75);
-    border-left: 1px solid #ff80df;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #ffffff;
-    border-radius: 4px;
-    border: 2px solid #000000;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #ff80df;
-}
-
 /* General Body and Background Setup */
 body {
-    font-family: 'Quicksand', sans-serif;
-    color: #ffffff;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    min-height: 100vh;
+   font-family: 'Quicksand', sans-serif;
+   color: #ffffff;
+   margin: 0;
+   padding: 0;
+   /* Note: Background image is handled via inline style in index.html, but you can also place it here */
 }
+
 
 /* Main Stacked Column Container */
 .wrapper {
-    max-width: 850px;
-    width: 95%;
-    margin: 0 auto 40px auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    box-sizing: border-box;
+   max-width: 700px;
+   margin: 0 auto;
+   padding: 20px;
 }
+
 
 /* Main content container box styling */
 .box {
-    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent dark background */
-    border: 2px solid #ff80df;            /* Pink retro border */
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    box-sizing: border-box;
-    width: 100%;
+   background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent dark background */
+   border: 2px solid #ff80df;            /* Pink retro border */
+   border-radius: 8px;
+   padding: 20px;
+   margin-bottom: 20px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
+
 
 /* Flexbox layout for profile picture and bio side-by-side */
 .profile-flex {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    text-align: left;
-    width: 100%;
-    box-sizing: border-box;
+   display: flex;
+   align-items: center;
+   gap: 20px;
 }
+
 
 /* Profile picture styling */
 .profile-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ff80df;
-    flex-shrink: 0;
+   width: 120px;
+   height: 120px;
+   border-radius: 50%;
+   object-fit: cover;
+   border: 2px solid #ff80df;
 }
 
-/* Unified retro button style for all major and navigation buttons */
-.pdf-button, .nav-btn {
-    display: inline-block;
-    background-color: #000000;
-    color: #ff80df;
-    border: 2px solid #ff80df;
-    padding: 12px 20px;
-    text-decoration: none;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: all 0.2s ease-in-out;
-    box-sizing: border-box;
+
+/* Custom retro buttons / links */
+.pdf-button {
+   display: inline-block;
+   background-color: #000000;
+   color: #ff80df;
+   border: 2px solid #ff80df;
+   padding: 10px 15px;
+   text-decoration: none;
+   font-family: 'Press Start 2P', monospace;
+   font-size: 10px;
+   cursor: pointer;
+   border-radius: 6px;
+   transition: all 0.2s ease-in-out;
 }
 
-.pdf-button:hover, .nav-btn:hover {
-    background-color: #ff80df;
-    color: #000000;
+
+.pdf-button:hover {
+   background-color: #ff80df;
+   color: #000000;
 }
 
-/* Single-Page Flipbook Container */
-.flipbook-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 800px; /* Allows full expansion for a large single page */
-    height: 85vh;     /* Uses maximum vertical space inside the box */
-    max-height: 900px;
-    margin: 0 auto;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-#book {
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 auto;
-}
-
-.page {
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-    overflow: hidden;
-}
-
-.page canvas {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain;
-    display: block;
-}
-
-/* Flipbook controls styling */
-.nav-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 15px;
-}
 
 /* WCAG 2.2 Compliant Keyboard Focus States */
 a:focus-visible, button:focus-visible {
-    outline: 3px solid #ff80df;
-    outline-offset: 4px;
+   outline: 3px solid #ff80df;
+   outline-offset: 4px;
 }
+
 
 /* Responsive adjustments for mobile */
 @media (max-width: 600px) {
-    body {
-        align-items: center;
-    }
+   .profile-flex {
+       flex-direction: column;
+       text-align: center;
+   }
 
-    .wrapper {
-        width: 100%;
-        padding: 10px;
-    }
 
-    .flipbook-container {
-        height: 65vh;
-    }
-
-    .profile-flex {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .profile-img {
-        margin-bottom: 10px;
-    }
-
-    .research-interests-text {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .pdf-button, .nav-btn {
-        width: 100%;
-    }
+   .profile-img {
+       margin-bottom: 10px;
+   }
 }
+
+
+
