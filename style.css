@@ -148,11 +148,10 @@ a:focus-visible, button:focus-visible {
    outline-offset: 4px;
 }
 
-/* Single-Page Flipbook Outer Container */
+/* Responsive Container maintaining exact desktop proportions */
 .flipbook-container {
    width: 100%;
    max-width: 600px;
-   min-height: 775px;
    margin: 10px auto;
    display: flex;
    justify-content: center;
@@ -160,7 +159,7 @@ a:focus-visible, button:focus-visible {
    overflow: hidden;
 }
 
-/* Flipbook Inner Canvas Box */
+/* Base Desktop Sizing */
 #book {
    width: 600px !important;
    height: 775px !important;
@@ -170,16 +169,13 @@ a:focus-visible, button:focus-visible {
    background-color: transparent !important;
    overflow: hidden !important;
    margin: 0 auto !important;
-   display: block !important;
 }
 
-/* Force internal StPageFlip wrappers to lock centered */
+/* Force internal StPageFlip wrappers to scale fluidly */
 #book .stpageflip-container,
 #book .stpageflip-wrapper,
 #book .stpageflip-page {
    margin: 0 auto !important;
-   left: 0 !important;
-   right: 0 !important;
 }
 
 .page {
@@ -210,8 +206,8 @@ a:focus-visible, button:focus-visible {
    text-align: center;
 }
 
-/* Responsive Adjustments for Mobile Breakpoints */
-@media screen and (max-width: 768px) {
+/* Mobile & Small Screen Scaling Fix */
+@media screen and (max-width: 650px) {
    .wrapper {
        width: 95%;
        padding-left: 10px;
@@ -241,13 +237,12 @@ a:focus-visible, button:focus-visible {
 
    .flipbook-container {
        max-width: 100%;
-       min-height: 480px;
-       margin: 5px auto;
    }
 
    #book {
        width: 100% !important;
-       height: 480px !important;
+       height: auto !important;
+       aspect-ratio: 600 / 775 !important;
    }
 
    .nav-controls {

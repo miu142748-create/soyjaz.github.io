@@ -21,7 +21,11 @@ function initFlipbook() {
     pageFlip = new St.PageFlip(bookElement, {
         width: 600,
         height: 775,
-        size: "fixed",
+        size: "stretch",           // Dynamic resizing
+        minWidth: 280,
+        maxWidth: 600,
+        minHeight: 360,
+        maxHeight: 775,
         showCover: false,          // Prevents page-flip from splitting pages into a spread
         usePortrait: true,
         singlePageMode: true,      // Forces strict single-page rendering across all screen sizes
@@ -91,3 +95,13 @@ if (document.readyState === 'loading') {
 } else {
     initFlipbook();
 }
+
+// Dynamically scale flipbook layout when changing window/screen dimensions
+window.addEventListener('resize', () => {
+    if (pageFlip) {
+        const bookElement = document.getElementById('book');
+        if (bookElement) {
+            pageFlip.updateFromHtml(document.querySelectorAll('.page'));
+        }
+    }
+});
