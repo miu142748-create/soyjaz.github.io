@@ -4,19 +4,17 @@ body {
    color: #ffffff;
    margin: 0;
    padding: 0;
-   background-image: url('https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
-   background-attachment: fixed;
-   background-repeat: repeat;
+   /* Note: Background image is handled via inline style in index.html, but you can also place it here */
 }
 
-/* Single Stacked Column Container - Generous Width */
+
+/* Main Stacked Column Container */
 .wrapper {
-   max-width: 900px; /* Generous width for nice wide stacked boxes */
-   width: 92%;
+   max-width: 700px;
    margin: 0 auto;
    padding: 20px;
-   box-sizing: border-box;
 }
+
 
 /* Main content container box styling */
 .box {
@@ -26,27 +24,28 @@ body {
    padding: 20px;
    margin-bottom: 20px;
    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-   box-sizing: border-box;
 }
 
-/* Profile flex layout */
+
+/* Flexbox layout for profile picture and bio side-by-side */
 .profile-flex {
    display: flex;
    align-items: center;
    gap: 20px;
-   width: 100%;
 }
 
+
+/* Profile picture styling */
 .profile-img {
    width: 120px;
    height: 120px;
    border-radius: 50%;
    object-fit: cover;
    border: 2px solid #ff80df;
-   flex-shrink: 0;
 }
 
-/* Retro buttons */
+
+/* Custom retro buttons / links */
 .pdf-button {
    display: inline-block;
    background-color: #000000;
@@ -61,87 +60,32 @@ body {
    transition: all 0.2s ease-in-out;
 }
 
+
 .pdf-button:hover {
    background-color: #ff80df;
    color: #000000;
 }
 
-/* Accessibility Focus States */
+
+/* WCAG 2.2 Compliant Keyboard Focus States */
 a:focus-visible, button:focus-visible {
    outline: 3px solid #ff80df;
    outline-offset: 4px;
 }
 
-/* Flipbook Display Constraints */
-.flipbook-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 500px;
-    height: 700px;
-    margin: 0 auto;
-    overflow: hidden;
-}
 
-#book {
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 auto;
-}
-
-.page {
-    width: 100% !important;
-    height: 100% !important;
-    background-color: #000000;
-    overflow: hidden;
-}
-
-.page canvas {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain;
-    display: block;
-}
-
-/* Navigation Controls */
-.nav-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.nav-btn {
-    background-color: #000000;
-    color: #ff80df;
-    border: 2px solid #ff80df;
-    padding: 8px 14px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.2s ease-in-out;
-}
-
-.nav-btn:hover {
-    background-color: #ff80df;
-    color: #000000;
-}
-
-/* Responsive Mobile Layout */
+/* Responsive adjustments for mobile */
 @media (max-width: 600px) {
    .profile-flex {
        flex-direction: column;
        text-align: center;
    }
 
+
    .profile-img {
        margin-bottom: 10px;
    }
-
-   .flipbook-container {
-       height: 500px;
-   }
 }
+
+
+
