@@ -1,139 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>soy jaz</title>
-  <!-- Butterfly Favicon -->
-  <link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f98b.png" type="image/png">
-  <!-- Import Quicksand and Press Start 2P Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-   <!-- Include PDF.js and StPageFlip libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV & Profile</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
 
-
-  <link rel="stylesheet" href="style.css">
-
-
-  <!-- Fixed Background Style -->
-  <style>
-      body {
-          background-image: url('https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
-          background-attachment: fixed;
-          background-repeat: repeat;
-      }
-  </style>
+    <!-- PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    
+    <!-- StPageFlip Library -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 </head>
 <body>
 
+    <div class="wrapper">
 
-  <!-- Glitter Text ("SOY JAZ") -->
-  <div style="margin-top: 25px; margin-bottom: 20px; text-align: center;">
-      <img src="https://text.glitter-graphics.net/heart/s.gif" alt="s" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" alt="y" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="15" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" alt="j" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" alt="a" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" alt="z" border="0">
-  </div>
+        <!-- Box 1: Profile & Bio -->
+        <div class="box">
+            <div class="profile-flex">
+                <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+                <div>
+                    <h2>Terrell</h2>
+                    <p class="research-interests-text">
+                        <span><strong>Research Interests:</strong> Human-Computer Interaction, Web Accessibility, Interactive Media.</span>
+                    </p>
+                    <a href="terrell-cv.pdf" class="pdf-button" download>Download PDF CV</a>
+                </div>
+            </div>
+        </div>
 
+        <!-- Box 2: Single-Page CV Flipbook -->
+        <div class="box">
+            <div class="flipbook-container">
+                <div id="book"></div>
+            </div>
 
-  <!-- Main Stacked Column Container -->
-  <div class="wrapper">
+            <div class="nav-controls">
+                <button id="prev-btn" class="nav-btn" aria-label="Previous Page">Previous</button>
+                <span id="page-info">Loading CV...</span>
+                <button id="next-btn" class="nav-btn" aria-label="Next Page">Next</button>
+            </div>
+        </div>
 
+        <!-- Box 3: Accessibility Statement -->
+        <div class="box">
+            <h3>Accessibility Statement</h3>
+            <p>
+                This website is designed with accessibility in mind, conforming to WCAG 2.2 standards. 
+                If you encounter any issues viewing the embedded CV flipbook, please use the direct download button above to access the screen-reader-friendly PDF document.
+            </p>
+        </div>
 
-  <!-- Profile Section: PFP outside, Bio in a box -->
-<div class="profile-flex" style="margin-bottom: 20px; display: flex; align-items: center; gap: 20px;">
-   <img src="pfp.png" alt="Profile Picture of jazzie holding a dog" class="profile-img">
-   <div class="box" style="margin-bottom: 0; flex-grow: 1;">
-       <p style="margin: 0; color: #ffffff;">Hello, and welcome! My name is jazzie terrell and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English.</p>
-   </div>
-</div>
+    </div>
 
-
-      <!-- Research Interests Section wrapped in a box -->
-      <div class="box">
-          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px;">✨ Research Interests ✨</p>
-          <p class="research-interests-text" style="margin: 0; font-size: 15px; line-height: 1.6; color: #ffffff;">
-              Feminist Pedagogy &nbsp;&nbsp;|&nbsp;&nbsp; Digital Literacy &nbsp;&nbsp;|&nbsp;&nbsp; Borderland Rhetorics &nbsp;&nbsp;|&nbsp;&nbsp; Community-Led Research
-          </p>
-      </div>
-
-
-      <!-- Dissertation Collection Box -->
-      <div class="box research-box">
-          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px;">✨ Dissertation Collection ✨</p>
-          <p style="margin: 0; font-size: 15px; line-height: 1.6; text-align: left;">
-              jazzie's dissertation collection examines the history of border enforcement and state violence, starting with the 1917 Bath Riots. It also looks at why traditional school and university systems need a critical update, and explores how community zines and mutual aid sustain grassroots resistance.
-          </p>
-      </div>
-
-
-      <!-- Explore My Work Box -->
-      <div class="box">
-          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px;">✨ Explore My Work ✨</p>
-          <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
-              <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document">
-                  VIEW CV PDF
-              </a>
-              <a class="pdf-button" href="portfolio.html">
-                  Instructional Design Portfolio
-              </a>
-          </div>
-      </div>
-
-
-      <!-- Flipbook Section -->
-      <div class="box">
-          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px;">✨ Interactive CV Flipbook ✨</p>
-          <p style="font-size: 11px; color: #ffffff; margin-top: 0; margin-bottom: 12px; font-style: italic;">
-              (Note: Links and sizing inside the flipbook preview are view-only. Use the download button for clickable links and for zoom functions!)
-          </p>
-        
-          <div class="flipbook-container">
-              <div id="book"></div>
-          </div>
-
-
-          <!-- Navigation Buttons & Counter -->
-<div class="nav-controls">
-    <button id="prev-btn" class="pdf-button">PREV</button>
-    <span id="page-info" style="color: #fff; font-size: 13px;">Page 1 of X</span>
-    <button id="next-btn" class="pdf-button">NEXT</button>
-</div>
-
-
-      <!-- Contact Section -->
-      <div class="box">
-          <p style="margin-bottom: 8px; color: #ff80df; font-weight: 700;">✨ Get in touch! ✨</p>
-          <div style="margin: 10px 0;" aria-hidden="true">
-              <img src="https://dl4.glitter-graphics.net/pub/536/536374qelg9xv2hk.gif" alt="" width="38" height="35" border="0">
-          </div>
-          <a class="pdf-button" href="mailto:jterrell1@arizona.edu" style="font-weight: 700;" aria-label="Send me an email">
-              SEND ME AN EMAIL
-          </a>
-      </div>
-
-
-      <!-- Land Acknowledgement Section -->
-      <div class="box">
-          <p style="margin: 0; font-size: 13px; color: #ffffff;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
-      </div>
-
-
-      <!-- WCAG Compliance Notice -->
-      <div class="box" style="margin-bottom: 35px;">
-          <p style="margin: 0; font-size: 12px; color: #ffffff; font-style: italic; text-align: center;">Note: This website is optimized for accessibility in alignment with WCAG 2.2 guidelines.</p>
-      </div>
-
-
-  </div>
-
-
-  <script src="script.js"></script>
-
-
-  <!-- SCM Music Player -->
-  <script type="text/javascript" src="https://scmplayer.net/script.scm.js"
-  data-config="{'skin':'skins/black/skin.css','volume':50,'shuffle':true,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Nectar - Raveena','url':'https://www.youtube.com/watch?v=TyyGiQES--o'},{'title':'Fast Car (Slowed + Reverb) - Syd','url':'https://www.youtube.com/watch?v=y96fVSMl4ZU'},{'title':'Go Gina - SZA','url':'https://www.youtube.com/watch?v=iZX2eztChus'},{'title':'Pyramids - Frank Ocean','url':'https://www.youtube.com/watch?v=dMV31MWIjLE'}]}" ></script>
-
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
 
 </body>
 </html>
-
