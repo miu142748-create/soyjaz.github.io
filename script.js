@@ -44,15 +44,15 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
    }
 
    pageFlip = new St.PageFlip(bookElement, {
-       mode: "single",      // Locks to 1 page
        width: 550,          
        height: 733,         
        size: "stretch",
+       mode: "single",       // Forces 1-page view mode
        minWidth: 280,
        maxWidth: 1000,
        minHeight: 350,
        maxHeight: 1333,
-       showCover: false,
+       showCover: false,     // Ensures single-page flow starts immediately
        usePortrait: true,   
        mobileScrollSupport: true,
        maxShadowOpacity: 0.3
