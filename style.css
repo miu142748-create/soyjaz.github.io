@@ -151,31 +151,32 @@ a:focus-visible, button:focus-visible {
 /* Single-Page Flipbook Outer Container */
 .flipbook-container {
    width: 100%;
-   max-width: 650px;
-   min-height: 840px; /* Reserves vertical height so container never collapses */
+   max-width: 600px;
+   min-height: 775px;
    margin: 10px auto;
    display: flex;
    justify-content: center;
    align-items: center;
+   overflow: hidden;
 }
 
-/* Flipbook Inner Box */
+/* Flipbook Inner Canvas Box */
 #book {
-   width: 100% !important;
-   height: 840px !important;
+   width: 600px !important;
+   height: 775px !important;
    border: none !important;
    outline: none !important;
-   border-radius: 0px !important;
    box-shadow: none !important;
    background-color: transparent !important;
-   overflow: hidden;
+   overflow: hidden !important;
    margin: 0 auto !important;
    display: block !important;
 }
 
-/* Override StPageFlip dynamic element centering */
+/* Force internal StPageFlip wrappers to lock centered */
 #book .stpageflip-container,
-#book .stpageflip-wrapper {
+#book .stpageflip-wrapper,
+#book .stpageflip-page {
    margin: 0 auto !important;
    left: 0 !important;
    right: 0 !important;
@@ -188,14 +189,12 @@ a:focus-visible, button:focus-visible {
    display: flex;
    justify-content: center;
    align-items: center;
-   margin: 0 auto !important;
-   padding: 0 !important;
 }
 
 .page canvas {
    width: 100% !important;
    height: 100% !important;
-   object-fit: fill !important;
+   object-fit: contain !important;
    display: block;
    margin: 0 auto;
 }
@@ -247,6 +246,7 @@ a:focus-visible, button:focus-visible {
    }
 
    #book {
+       width: 100% !important;
        height: 480px !important;
    }
 

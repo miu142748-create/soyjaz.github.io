@@ -10,7 +10,6 @@ function initFlipbook() {
     const bookElement = document.getElementById('book');
     const pageInfoElement = document.getElementById('page-info');
 
-    // Verification check for required elements and libraries
     if (!bookElement) return;
     if (typeof St === 'undefined' || typeof pdfjsLib === 'undefined') {
         if (pageInfoElement) pageInfoElement.textContent = 'Library Error';
@@ -18,20 +17,17 @@ function initFlipbook() {
         return;
     }
 
-    // Initialize StPageFlip
+    // Single-page initialization configuration
     pageFlip = new St.PageFlip(bookElement, {
-        width: 550,
-        height: 710,
-        size: "stretch",
-        minWidth: 280,
-        maxWidth: 800,
-        minHeight: 360,
-        maxHeight: 1030,
-        showCover: true,
+        width: 600,
+        height: 775,
+        size: "fixed",
+        showCover: false,          // Prevents page-flip from splitting pages into a spread
         usePortrait: true,
+        singlePageMode: true,      // Forces strict single-page rendering across all screen sizes
         startPage: 0,
         drawShadow: false,
-        flippingTime: 600,
+        flippingTime: 500,
         useMouseEvents: true,
         showPageCorners: false
     });
@@ -90,7 +86,6 @@ function initFlipbook() {
     });
 }
 
-// Trigger initialization once DOM is loaded
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initFlipbook);
 } else {
