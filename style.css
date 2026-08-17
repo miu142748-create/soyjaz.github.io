@@ -39,7 +39,7 @@ body {
 
 /* Main Stacked Column Container */
 .wrapper {
-    max-width: 800px; /* Sized comfortably to host a large single CV page */
+    max-width: 850px;
     width: 95%;
     margin: 0 auto 40px auto;
     padding: 20px;
@@ -51,8 +51,8 @@ body {
 
 /* Main content container box styling */
 .box {
-    background-color: rgba(0, 0, 0, 0.75);
-    border: 2px solid #ff80df;
+    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent dark background */
+    border: 2px solid #ff80df;            /* Pink retro border */
     border-radius: 8px;
     padding: 20px;
     text-align: center;
@@ -81,7 +81,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Unified retro button style */
+/* Unified retro button style for all major and navigation buttons */
 .pdf-button, .nav-btn {
     display: inline-block;
     background-color: #000000;
@@ -110,9 +110,9 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 600px; /* Constrains width so StPageFlip stays strictly in 1-page mode */
-    height: 80vh;     /* Fills maximum vertical space inside the screen */
-    max-height: 800px;
+    max-width: 800px; /* Allows full expansion for a large single page */
+    height: 85vh;     /* Uses maximum vertical space inside the box */
+    max-height: 900px;
     margin: 0 auto;
     overflow: hidden;
     box-sizing: border-box;
@@ -134,7 +134,7 @@ body {
 .page canvas {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain; /* Keeps full CV page visible without distortion */
+    object-fit: contain;
     display: block;
 }
 
@@ -147,7 +147,7 @@ body {
     margin-top: 15px;
 }
 
-/* WCAG 2.2 Keyboard Focus States */
+/* WCAG 2.2 Compliant Keyboard Focus States */
 a:focus-visible, button:focus-visible {
     outline: 3px solid #ff80df;
     outline-offset: 4px;
@@ -155,13 +155,17 @@ a:focus-visible, button:focus-visible {
 
 /* Responsive adjustments for mobile */
 @media (max-width: 600px) {
+    body {
+        align-items: center;
+    }
+
     .wrapper {
         width: 100%;
         padding: 10px;
     }
 
     .flipbook-container {
-        height: 65vh; /* Scales down gracefully on mobile screens */
+        height: 65vh;
     }
 
     .profile-flex {
@@ -171,6 +175,12 @@ a:focus-visible, button:focus-visible {
 
     .profile-img {
         margin-bottom: 10px;
+    }
+
+    .research-interests-text {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
     }
 
     .pdf-button, .nav-btn {

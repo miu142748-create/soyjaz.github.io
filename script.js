@@ -25,11 +25,8 @@ nextBtn.addEventListener('click', (e) => {
 pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
    const numPages = pdfDoc_.numPages;
 
-   // Render all pages at HD resolution
    for (let pageNum = 1; pageNum <= numPages; pageNum++) {
        const page = await pdfDoc_.getPage(pageNum);
-       
-       // scale: 2.0 renders high-DPI canvas so text stays sharp when expanded
        const viewport = page.getViewport({ scale: 2.0 });
 
        const pageDiv = document.createElement('div');
@@ -46,17 +43,16 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
        bookElement.appendChild(pageDiv);
    }
 
-   // Initialize PageFlip with single-page portrait constraints
    pageFlip = new St.PageFlip(bookElement, {
-       width: 550,          // Standard portrait ratio (Width)
-       height: 733,         // Standard portrait ratio (Height)
-       size: "stretch",     // Allows canvas to scale dynamically to fit container
-       minWidth: 280,
-       maxWidth: 600,       // Matches CSS max-width to lock single-page mode
-       minHeight: 373,
-       maxHeight: 800,
+       mode: "single",      // FORCES SINGLE-PAGE VIEW ALWAYS
+       width: 550,          
+       height: 733,         
+       size: "stretch",
+       minWidth: 300,
+       maxWidth: 900,       // Allows the single page to expand wide
+       minHeight: 400,
+       maxHeight: 1200,     // Allows the single page to expand tall
        showCover: false,
-       usePortrait: true,   // Forces single-page view in portrait proportions
        mobileScrollSupport: true,
        maxShadowOpacity: 0.3
    });
