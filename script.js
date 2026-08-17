@@ -6,6 +6,26 @@ if (typeof pdfjsLib !== 'undefined') {
 const pdfUrl = 'terrell-cv.pdf';
 let pageFlip = null;
 
+function scaleFlipbook() {
+    const container = document.querySelector('.flipbook-container');
+    const book = document.getElementById('book');
+    if (!container || !book) return;
+
+    const baseWidth = 600;
+    const baseHeight = 775;
+    const availableWidth = container.clientWidth;
+
+    if (availableWidth > 0 && availableWidth < baseWidth) {
+        const scale = availableWidth / baseWidth;
+        book.style.transform = `scale(${scale})`;
+        book.style.transformOrigin = 'top center';
+        container.style.height = `${baseHeight * scale}px`;
+    } else {
+        book.style.transform = 'none';
+        container.style.height = `${baseHeight}px`;
+    }
+}
+
 function initFlipbook() {
     const bookElement = document.getElementById('book');
     const pageInfoElement = document.getElementById('page-info');
@@ -17,7 +37,7 @@ function initFlipbook() {
         return;
     }
 
-    // Single-page fixed configuration (CSS matrix scaling handles mobile responsiveness)
+    // Single-page fixed configuration
     pageFlip = new St.PageFlip(bookElement, {
         width: 600,
         height: 775,
@@ -79,32 +99,16 @@ function initFlipbook() {
             if (nextBtn) {
                 nextBtn.onclick = () => pageFlip.turnToNextPage();
             }
-            
-            // Adjust container height for mobile transform scaling initial load
-            resizeFlipbookWrapper();
+
+            // Perform immediate mobile scaling once pages render
+            scaleFlipbook();
+            setTimeout(scaleFlipbook, 100);
+            setTimeout(scaleFlipbook, 500);
         });
     }).catch(error => {
         if (pageInfoElement) pageInfoElement.textContent = 'PDF Error';
         console.error('Error loading PDF:', error);
     });
-}
-
-// Adjust parent wrapper dimensions so scaled flipbook doesn't leave trailing empty space
-function resizeFlipbookWrapper() {
-    const container = document.querySelector('.flipbook-container');
-    const book = document.getElementById('book');
-    if (!container || !book) return;
-
-    if (window.innerWidth <= 650) {
-        const currentWidth = container.clientWidth;
-        const scale = currentWidth / 600;
-        book.style.transform = `scale(${scale})`;
-        book.style.transformOrigin = 'top center';
-        container.style.height = `${775 * scale}px`;
-    } else {
-        book.style.transform = 'none';
-        container.style.height = 'auto';
-    }
 }
 
 if (document.readyState === 'loading') {
@@ -113,4 +117,7 @@ if (document.readyState === 'loading') {
     initFlipbook();
 }
 
-window.addEventListener('resize', resizeFlipbookWrapper);
+// Window resize & orientation change events
+window.addEventListener('resize', scaleFlipbook);
+window.addEventListener('orientationchange', () => setTimeout(scaleFlipbook, 200));
+window.addEventListener('load', scaleFlipbook);

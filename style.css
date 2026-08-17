@@ -1,116 +1,250 @@
-// Ensure PDF.js worker is ready
-if (typeof pdfjsLib !== 'undefined') {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+/* ==========================================================================
+   Y2K RETRO CURSOR CONFIGURATION (SVG Data URI - Hot Pink Pixel Pointer)
+   ========================================================================== */
+
+body {
+   font-family: 'Quicksand', sans-serif;
+   color: #ffffff;
+   margin: 0;
+   padding: 0;
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ff99e6" stroke="%23ffffff" stroke-width="1.5"/></svg>'), auto !important;
 }
 
-const pdfUrl = 'terrell-cv.pdf';
-let pageFlip = null;
-
-function initFlipbook() {
-    const bookElement = document.getElementById('book');
-    const pageInfoElement = document.getElementById('page-info');
-
-    if (!bookElement) return;
-    if (typeof St === 'undefined' || typeof pdfjsLib === 'undefined') {
-        if (pageInfoElement) pageInfoElement.textContent = 'Library Error';
-        console.error('PageFlip or PDF.js libraries failed to load.');
-        return;
-    }
-
-    // Single-page fixed configuration (CSS matrix scaling handles mobile responsiveness)
-    pageFlip = new St.PageFlip(bookElement, {
-        width: 600,
-        height: 775,
-        size: "fixed",
-        showCover: false,          // Prevents page-flip from splitting pages into a spread
-        usePortrait: true,
-        singlePageMode: true,      // Forces strict single-page rendering
-        startPage: 0,
-        drawShadow: false,
-        flippingTime: 500,
-        useMouseEvents: true,
-        showPageCorners: false
-    });
-
-    // Render PDF Pages into the Flipbook
-    pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
-        const totalPages = pdf.numPages;
-        const pagePromises = [];
-
-        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
-            pagePromises.push(
-                pdf.getPage(pageNum).then(page => {
-                    const viewport = page.getViewport({ scale: 2 });
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-
-                    const renderContext = {
-                        canvasContext: context,
-                        viewport: viewport
-                    };
-
-                    return page.render(renderContext).promise.then(() => {
-                        const pageDiv = document.createElement('div');
-                        pageDiv.className = 'page';
-                        pageDiv.appendChild(canvas);
-                        return pageDiv;
-                    });
-                })
-            );
-        }
-
-        Promise.all(pagePromises).then(pages => {
-            pageFlip.loadFromHTML(pages);
-            if (pageInfoElement) pageInfoElement.textContent = `Page 1 of ${totalPages}`;
-
-            pageFlip.on('flip', (e) => {
-                if (pageInfoElement) pageInfoElement.textContent = `Page ${e.data + 1} of ${totalPages}`;
-            });
-
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
-
-            if (prevBtn) {
-                prevBtn.onclick = () => pageFlip.turnToPrevPage();
-            }
-            if (nextBtn) {
-                nextBtn.onclick = () => pageFlip.turnToNextPage();
-            }
-            
-            // Adjust container height for mobile transform scaling initial load
-            resizeFlipbookWrapper();
-        });
-    }).catch(error => {
-        if (pageInfoElement) pageInfoElement.textContent = 'PDF Error';
-        console.error('Error loading PDF:', error);
-    });
+a, button, .pdf-button, .nav-btn, .profile-img {
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ff99e6" stroke="%23ffffff" stroke-width="1.5"/></svg>'), pointer !important;
 }
 
-// Adjust parent wrapper dimensions so scaled flipbook doesn't leave trailing empty space
-function resizeFlipbookWrapper() {
-    const container = document.querySelector('.flipbook-container');
-    const book = document.getElementById('book');
-    if (!container || !book) return;
-
-    if (window.innerWidth <= 650) {
-        const currentWidth = container.clientWidth;
-        const scale = currentWidth / 600;
-        book.style.transform = `scale(${scale})`;
-        book.style.transformOrigin = 'top center';
-        container.style.height = `${775 * scale}px`;
-    } else {
-        book.style.transform = 'none';
-        container.style.height = 'auto';
-    }
+/* Global Reset and Mobile Font Size Locking */
+* {
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFlipbook);
-} else {
-    initFlipbook();
+/* Focus State for Accessibility */
+:focus-visible {
+   outline: 3px solid #ff99e6 !important;
+   outline-offset: 3px !important;
 }
 
-window.addEventListener('resize', resizeFlipbookWrapper);
+/* Main Stacked Column Container */
+.wrapper {
+   max-width: 1100px;
+   width: 92%;
+   margin: 0 auto;
+   padding: 0 15px 40px 15px;
+}
+
+/* Main Content Container Box Styling */
+.box {
+   background-color: rgba(12, 5, 15, 0.90);
+   border: 2px solid #ff99e6;
+   border-radius: 12px;
+   padding: 22px 28px;
+   margin-bottom: 20px;
+   box-shadow: 0 0 12px rgba(255, 128, 223, 0.3);
+   backdrop-filter: blur(3px);
+   width: 100%;
+}
+
+.box p[style*="color: #ff80df"],
+.box-heading {
+   color: #ff99e6 !important;
+   text-align: center;
+}
+
+/* Standalone Profile Picture (NO Border Box, NO Outlines, NO Shadows) */
+.profile-img {
+   width: 130px;
+   height: 130px;
+   border-radius: 50%;
+   border: none !important;
+   outline: none !important;
+   box-shadow: none !important;
+   object-fit: cover;
+   display: inline-block;
+   margin-bottom: 15px;
+}
+
+/* Primary Link Buttons (VIEW CV, Portfolio, Email) */
+.pdf-button, 
+button.pdf-button, 
+a.pdf-button {
+   font-family: 'Press Start 2P', monospace !important;
+   font-size: 8pt !important;
+   color: #1a0014 !important;
+   background: linear-gradient(180deg, #ff99e6 0%, #ff40d0 100%);
+   border: 2px solid #ffffff;
+   border-radius: 8px;
+   padding: 8px 14px !important;
+   text-decoration: none !important;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   box-shadow: 2px 2px 0px #000000, 0 0 8px rgba(255, 128, 223, 0.5);
+   transition: all 0.15s ease-in-out;
+   text-transform: uppercase;
+   line-height: 1.2;
+   outline: none;
+   -webkit-appearance: none;
+   appearance: none;
+   max-width: 90%;
+   text-align: center;
+}
+
+.pdf-button:hover,
+button.pdf-button:hover,
+a.pdf-button:hover {
+   background: linear-gradient(180deg, #ffffff 0%, #ff66d9 100%);
+   transform: translateY(-2px);
+   box-shadow: 3px 3px 0px #000000, 0 0 12px rgba(255, 128, 223, 0.8);
+   color: #000000 !important;
+}
+
+.pdf-button:active,
+button.pdf-button:active,
+a.pdf-button:active {
+   transform: translateY(1px);
+   box-shadow: 1px 1px 0px #000000;
+}
+
+/* PREV / NEXT Flipbook Buttons */
+.nav-btn {
+   font-family: 'Press Start 2P', monospace !important;
+   font-size: 8pt !important;
+   color: #1a0014 !important;
+   background: linear-gradient(180deg, #ff99e6 0%, #ff40d0 100%);
+   border: 2px solid #ffffff;
+   border-radius: 6px;
+   padding: 8px 14px !important;
+   text-decoration: none !important;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   box-shadow: 2px 2px 0px #000000, 0 0 6px rgba(255, 128, 223, 0.4);
+   transition: all 0.15s ease-in-out;
+   text-transform: uppercase;
+   line-height: 1;
+   outline: none;
+   -webkit-appearance: none;
+   appearance: none;
+}
+
+.nav-btn:hover {
+   background: linear-gradient(180deg, #ffffff 0%, #ff66d9 100%);
+   transform: translateY(-1px);
+   box-shadow: 2px 2px 0px #000000, 0 0 10px rgba(255, 128, 223, 0.7);
+   color: #000000 !important;
+}
+
+.nav-btn:active {
+   transform: translateY(1px);
+   box-shadow: 1px 1px 0px #000000;
+}
+
+/* WCAG 2.2 Compliant Keyboard Focus States */
+a:focus-visible, button:focus-visible {
+   outline: 3px solid #ff99e6;
+   outline-offset: 4px;
+}
+
+/* Outer Container for Flipbook Matrix Scaling */
+.flipbook-container {
+   width: 100%;
+   max-width: 600px;
+   height: 775px;
+   margin: 10px auto;
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+   overflow: hidden;
+   position: relative;
+}
+
+/* Locked Fixed Baseline Dimensions for #book */
+#book {
+   width: 600px !important;
+   min-width: 600px !important;
+   height: 775px !important;
+   min-height: 775px !important;
+   border: none !important;
+   outline: none !important;
+   box-shadow: none !important;
+   background-color: transparent !important;
+   overflow: hidden !important;
+   margin: 0 auto !important;
+   transform-origin: top center;
+}
+
+#book .stpageflip-container,
+#book .stpageflip-wrapper,
+#book .stpageflip-page {
+   margin: 0 auto !important;
+}
+
+.page {
+   width: 100% !important;
+   height: 100% !important;
+   background-color: #ffffff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.page canvas {
+   width: 100% !important;
+   height: 100% !important;
+   object-fit: contain !important;
+   display: block;
+   margin: 0 auto;
+}
+
+/* Centered Navigation Controls Bar */
+.nav-controls {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 15px;
+   margin: 15px auto 5px auto;
+   width: 100%;
+   text-align: center;
+}
+
+/* Mobile & Small Screen Layout Adjustments */
+@media screen and (max-width: 650px) {
+   .wrapper {
+       width: 95%;
+       padding-left: 10px;
+       padding-right: 10px;
+   }
+
+   .profile-img {
+       width: 110px;
+       height: 110px;
+       margin-bottom: 10px;
+   }
+
+   .pdf-button, 
+   button.pdf-button, 
+   a.pdf-button {
+       font-size: 7pt !important;
+       padding: 8px 10px !important;
+       width: 100%;
+       max-width: 280px;
+       text-align: center;
+   }
+
+   .nav-btn {
+       font-size: 6pt !important;
+       padding: 5px 8px !important;
+   }
+
+   .nav-controls {
+       gap: 8px;
+       margin-top: 10px;
+   }
+
+   #page-info {
+       font-size: 10px !important;
+   }
+}
