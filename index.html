@@ -1,3 +1,119 @@
-git add index.html
-git commit -m "Bold get in touch heading for WCAG consistency"
-git push origin main
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>soy jaz</title>
+    <!-- Butterfly Favicon -->
+    <link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f98b.png" type="image/png">
+    <!-- Import Quicksand and Press Start 2P Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Include PDF.js and StPageFlip libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Glitter Text ("SOY JAZ") -->
+    <div style="margin-top: 25px; margin-bottom: 20px; text-align: center;">
+        <img src="https://text.glitter-graphics.net/heart/s.gif" alt="s" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" alt="y" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="15" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" alt="j" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" alt="a" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" alt="z" border="0">
+    </div>
+
+    <!-- Main Stacked Column Container -->
+    <div class="wrapper">
+
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-flex">
+                <img src="pfp.png" alt="Profile Picture of jazzie holding a dog" class="profile-img">
+                <div class="bio-box">
+                    <p style="margin: 0;">Hello, and welcome! My name is jazzie terrell and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Research Interests Section -->
+        <div class="box research-box">
+            <h3>✨ Research Interests ✨</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6;">Feminist Pedagogy | Digital Literacy | Borderland Rhetorics | Community-Led Research</p>
+        </div>
+
+        <!-- Dissertation Collection Box -->
+        <div class="box research-box">
+            <h3>✨ Dissertation Collection ✨</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6;">
+                jazzie's dissertation collection examines the history of border enforcement and state violence, starting with the 1917 Bath Riots. It also looks at why traditional school and university systems need a critical update, and explores how community zines and mutual aid sustain grassroots resistance.
+            </p>
+        </div>
+
+        <!-- Explore My Work Box -->
+        <div class="box">
+            <!-- High-contrast accessible pink (#ff80df) for WCAG 2.2 AA compliance -->
+            <p style="margin-top: 0; margin-bottom: 12px; color: #ff80df; font-weight: 700; font-size: 14px;">✨ Explore My Work ✨</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document">
+                    [ VIEW CV PDF]
+                </a>
+                <a class="pdf-button" href="portfolio.html">
+                    [ INSTRUCTIONAL DESIGN PORTFOLIO ]
+                </a>
+            </div>
+        </div>
+
+        <!-- Flipbook Section -->
+        <div class="box">
+            <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px;">✨ Interactive CV Flipbook ✨</p>
+            <!-- Updated small note text to white (#ffffff) for high contrast legibility meeting WCAG 2.2 standards -->
+            <p style="font-size: 11px; color: #ffffff; margin-top: 0; margin-bottom: 12px; font-style: italic;">
+                (Note: Links and sizing inside the flipbook preview are view-only. Use the download button for clickable links and for zoom functions!)
+            </p>
+            
+            <div class="flipbook-container">
+                <div id="book"></div>
+            </div>
+
+            <!-- Navigation Buttons & Counter -->
+            <div class="nav-controls">
+                <button id="prev-btn" class="nav-btn">[ PREV ]</button>
+                <span id="page-info" style="color: #fff; font-size: 13px;">Page 1 of X</span>
+                <button id="next-btn" class="nav-btn">[ NEXT ]</button>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="box">
+            <!-- Bolded "Get in touch!" heading -->
+            <p style="margin-bottom: 8px; color: #ff80df; font-weight: 700;">✨ Get in touch! ✨</p>
+            <div style="margin: 10px 0;" aria-hidden="true">
+                <img src="http://dl4.glitter-graphics.net/pub/536/536374qelg9xv2hk.gif" alt="" width="38" height="35" border="0">
+            </div>
+            <a class="pdf-button" href="mailto:jterrell1@arizona.edu" style="font-weight: 700;" aria-label="Send me an email">
+                [ SEND ME AN EMAIL ]
+            </a>
+        </div>
+
+        <!-- Land Acknowledgement Section -->
+        <div class="box">
+            <!-- Updated text color to white (#ffffff) for WCAG 2.2 contrast compliance -->
+            <p style="margin: 0; font-size: 13px; color: #ffffff;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
+        </div>
+
+        <!-- Updated WCAG Compliance Notice -->
+        <div class="box" style="margin-bottom: 35px;">
+            <p style="margin: 0; font-size: 12px; color: #ffffff; font-style: italic; text-align: center;">Note: This website is optimized for accessibility in alignment with WCAG 2.2 guidelines.</p>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- SCM Music Player https://scmplayer.net -->
+    <script type="text/javascript" src="https://scmplayer.net/script.scm.js" 
+    data-config="{'skin':'skins/black/skin.css','volume':50,'shuffle':true,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Nectar - Raveena','url':'https://www.youtube.com/watch?v=TyyGiQES--o'},{'title':'Fast Car (Slowed + Reverb) - Syd','url':'https://www.youtube.com/watch?v=y96fVSMl4ZU'},{'title':'Go Gina - SZA','url':'https://www.youtube.com/watch?v=iZX2eztChus'},{'title':'Pyramids - Frank Ocean','url':'https://www.youtube.com/watch?v=dMV31MWIjLE'}]}" ></script>
+    <!-- SCM Music Player script end -->
+
+</body>
+</html>
