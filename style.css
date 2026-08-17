@@ -1,199 +1,91 @@
-/* ==========================================
-   1. GLOBAL STYLES & ACCESSIBILITY
-   ========================================== */
-* {
-    box-sizing: border-box;
-}
-
+/* General Body and Background Setup */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Quicksand', sans-serif;
-    color: #ffffff;
+   font-family: 'Quicksand', sans-serif;
+   color: #ffffff;
+   margin: 0;
+   padding: 0;
+   /* Note: Background image is handled via inline style in index.html, but you can also place it here */
 }
 
-:focus-visible {
-    outline: 3px solid #ff99e6 !important;
-    outline-offset: 3px !important;
-}
 
-/* ==========================================
-   2. MAIN WRAPPER CONTAINER
-   ========================================== */
+/* Main Stacked Column Container */
 .wrapper {
-    max-width: 900px;
-    width: 90%;
-    margin: 0 auto;
-    padding: 0 15px 40px 15px;
+   max-width: 700px;
+   margin: 0 auto;
+   padding: 20px;
 }
 
-/* ==========================================
-   3. RETRO PINK BOX CONTAINERS
-   ========================================== */
+
+/* Main content container box styling */
 .box {
-    background-color: rgba(12, 5, 15, 0.90);
-    border: 2px solid #ff99e6;
-    border-radius: 12px;
-    padding: 22px 28px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 12px rgba(255, 128, 223, 0.3);
-    backdrop-filter: blur(3px);
-    width: 100%;
+   background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent dark background */
+   border: 2px solid #ff80df;            /* Pink retro border */
+   border-radius: 8px;
+   padding: 20px;
+   margin-bottom: 20px;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-.box p[style*="color: #ff80df"],
-.box-heading {
-    color: #ff99e6 !important;
-}
 
-/* Profile Flex Layout */
+/* Flexbox layout for profile picture and bio side-by-side */
 .profile-flex {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
+   display: flex;
+   align-items: center;
+   gap: 20px;
 }
 
+
+/* Profile picture styling */
 .profile-img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    border: 3px solid #ff99e6;
-    object-fit: cover;
-    box-shadow: 0 0 10px rgba(255, 128, 223, 0.4);
-    flex-shrink: 0;
+   width: 120px;
+   height: 120px;
+   border-radius: 50%;
+   object-fit: cover;
+   border: 2px solid #ff80df;
 }
 
-/* ==========================================
-   4. UNIFIED BUTTON STYLES (WCAG AA Compliant)
-   ========================================== */
-.pdf-button, 
-button.pdf-button, 
-a.pdf-button {
-    font-family: 'Press Start 2P', monospace !important;
-    font-size: 14px;
-    color: #1a0014 !important;
-    background: linear-gradient(180deg, #ff99e6 0%, #ff40d0 100%);
-    border: 2px solid #ffffff;
-    border-radius: 8px;
-    padding: 10px 18px;
-    text-decoration: none !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 2px 2px 0px #000000, 0 0 8px rgba(255, 128, 223, 0.5);
-    transition: all 0.15s ease-in-out;
-    text-transform: uppercase;
-    line-height: 1.2;
-    outline: none;
-    -webkit-appearance: none;
-    appearance: none;
+
+/* Custom retro buttons / links */
+.pdf-button {
+   display: inline-block;
+   background-color: #000000;
+   color: #ff80df;
+   border: 2px solid #ff80df;
+   padding: 10px 15px;
+   text-decoration: none;
+   font-family: 'Press Start 2P', monospace;
+   font-size: 10px;
+   cursor: pointer;
+   border-radius: 6px;
+   transition: all 0.2s ease-in-out;
 }
 
-.pdf-button:hover,
-button.pdf-button:hover,
-a.pdf-button:hover {
-    background: linear-gradient(180deg, #ffffff 0%, #ff66d9 100%);
-    transform: translateY(-2px);
-    box-shadow: 3px 3px 0px #000000, 0 0 12px rgba(255, 128, 223, 0.8);
-    color: #000000 !important;
+
+.pdf-button:hover {
+   background-color: #ff80df;
+   color: #000000;
 }
 
-.pdf-button:active,
-button.pdf-button:active,
-a.pdf-button:active {
-    transform: translateY(1px);
-    box-shadow: 1px 1px 0px #000000;
+
+/* WCAG 2.2 Compliant Keyboard Focus States */
+a:focus-visible, button:focus-visible {
+   outline: 3px solid #ff80df;
+   outline-offset: 4px;
 }
 
-/* ==========================================
-   5. SINGLE-PAGE FLIPBOOK & CANVAS STYLING
-   ========================================== */
-.flipbook-container {
-    width: 100%;
-    max-width: 480px; /* Locked to portrait ratio to prevent 2-page spreads */
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+   .profile-flex {
+       flex-direction: column;
+       text-align: center;
+   }
+
+
+   .profile-img {
+       margin-bottom: 10px;
+   }
 }
 
-#book {
-    width: 100% !important;
-    height: 620px !important;
-    border: 2px solid #ff99e6;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(255, 128, 223, 0.4);
-    background-color: #ffffff;
-    overflow: hidden;
-}
 
-.page {
-    width: 100% !important;
-    height: 100% !important;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
 
-.page canvas {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain !important;
-    display: block;
-}
-
-.nav-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-/* ==========================================
-   6. RESPONSIVE MOBILE ADJUSTMENTS
-   ========================================== */
-@media (max-width: 768px) {
-    .wrapper {
-        width: 95%;
-    }
-
-    .profile-flex {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .profile-img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .pdf-button, 
-    button.pdf-button, 
-    a.pdf-button {
-        font-size: 10px;
-        padding: 8px 12px;
-    }
-
-    .flipbook-container {
-        max-width: 100%;
-        margin: 10px auto;
-    }
-
-    #book {
-        height: 520px !important;
-    }
-
-    .nav-controls {
-        gap: 10px;
-    }
-
-    #page-info {
-        font-size: 11px !important;
-    }
-}
