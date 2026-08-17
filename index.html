@@ -1,116 +1,252 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>soy jaz</title>
-  <!-- Butterfly Favicon -->
-  <link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f98b.png" type="image/png">
-  <!-- Import Quicksand and Press Start 2P Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-  <!-- Include PDF.js and StPageFlip libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+/* Global Reset and Mobile Font Size Locking */
+* {
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
 
-  <link rel="stylesheet" href="style.css?v=1.3">
+/* General Body and Background Setup */
+body {
+   font-family: 'Quicksand', sans-serif;
+   color: #ffffff;
+   margin: 0;
+   padding: 0;
+}
 
-  <!-- Fixed Background Style -->
-  <style>
-      body {
-          background-image: url('https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
-          background-attachment: fixed;
-          background-repeat: repeat;
-      }
-  </style>
-</head>
-<body>
+/* Focus State for Accessibility */
+:focus-visible {
+   outline: 3px solid #ff99e6 !important;
+   outline-offset: 3px !important;
+}
 
-  <!-- Glitter Text ("SOY JAZ") -->
-  <div style="margin-top: 25px; margin-bottom: 20px; text-align: center;">
-      <img src="https://text.glitter-graphics.net/heart/s.gif" alt="s" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" alt="y" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="15" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" alt="j" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" alt="a" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" alt="z" border="0">
-  </div>
+/* Main Stacked Column Container */
+.wrapper {
+   max-width: 1100px;
+   width: 92%;
+   margin: 0 auto;
+   padding: 0 15px 40px 15px;
+}
 
-  <!-- Main Stacked Column Container -->
-  <div class="wrapper">
+/* Main content container box styling */
+.box {
+   background-color: rgba(12, 5, 15, 0.90);
+   border: 2px solid #ff99e6;
+   border-radius: 12px;
+   padding: 22px 28px;
+   margin-bottom: 20px;
+   box-shadow: 0 0 12px rgba(255, 128, 223, 0.3);
+   backdrop-filter: blur(3px);
+   width: 100%;
+}
 
-      <!-- Profile Section: PFP outside, Bio in a box -->
-      <div class="profile-flex" style="margin-bottom: 20px;">
-         <img src="pfp.png" alt="Profile Picture of jazzie holding a dog" class="profile-img">
-         <div class="box" style="margin-bottom: 0; flex-grow: 1;">
-             <p style="margin: 0; color: #ffffff;">Hello, and welcome! My name is jazzie terrell and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English</p>
-         </div>
-      </div>
+.box p[style*="color: #ff80df"],
+.box-heading {
+   color: #ff99e6 !important;
+   text-align: center;
+}
 
-      <!-- Research Interests Section wrapped in a box -->
-      <div class="box">
-          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px; text-align: center;">✨ Research Interests ✨</p>
-          <p class="research-interests-text" style="margin: 0; font-size: 15px; line-height: 1.6; color: #ffffff; text-align: center;">
-              Feminist Pedagogy &nbsp;&nbsp;|&nbsp;&nbsp; Digital Literacy &nbsp;&nbsp;|&nbsp;&nbsp; Borderland Rhetorics &nbsp;&nbsp;|&nbsp;&nbsp; Community-Led Research
-          </p>
-      </div>
+/* Flexbox layout for profile picture and bio side-by-side */
+.profile-flex {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+   width: 100%;
+}
 
-      <!-- Dissertation Collection Box -->
-      <div class="box research-box">
-          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px; text-align: center;">✨ Dissertation Collection ✨</p>
-          <p style="margin: 0; font-size: 15px; line-height: 1.6; text-align: left;">
-              jazzie's dissertation collection examines the history of border enforcement and state violence, starting with the 1917 Bath Riots. It also looks at why traditional school and university systems need a critical update, and explores how community zines and mutual aid sustain grassroots resistance.
-          </p>
-      </div>
+/* Profile picture styling */
+.profile-img {
+   width: 110px;
+   height: 110px;
+   border-radius: 50%;
+   border: 3px solid #ff99e6;
+   object-fit: cover;
+   box-shadow: 0 0 10px rgba(255, 128, 223, 0.4);
+   flex-shrink: 0;
+}
 
-<!-- Explore My Work Box -->
-<div class="box">
-    <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px; text-align: center;">✨ Explore My Work ✨</p>
-    <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
-        <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document" style="font-size: 10pt !important; padding: 8px 14px !important;">
-            VIEW CV PDF
-        </a>
-        <a class="pdf-button" href="portfolio.html" style="font-size: 10pt !important; padding: 8px 14px !important;">
-            Instructional Design Portfolio
-        </a>
-    </div>
-</div>
+/* Primary Link Buttons (VIEW CV, Portfolio, Email) */
+.pdf-button, 
+button.pdf-button, 
+a.pdf-button {
+   font-family: 'Press Start 2P', monospace !important;
+   font-size: 8pt !important;
+   color: #1a0014 !important;
+   background: linear-gradient(180deg, #ff99e6 0%, #ff40d0 100%);
+   border: 2px solid #ffffff;
+   border-radius: 8px;
+   padding: 8px 14px !important;
+   text-decoration: none !important;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   box-shadow: 2px 2px 0px #000000, 0 0 8px rgba(255, 128, 223, 0.5);
+   transition: all 0.15s ease-in-out;
+   text-transform: uppercase;
+   line-height: 1.2;
+   outline: none;
+   -webkit-appearance: none;
+   appearance: none;
+   max-width: 90%;
+   text-align: center;
+}
 
-      <!-- Flipbook Section -->
-      <div class="box">
-          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px; text-align: center;">✨ Interactive CV Flipbook ✨</p>
-          <p style="font-size: 11px; color: #ffffff; margin-top: 0; margin-bottom: 12px; font-style: italic; text-align: center;">
-              (Note: Links and sizing inside the flipbook preview are view-only. Use the view CV PDF button above for clickable links and for zoom functions!)
-          </p>
-        
-          <div class="flipbook-container">
-              <div id="book"></div>
-          </div>
+.pdf-button:hover,
+button.pdf-button:hover,
+a.pdf-button:hover {
+   background: linear-gradient(180deg, #ffffff 0%, #ff66d9 100%);
+   transform: translateY(-2px);
+   box-shadow: 3px 3px 0px #000000, 0 0 12px rgba(255, 128, 223, 0.8);
+   color: #000000 !important;
+}
 
-          <!-- Navigation Buttons & Counter -->
-          <div class="nav-controls">
-              <button id="prev-btn" class="nav-btn"> PREV </button>
-              <span id="page-info" style="color: #fff; font-size: 13px;">Page 1 of X</span>
-              <button id="next-btn" class="nav-btn"> NEXT </button>
-          </div>
-      </div>
+.pdf-button:active,
+button.pdf-button:active,
+a.pdf-button:active {
+   transform: translateY(1px);
+   box-shadow: 1px 1px 0px #000000;
+}
 
-    <!-- Get in Touch Box -->
-<a class="pdf-button" href="mailto:jterrell1@arizona.edu" aria-label="Send me an email" style="font-size: 10pt !important; padding: 8px 14px !important;">
-    SEND ME AN EMAIL
-</a>
+/* PREV / NEXT Flipbook Buttons */
+.nav-btn {
+   font-family: 'Press Start 2P', monospace !important;
+   font-size: 8pt !important;
+   color: #1a0014 !important;
+   background: linear-gradient(180deg, #ff99e6 0%, #ff40d0 100%);
+   border: 2px solid #ffffff;
+   border-radius: 6px;
+   padding: 8px 14px !important;
+   text-decoration: none !important;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   box-shadow: 2px 2px 0px #000000, 0 0 6px rgba(255, 128, 223, 0.4);
+   transition: all 0.15s ease-in-out;
+   text-transform: uppercase;
+   line-height: 1;
+   outline: none;
+   -webkit-appearance: none;
+   appearance: none;
+}
 
-      <!-- Land Acknowledgement Section -->
-      <div class="box" style="text-align: center;">
-          <p style="margin: 0; font-size: 13px; color: #ffffff; text-align: center;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
-      </div>
+.nav-btn:hover {
+   background: linear-gradient(180deg, #ffffff 0%, #ff66d9 100%);
+   transform: translateY(-1px);
+   box-shadow: 2px 2px 0px #000000, 0 0 10px rgba(255, 128, 223, 0.7);
+   color: #000000 !important;
+}
 
-      <!-- WCAG Compliance Notice -->
-      <div class="box" style="margin-bottom: 35px;">
-          <p style="margin: 0; font-size: 12px; color: #ffffff; font-style: italic; text-align: center;">Note: This website is continually being optimized for accessibility in alignment with WCAG 2.2 guidelines.</p>
-      </div>
+.nav-btn:active {
+   transform: translateY(1px);
+   box-shadow: 1px 1px 0px #000000;
+}
 
-  </div>
+/* WCAG 2.2 Compliant Keyboard Focus States */
+a:focus-visible, button:focus-visible {
+   outline: 3px solid #ff99e6;
+   outline-offset: 4px;
+}
 
-  <script src="script.js?v=1.3"></script>
+/* Single-Page Flipbook & Canvas Styling */
+.flipbook-container {
+   width: 100%;
+   max-width: 480px;
+   margin: 20px auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
 
-  <!-- SCM Music Player -->
-  <script type="text/javascript" src="https://scmplayer.net/script.scm.js"
-  data-config="{'skin':'skins/black/skin.css','volume':50,'shuffle':true,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Nectar - Raveena','url':'https://www.youtube.com/watch?v=TyyGiQES--o'},{'title':'Fast Car (Slowed + Reverb) - Syd','url':'https://www.youtube.com/watch?v=y96fVSMl4ZU'},{'title':'Go Gina - SZA','url':'https://www.youtube.com/watch?v=iZX2eztChus'},{'title':'Pyramids - Frank Ocean','url':'https://www.youtube.com/watch?v=dMV31MWIjLE'}]}" ></script>
+#book {
+   width: 100% !important;
+   height: 620px !important;
+   border: 2px solid #ff99e6;
+   border-radius: 8px;
+   box-shadow: 0 0 15px rgba(255, 128, 223, 0.4);
+   background-color: #ffffff;
+   overflow: hidden;
+}
 
-</body>
-</html>
+.page {
+   width: 100% !important;
+   height: 100% !important;
+   background-color: #ffffff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 0;
+   padding: 0;
+}
+
+.page canvas {
+   width: 100% !important;
+   height: 100% !important;
+   object-fit: contain !important;
+   display: block;
+}
+
+/* Centered Navigation Controls Bar */
+.nav-controls {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 15px;
+   margin: 15px auto 5px auto;
+   width: 100%;
+   text-align: center;
+}
+
+/* Responsive Adjustments for Mobile Breakpoints */
+@media screen and (max-width: 768px) {
+   .wrapper {
+       width: 95%;
+       padding-left: 10px;
+       padding-right: 10px;
+   }
+
+   .profile-flex {
+       flex-direction: column;
+       text-align: center;
+   }
+
+   .profile-img {
+       width: 100px;
+       height: 100px;
+       margin-bottom: 10px;
+   }
+
+   /* Responsive Scaling for Primary CTA Buttons */
+   .pdf-button, 
+   button.pdf-button, 
+   a.pdf-button {
+       font-size: 7pt !important;
+       padding: 8px 10px !important;
+       width: 100%;
+       max-width: 280px;
+       text-align: center;
+   }
+
+   /* Responsive Scaling for Navigation PREV/NEXT Buttons */
+   .nav-btn {
+       font-size: 6pt !important;
+       padding: 5px 8px !important;
+   }
+
+   .flipbook-container {
+       max-width: 100%;
+       margin: 10px auto;
+   }
+
+   #book {
+       height: 480px !important;
+   }
+
+   .nav-controls {
+       gap: 8px;
+   }
+
+   #page-info {
+       font-size: 10px !important;
+   }
+}
