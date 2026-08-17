@@ -19,15 +19,15 @@ nextBtn.addEventListener('click', (e) => {
     if (pageFlip) pageFlip.flipNext();
 });
 
-// Fetch and Render PDF Pages
+// Render PDF and Initialize Flipbook
 pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     const numPages = pdfDoc_.numPages;
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
         
-        // High render scale (3.5) keeps small text ultra-sharp when expanded
-        const viewport = page.getViewport({ scale: 3.5 });
+        // Render scale 3.0 keeps text crisp on all screen DPIs
+        const viewport = page.getViewport({ scale: 3.0 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -43,18 +43,19 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize PageFlip scaled to standard 8.5 x 11 letter proportions (850 x 1100)
+    // Initialize PageFlip locked to portrait proportions (500x647 = 8.5x11 ratio)
     pageFlip = new St.PageFlip(bookElement, {
-        width: 850,           // Matches maximum site wrapper width
-        height: 1100,         // Scaled height prevents vertical compression
-        size: "stretch",      // Dynamically expands to container boundaries
-        minWidth: 320,
-        maxWidth: 900,
-        minHeight: 450,
-        maxHeight: 1200,
-        mode: "single",       // Forces single-page view
+        width: 500,           // Single page portrait width
+        height: 647,          // Single page portrait height
+        size: "stretch",      // Scaled fluidly inside .flipbook-container
+        minWidth: 300,
+        maxWidth: 600,
+        minHeight: 400,
+        maxHeight: 800,
+        drawShadow: true,
         showCover: false,
-        usePortrait: true,
+        usePortrait: true,    // Enforces single page layout
+        startPage: 0,
         mobileScrollSupport: true
     });
 
