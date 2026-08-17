@@ -41,21 +41,6 @@
            height: 100%;
            border: 0;
        }
-
-       /* Track Selector Dropdown Styling */
-       .track-select {
-           background: #000000;
-           color: #ff80df;
-           border: 2px solid #ff80df;
-           padding: 8px 12px;
-           font-family: 'Quicksand', sans-serif;
-           font-weight: 700;
-           border-radius: 6px;
-           width: 100%;
-           max-width: 320px;
-           margin-bottom: 10px;
-           cursor: pointer;
-       }
    </style>
 </head>
 <body>
@@ -78,45 +63,32 @@
            </a>
        </div>
 
-       <!-- Track Selector & Player Box -->
+       <!-- Player Box -->
        <div class="box" style="text-align: center;">
-           <label for="track-picker" style="display: block; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 8px;">✨ Select Track ✨</label>
-           
-           <select id="track-picker" class="track-select" onchange="switchTrack(this.value)">
-               <option value="kfc">Cain Culto ft. Sudan Archives - KFC Santería</option>
-               <option value="anarchist">Against Me! - Baby, I'm an Anarchist!</option>
-           </select>
+           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 16px; margin-bottom: 12px;">✨ Featured Track ✨</p>
+           <p style="font-size: 14px; color: #ffffff; margin-bottom: 12px;"><strong>Cain Culto - KFC Santería (feat. Sudan Archives)</strong></p>
 
            <!-- Responsive Embedded Player -->
            <div class="media-container">
                <iframe 
                    id="video-player"
                    src="https://www.youtube.com/embed/7vRuKjyX0ws?cc_load_policy=1&cc_lang_pref=en" 
-                   title="YouTube Audio Player with Closed Captions"
+                   title="YouTube Audio Player for KFC Santería with Closed Captions"
                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                    allowfullscreen>
                </iframe>
            </div>
        </div>
 
-       <!-- Accessible Full Transcript Box (WCAG 2.2) -->
+       <!-- Accessible Track Breakdown Box (WCAG 2.2) -->
        <div class="box">
-           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; text-align: center;">📜 Track Structure & Highlights</p>
+           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; text-align: center;">📜 Track Structure & Details</p>
            
-           <!-- Track 1 Transcript -->
-           <div id="transcript-kfc" style="font-size: 13px; line-height: 1.6; color: #ffffff; text-align: left;">
-               <p><strong>Track:</strong> KFC Santería (feat. Sudan Archives)</p>
-               <p><strong>[00:00 - Intro]:</strong> West African fiddle riffs and heavy hip-hop bass beat intro.</p>
-               <p><strong>[00:20 - Chorus]:</strong> Energetic vocal refrains emphasizing independence and confidence.</p>
-               <p><strong>[00:50 - Violin Breakdown]:</strong> Sudan Archives plays fiddle under full moon blue light imagery.</p>
-           </div>
-
-           <!-- Track 2 Transcript -->
-           <div id="transcript-anarchist" style="font-size: 13px; line-height: 1.6; color: #ffffff; text-align: left; display: none;">
-               <p><strong>Track:</strong> Baby, I'm an Anarchist!</p>
-               <p><strong>[00:00 - Intro]:</strong> Acoustic guitar strumming intro with high-energy punk tempo.</p>
-               <p><strong>[00:14 - Verse 1]:</strong> Reflections on political activism and ideological divides.</p>
-               <p><strong>[00:27 - Chorus]:</strong> <em>"'Cause baby, I'm an anarchist, and you're a spineless liberal / We marched together for the eight-hour day and held hands in the streets of Seattle..."</em></p>
+           <div style="font-size: 13px; line-height: 1.6; color: #ffffff; text-align: left;">
+               <p style="margin-top: 0; color: #ff80df; font-weight: 700;">Track: KFC Santería (Cain Culto feat. Sudan Archives)</p>
+               <p><strong>[00:00 - Intro]:</strong> West African fiddle riffs combined with high-tempo hip-hop drums.</p>
+               <p><strong>[00:20 - Main Hook]:</strong> Energetic vocal refrains emphasizing autonomy and self-expression.</p>
+               <p><strong>[00:50 - Fiddle Breakdown]:</strong> Sudan Archives solo performance over dark synth basslines.</p>
            </div>
        </div>
 
@@ -132,25 +104,6 @@
        </div>
 
    </div>
-
-   <!-- Script to Switch Video & Transcript Display -->
-   <script>
-       function switchTrack(trackKey) {
-           const player = document.getElementById('video-player');
-           const transcriptKfc = document.getElementById('transcript-kfc');
-           const transcriptAnarchist = document.getElementById('transcript-anarchist');
-
-           if (trackKey === 'kfc') {
-               player.src = "https://www.youtube.com/embed/7vRuKjyX0ws?cc_load_policy=1&cc_lang_pref=en";
-               transcriptKfc.style.display = 'block';
-               transcriptAnarchist.style.display = 'none';
-           } else if (trackKey === 'anarchist') {
-               player.src = "https://www.youtube.com/embed/BUTUS2aS5js?cc_load_policy=1&cc_lang_pref=en";
-               transcriptKfc.style.display = 'none';
-               transcriptAnarchist.style.display = 'block';
-           }
-       }
-   </script>
 
 </body>
 </html>
