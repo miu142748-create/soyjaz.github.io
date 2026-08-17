@@ -1,3 +1,29 @@
+/* Custom Retro White Scrollbar */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.75);
+    border-left: 1px solid #ff80df;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff;
+    border-radius: 4px;
+    border: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff80df;
+}
+
 /* General Body and Background Setup */
 body {
     font-family: 'Quicksand', sans-serif;
@@ -75,6 +101,30 @@ body {
 .pdf-button:hover, .nav-btn:hover {
     background-color: #ff80df;
     color: #000000;
+}
+
+/* Flipbook container and page adjustments */
+.flipbook-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+#book {
+    margin: 0 auto;
+}
+
+.page {
+    background-color: #000000;
+    overflow: hidden;
+}
+
+.page canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
 }
 
 /* Flipbook controls styling */
