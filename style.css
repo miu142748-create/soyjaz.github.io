@@ -1,8 +1,7 @@
 /* ==========================================================================
-   Y2K RETRO CURSOR CONFIGURATION (SVG Data URI - Never fails to load)
+   Y2K RETRO CURSOR CONFIGURATION (SVG Data URI - Hot Pink Pixel Pointer)
    ========================================================================== */
 
-/* OPTION A: PINK RETRO PIXEL CURSOR (Currently Active) */
 body {
    font-family: 'Quicksand', sans-serif;
    color: #ffffff;
@@ -14,18 +13,6 @@ body {
 a, button, .pdf-button, .nav-btn, .profile-img {
    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ff99e6" stroke="%23ffffff" stroke-width="1.5"/></svg>'), pointer !important;
 }
-
-/* 
-OPTION B: WHITE RETRO PIXEL CURSOR 
-(To use White instead of Pink, comment out Option A above and uncomment below)
-
-body {
-   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ffffff" stroke="%23ff99e6" stroke-width="1.5"/></svg>'), auto !important;
-}
-a, button, .pdf-button, .nav-btn, .profile-img {
-   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ffffff" stroke="%23ff99e6" stroke-width="1.5"/></svg>'), pointer !important;
-}
-*/
 
 /* Global Reset and Mobile Font Size Locking */
 * {
@@ -66,12 +53,13 @@ a, button, .pdf-button, .nav-btn, .profile-img {
    text-align: center;
 }
 
-/* Standalone Profile Picture (No Borders, Outlines, or Boxes) */
+/* Standalone Profile Picture (NO Border Box, NO Outlines, NO Shadows) */
 .profile-img {
    width: 130px;
    height: 130px;
    border-radius: 50%;
    border: none !important;
+   outline: none !important;
    box-shadow: none !important;
    object-fit: cover;
    display: inline-block;
@@ -160,21 +148,22 @@ a:focus-visible, button:focus-visible {
    outline-offset: 4px;
 }
 
-/* Single-Page Flipbook Outer Container */
+/* Single-Page Flipbook Outer Container (Expanded Width for Larger Display) */
 .flipbook-container {
    width: 100%;
-   max-width: 480px;
+   max-width: 680px; /* Increased from 480px to make PDF wider */
    margin: 20px auto;
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-/* Flipbook Inner Box - Seamless Frame (No Border or Outer Box Shadow) */
+/* Flipbook Inner Box - NO Pink Border Frame & High Height for Reading */
 #book {
    width: 100% !important;
-   height: 620px !important;
+   height: 900px !important; /* Increased from 620px so text is large and clear */
    border: none !important;
+   outline: none !important;
    border-radius: 0px !important;
    box-shadow: none !important;
    background-color: transparent !important;
@@ -234,7 +223,6 @@ a:focus-visible, button:focus-visible {
        margin-bottom: 10px;
    }
 
-   /* Responsive Scaling for Primary CTA Buttons */
    .pdf-button, 
    button.pdf-button, 
    a.pdf-button {
@@ -245,7 +233,6 @@ a:focus-visible, button:focus-visible {
        text-align: center;
    }
 
-   /* Responsive Scaling for Navigation PREV/NEXT Buttons */
    .nav-btn {
        font-size: 6pt !important;
        padding: 5px 8px !important;
@@ -257,7 +244,7 @@ a:focus-visible, button:focus-visible {
    }
 
    #book {
-       height: 380px !important;
+       height: 520px !important; /* Mobile readable height */
    }
 
    .nav-controls {
