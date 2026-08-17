@@ -44,12 +44,12 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     }
 
     pageFlip = new St.PageFlip(bookElement, {
-        width: 550,           
-        height: 733,          
-        size: "fixed",        // Changed from "stretch" to force single portrait layout
+        width: 450,           
+        height: 600,          
+        size: "fixed",        
         drawShadow: true,
         showCover: false,
-        usePortrait: true,    
+        usePortrait: true,    // Forces single-page portrait layout mode
         mobileScrollSupport: true,
         maxShadowOpacity: 0.3
     });
