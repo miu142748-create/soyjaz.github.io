@@ -4,7 +4,9 @@ body {
    color: #ffffff;
    margin: 0;
    padding: 0;
+   /* Note: Background image is handled via inline style in index.html, but you can also place it here */
 }
+
 
 /* Main Stacked Column Container */
 .wrapper {
@@ -12,6 +14,7 @@ body {
    margin: 0 auto;
    padding: 20px;
 }
+
 
 /* Main content container box styling */
 .box {
@@ -23,12 +26,14 @@ body {
    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
+
 /* Flexbox layout for profile picture and bio side-by-side */
 .profile-flex {
    display: flex;
    align-items: center;
    gap: 20px;
 }
+
 
 /* Profile picture styling */
 .profile-img {
@@ -38,6 +43,7 @@ body {
    object-fit: cover;
    border: 2px solid #ff80df;
 }
+
 
 /* Custom retro buttons / links */
 .pdf-button {
@@ -54,10 +60,12 @@ body {
    transition: all 0.2s ease-in-out;
 }
 
+
 .pdf-button:hover {
    background-color: #ff80df;
    color: #000000;
 }
+
 
 /* WCAG 2.2 Compliant Keyboard Focus States */
 a:focus-visible, button:focus-visible {
@@ -65,64 +73,6 @@ a:focus-visible, button:focus-visible {
    outline-offset: 4px;
 }
 
-/* --- Single-Page Flipbook Fixes --- */
-
-.flipbook-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 500px; /* Constrains container width so only 1 page renders */
-    height: 700px;    /* Explicit height allows canvas to expand fully */
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-#book {
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 auto;
-}
-
-.page {
-    width: 100% !important;
-    height: 100% !important;
-    background-color: #000000;
-    overflow: hidden;
-}
-
-.page canvas {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain;
-    display: block;
-}
-
-/* Flipbook Navigation Controls */
-.nav-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.nav-btn {
-    background-color: #000000;
-    color: #ff80df;
-    border: 2px solid #ff80df;
-    padding: 8px 14px;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.2s ease-in-out;
-}
-
-.nav-btn:hover {
-    background-color: #ff80df;
-    color: #000000;
-}
 
 /* Responsive adjustments for mobile */
 @media (max-width: 600px) {
@@ -131,11 +81,11 @@ a:focus-visible, button:focus-visible {
        text-align: center;
    }
 
+
    .profile-img {
        margin-bottom: 10px;
    }
-
-   .flipbook-container {
-       height: 500px;
-   }
 }
+
+
+
