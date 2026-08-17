@@ -11,16 +11,12 @@ let pageFlip;
 // Navigation Event Listeners
 prevBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    if (pageFlip) {
-        pageFlip.flipPrev();
-    }
+    if (pageFlip) pageFlip.flipPrev();
 });
 
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    if (pageFlip) {
-        pageFlip.flipNext();
-    }
+    if (pageFlip) pageFlip.flipNext();
 });
 
 // Fetch and Render PDF Pages
@@ -29,8 +25,9 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        // High-resolution rendering scale for sharp text on larger displays
-        const viewport = page.getViewport({ scale: 2.0 });
+        
+        // High-resolution scale for sharp text rendering
+        const viewport = page.getViewport({ scale: 3.0 });
 
         const pageDiv = document.createElement('div');
         pageDiv.className = 'page';
@@ -46,14 +43,18 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize PageFlip with expanded single-page dimensions
+    // Initialize PageFlip with high-definition single-page proportions
     pageFlip = new St.PageFlip(bookElement, {
-        width: 600,           // Expanded single-page width
-        height: 775,          // Expanded single-page height
-        size: "fixed",        // Prevents expansion into side-by-side spreads
-        mode: "single",       // Forces single-page rendering
-        showCover: false,     // Keeps single flow consistent from page 1
-        usePortrait: true,    // Locks orientation
+        width: 750,           // Base render width
+        height: 1000,         // Base render height
+        size: "stretch",      // Automatically fills container width
+        minWidth: 320,
+        maxWidth: 850,
+        minHeight: 450,
+        maxHeight: 1150,
+        mode: "single",       // Enforces single-page presentation
+        showCover: false,
+        usePortrait: true,
         mobileScrollSupport: true
     });
 
