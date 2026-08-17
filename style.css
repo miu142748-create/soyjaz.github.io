@@ -27,7 +27,7 @@ body {
    padding: 0 15px 40px 15px;
 }
 
-/* Main content container box styling */
+/* Main Content Container Box Styling */
 .box {
    background-color: rgba(12, 5, 15, 0.90);
    border: 2px solid #ff99e6;
@@ -45,7 +45,7 @@ body {
    text-align: center;
 }
 
-/* Flexbox layout for profile picture and bio side-by-side */
+/* Flexbox Layout for Profile Picture and Bio Side-by-Side */
 .profile-flex {
    display: flex;
    align-items: center;
@@ -53,7 +53,7 @@ body {
    width: 100%;
 }
 
-/* Profile picture styling */
+/* Profile Picture Styling */
 .profile-img {
    width: 110px;
    height: 110px;
@@ -74,7 +74,7 @@ a.pdf-button {
    background: linear-gradient(180deg, #ff99e6 0%, #ff40d0 100%);
    border: 2px solid #ffffff;
    border-radius: 8px;
-   padding: 10px 16px;
+   padding: 8px 14px !important;
    text-decoration: none !important;
    display: inline-flex;
    align-items: center;
@@ -83,7 +83,7 @@ a.pdf-button {
    box-shadow: 2px 2px 0px #000000, 0 0 8px rgba(255, 128, 223, 0.5);
    transition: all 0.15s ease-in-out;
    text-transform: uppercase;
-   line-height: 1.4;
+   line-height: 1.2;
    outline: none;
    -webkit-appearance: none;
    appearance: none;
@@ -235,15 +235,16 @@ a:focus-visible, button:focus-visible {
 
    .flipbook-container {
        max-width: 100%;
-       margin: 10px auto;
+       margin: 5px auto;
    }
 
    #book {
-       height: 480px !important;
+       height: 380px !important;
    }
 
    .nav-controls {
        gap: 8px;
+       margin-top: 5px;
    }
 
    #page-info {
