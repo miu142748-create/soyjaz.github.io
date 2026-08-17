@@ -46,11 +46,8 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
     pageFlip = new St.PageFlip(bookElement, {
         width: 550,           
         height: 733,          
-        size: "stretch",
-        minWidth: 280,
-        maxWidth: 1000,
-        minHeight: 350,
-        maxHeight: 1333,
+        size: "fixed",        // Changed from "stretch" to force single portrait layout
+        drawShadow: true,
         showCover: false,
         usePortrait: true,    
         mobileScrollSupport: true,
