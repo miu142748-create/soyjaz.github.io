@@ -1,3 +1,10 @@
+/* Global Reset and Mobile Font Size Locking */
+* {
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 /* General Body and Background Setup */
 body {
    font-family: 'Quicksand', sans-serif;
@@ -57,7 +64,7 @@ body {
    flex-shrink: 0;
 }
 
-/* Primary Retro Buttons / Links (Full Size for CV, Portfolio, Email) */
+/* Primary Retro Buttons / Links (Full Size for Desktop CTA) */
 .pdf-button, 
 button.pdf-button, 
 a.pdf-button {
@@ -188,10 +195,12 @@ a:focus-visible, button:focus-visible {
    text-align: center;
 }
 
-/* Responsive adjustments for mobile */
-@media (max-width: 768px) {
+/* Responsive Adjustments for Mobile Breakpoints */
+@media screen and (max-width: 768px) {
    .wrapper {
        width: 95%;
+       padding-left: 10px;
+       padding-right: 10px;
    }
 
    .profile-flex {
@@ -205,16 +214,21 @@ a:focus-visible, button:focus-visible {
        margin-bottom: 10px;
    }
 
+   /* Responsive Scaling for Primary CTA Buttons */
    .pdf-button, 
    button.pdf-button, 
    a.pdf-button {
-       font-size: 11pt;
-       padding: 8px 14px;
+       font-size: 8pt !important;
+       padding: 8px 10px !important;
+       width: 100%;
+       max-width: 300px;
+       text-align: center;
    }
 
+   /* Responsive Scaling for Navigation PREV/NEXT Buttons */
    .nav-btn {
-       font-size: 7pt !important;
-       padding: 5px 10px !important;
+       font-size: 6pt !important;
+       padding: 5px 8px !important;
    }
 
    .flipbook-container {
@@ -223,14 +237,14 @@ a:focus-visible, button:focus-visible {
    }
 
    #book {
-       height: 520px !important;
+       height: 480px !important;
    }
 
    .nav-controls {
-       gap: 10px;
+       gap: 8px;
    }
 
    #page-info {
-       font-size: 11px !important;
+       font-size: 10px !important;
    }
 }
