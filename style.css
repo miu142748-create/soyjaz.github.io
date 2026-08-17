@@ -1,91 +1,261 @@
-/* General Body and Background Setup */
+/* ==========================================================================
+   Y2K RETRO CURSOR CONFIGURATION (SVG Data URI - Hot Pink Pixel Pointer)
+   ========================================================================== */
+
 body {
    font-family: 'Quicksand', sans-serif;
    color: #ffffff;
    margin: 0;
    padding: 0;
-   /* Note: Background image is handled via inline style in index.html, but you can also place it here */
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ff99e6" stroke="%23ffffff" stroke-width="1.5"/></svg>'), auto !important;
 }
 
+a, button, .pdf-button, .nav-btn, .profile-img {
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0,0 L0,18 L4,14 L8,22 L11,21 L7,13 L13,13 Z" fill="%23ff99e6" stroke="%23ffffff" stroke-width="1.5"/></svg>'), pointer !important;
+}
+
+/* Global Reset and Mobile Font Size Locking */
+* {
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* Focus State for Accessibility */
+:focus-visible {
+   outline: 3px solid #ff99e6 !important;
+   outline-offset: 3px !important;
+}
 
 /* Main Stacked Column Container */
 .wrapper {
-   max-width: 700px;
+   max-width: 1100px;
+   width: 92%;
    margin: 0 auto;
-   padding: 20px;
+   padding: 0 15px 40px 15px;
 }
 
-
-/* Main content container box styling */
+/* Main Content Container Box Styling */
 .box {
-   background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent dark background */
-   border: 2px solid #ff80df;            /* Pink retro border */
-   border-radius: 8px;
-   padding: 20px;
+   background-color: rgba(12, 5, 15, 0.90);
+   border: 2px solid #ff99e6;
+   border-radius: 12px;
+   padding: 22px 28px;
    margin-bottom: 20px;
-   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+   box-shadow: 0 0 12px rgba(255, 128, 223, 0.3);
+   backdrop-filter: blur(3px);
+   width: 100%;
 }
 
-
-/* Flexbox layout for profile picture and bio side-by-side */
-.profile-flex {
-   display: flex;
-   align-items: center;
-   gap: 20px;
+.box p[style*="color: #ff80df"],
+.box-heading {
+   color: #ff99e6 !important;
+   text-align: center;
 }
 
-
-/* Profile picture styling */
+/* Standalone Profile Picture (NO Border Box, NO Outlines, NO Shadows) */
 .profile-img {
-   width: 120px;
-   height: 120px;
+   width: 130px;
+   height: 130px;
    border-radius: 50%;
+   border: none !important;
+   outline: none !important;
+   box-shadow: none !important;
    object-fit: cover;
-   border: 2px solid #ff80df;
-}
-
-
-/* Custom retro buttons / links */
-.pdf-button {
    display: inline-block;
-   background-color: #000000;
-   color: #ff80df;
-   border: 2px solid #ff80df;
-   padding: 10px 15px;
-   text-decoration: none;
-   font-family: 'Press Start 2P', monospace;
-   font-size: 10px;
-   cursor: pointer;
+   margin-bottom: 15px;
+}
+
+/* Primary Link Buttons (VIEW CV, Portfolio, Email) */
+.pdf-button, 
+button.pdf-button, 
+a.pdf-button {
+   font-family: 'Press Start 2P', monospace !important;
+   font-size: 8pt !important;
+   color: #1a0014 !important;
+   background: linear-gradient(180deg, #ff99e6 0%, #ff40d0 100%);
+   border: 2px solid #ffffff;
+   border-radius: 8px;
+   padding: 8px 14px !important;
+   text-decoration: none !important;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   box-shadow: 2px 2px 0px #000000, 0 0 8px rgba(255, 128, 223, 0.5);
+   transition: all 0.15s ease-in-out;
+   text-transform: uppercase;
+   line-height: 1.2;
+   outline: none;
+   -webkit-appearance: none;
+   appearance: none;
+   max-width: 90%;
+   text-align: center;
+}
+
+.pdf-button:hover,
+button.pdf-button:hover,
+a.pdf-button:hover {
+   background: linear-gradient(180deg, #ffffff 0%, #ff66d9 100%);
+   transform: translateY(-2px);
+   box-shadow: 3px 3px 0px #000000, 0 0 12px rgba(255, 128, 223, 0.8);
+   color: #000000 !important;
+}
+
+.pdf-button:active,
+button.pdf-button:active,
+a.pdf-button:active {
+   transform: translateY(1px);
+   box-shadow: 1px 1px 0px #000000;
+}
+
+/* PREV / NEXT Flipbook Buttons */
+.nav-btn {
+   font-family: 'Press Start 2P', monospace !important;
+   font-size: 8pt !important;
+   color: #1a0014 !important;
+   background: linear-gradient(180deg, #ff99e6 0%, #ff40d0 100%);
+   border: 2px solid #ffffff;
    border-radius: 6px;
-   transition: all 0.2s ease-in-out;
+   padding: 8px 14px !important;
+   text-decoration: none !important;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   box-shadow: 2px 2px 0px #000000, 0 0 6px rgba(255, 128, 223, 0.4);
+   transition: all 0.15s ease-in-out;
+   text-transform: uppercase;
+   line-height: 1;
+   outline: none;
+   -webkit-appearance: none;
+   appearance: none;
 }
 
-
-.pdf-button:hover {
-   background-color: #ff80df;
-   color: #000000;
+.nav-btn:hover {
+   background: linear-gradient(180deg, #ffffff 0%, #ff66d9 100%);
+   transform: translateY(-1px);
+   box-shadow: 2px 2px 0px #000000, 0 0 10px rgba(255, 128, 223, 0.7);
+   color: #000000 !important;
 }
 
+.nav-btn:active {
+   transform: translateY(1px);
+   box-shadow: 1px 1px 0px #000000;
+}
 
 /* WCAG 2.2 Compliant Keyboard Focus States */
 a:focus-visible, button:focus-visible {
-   outline: 3px solid #ff80df;
+   outline: 3px solid #ff99e6;
    outline-offset: 4px;
 }
 
+/* Single-Page Flipbook Outer Container */
+.flipbook-container {
+   width: 100%;
+   max-width: 650px;
+   min-height: 840px; /* Reserves vertical height so container never collapses */
+   margin: 10px auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
 
-/* Responsive adjustments for mobile */
-@media (max-width: 600px) {
-   .profile-flex {
-       flex-direction: column;
+/* Flipbook Inner Box */
+#book {
+   width: 100% !important;
+   height: 840px !important;
+   border: none !important;
+   outline: none !important;
+   border-radius: 0px !important;
+   box-shadow: none !important;
+   background-color: transparent !important;
+   overflow: hidden;
+   margin: 0 auto !important;
+   display: block !important;
+}
+
+/* Override StPageFlip dynamic element centering */
+#book .stpageflip-container,
+#book .stpageflip-wrapper {
+   margin: 0 auto !important;
+   left: 0 !important;
+   right: 0 !important;
+}
+
+.page {
+   width: 100% !important;
+   height: 100% !important;
+   background-color: #ffffff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 0 auto !important;
+   padding: 0 !important;
+}
+
+.page canvas {
+   width: 100% !important;
+   height: 100% !important;
+   object-fit: fill !important;
+   display: block;
+   margin: 0 auto;
+}
+
+/* Centered Navigation Controls Bar */
+.nav-controls {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 15px;
+   margin: 15px auto 5px auto;
+   width: 100%;
+   text-align: center;
+}
+
+/* Responsive Adjustments for Mobile Breakpoints */
+@media screen and (max-width: 768px) {
+   .wrapper {
+       width: 95%;
+       padding-left: 10px;
+       padding-right: 10px;
+   }
+
+   .profile-img {
+       width: 110px;
+       height: 110px;
+       margin-bottom: 10px;
+   }
+
+   .pdf-button, 
+   button.pdf-button, 
+   a.pdf-button {
+       font-size: 7pt !important;
+       padding: 8px 10px !important;
+       width: 100%;
+       max-width: 280px;
        text-align: center;
    }
 
+   .nav-btn {
+       font-size: 6pt !important;
+       padding: 5px 8px !important;
+   }
 
-   .profile-img {
-       margin-bottom: 10px;
+   .flipbook-container {
+       max-width: 100%;
+       min-height: 480px;
+       margin: 5px auto;
+   }
+
+   #book {
+       height: 480px !important;
+   }
+
+   .nav-controls {
+       gap: 8px;
+       margin-top: 5px;
+   }
+
+   #page-info {
+       font-size: 10px !important;
    }
 }
-
-
-

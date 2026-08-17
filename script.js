@@ -1,91 +1,98 @@
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+// Ensure PDF.js worker is ready
+if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+}
 
+const pdfUrl = 'terrell-cv.pdf';
+let pageFlip = null;
 
-const url = 'terrell-cv.pdf';
-const bookElement = document.getElementById('book');
-const pageInfo = document.getElementById('page-info');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
+function initFlipbook() {
+    const bookElement = document.getElementById('book');
+    const pageInfoElement = document.getElementById('page-info');
 
+    // Verification check for required elements and libraries
+    if (!bookElement) return;
+    if (typeof St === 'undefined' || typeof pdfjsLib === 'undefined') {
+        if (pageInfoElement) pageInfoElement.textContent = 'Library Error';
+        console.error('PageFlip or PDF.js libraries failed to load.');
+        return;
+    }
 
-let pageFlip;
+    // Initialize StPageFlip
+    pageFlip = new St.PageFlip(bookElement, {
+        width: 550,
+        height: 710,
+        size: "stretch",
+        minWidth: 280,
+        maxWidth: 800,
+        minHeight: 360,
+        maxHeight: 1030,
+        showCover: true,
+        usePortrait: true,
+        startPage: 0,
+        drawShadow: false,
+        flippingTime: 600,
+        useMouseEvents: true,
+        showPageCorners: false
+    });
 
+    // Render PDF Pages into the Flipbook
+    pdfjsLib.getDocument(pdfUrl).promise.then(pdf => {
+        const totalPages = pdf.numPages;
+        const pagePromises = [];
 
-prevBtn.addEventListener('click', (e) => {
-   e.preventDefault();
-   if (pageFlip) {
-       pageFlip.flipPrev();
-   }
-});
+        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+            pagePromises.push(
+                pdf.getPage(pageNum).then(page => {
+                    const viewport = page.getViewport({ scale: 2 });
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
 
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
 
-nextBtn.addEventListener('click', (e) => {
-   e.preventDefault();
-   if (pageFlip) {
-       pageFlip.flipNext();
-   }
-});
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
 
+                    return page.render(renderContext).promise.then(() => {
+                        const pageDiv = document.createElement('div');
+                        pageDiv.className = 'page';
+                        pageDiv.appendChild(canvas);
+                        return pageDiv;
+                    });
+                })
+            );
+        }
 
-pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
-   const numPages = pdfDoc_.numPages;
+        Promise.all(pagePromises).then(pages => {
+            pageFlip.loadFromHTML(pages);
+            if (pageInfoElement) pageInfoElement.textContent = `Page 1 of ${totalPages}`;
 
+            pageFlip.on('flip', (e) => {
+                if (pageInfoElement) pageInfoElement.textContent = `Page ${e.data + 1} of ${totalPages}`;
+            });
 
-   for (let pageNum = 1; pageNum <= numPages; pageNum++) {
-       const page = await pdfDoc_.getPage(pageNum);
-       const viewport = page.getViewport({ scale: 2.0 });
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
 
+            if (prevBtn) {
+                prevBtn.onclick = () => pageFlip.turnToPrevPage();
+            }
+            if (nextBtn) {
+                nextBtn.onclick = () => pageFlip.turnToNextPage();
+            }
+        });
+    }).catch(error => {
+        if (pageInfoElement) pageInfoElement.textContent = 'PDF Error';
+        console.error('Error loading PDF:', error);
+    });
+}
 
-       const pageDiv = document.createElement('div');
-       pageDiv.className = 'page';
-
-
-       const canvas = document.createElement('canvas');
-       const context = canvas.getContext('2d');
-       canvas.height = viewport.height;
-       canvas.width = viewport.width;
-
-
-       await page.render({ canvasContext: context, viewport: viewport }).promise;
-      
-       pageDiv.appendChild(canvas);
-       bookElement.appendChild(pageDiv);
-   }
-
-
-   pageFlip = new St.PageFlip(bookElement, {
-       width: 550,          
-       height: 733,         
-       size: "stretch",
-       minWidth: 280,
-       maxWidth: 1000,
-       minHeight: 350,
-       maxHeight: 1333,
-       showCover: false,
-       usePortrait: true,   
-       mobileScrollSupport: true,
-       maxShadowOpacity: 0.3
-   });
-
-
-   pageFlip.loadFromHTML(document.querySelectorAll('.page'));
-
-
-   updatePageInfo();
-
-
-   pageFlip.on('flip', () => {
-       updatePageInfo();
-   });
-
-
-   function updatePageInfo() {
-       const currentPage = pageFlip.getCurrentPageIndex() + 1;
-       pageInfo.textContent = `Page ${currentPage} of ${numPages}`;
-   }
-
-
-}).catch(function(error) {
-   console.error('Error loading PDF: ', error);
-});
-
+// Trigger initialization once DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFlipbook);
+} else {
+    initFlipbook();
+}
