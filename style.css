@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. General Setup & Fonts
-   ========================================================================== */
+/* General Body and Background Setup */
 body {
    font-family: 'Quicksand', sans-serif;
    color: #ffffff;
@@ -11,34 +9,16 @@ body {
    background-repeat: repeat;
 }
 
-/* Main Container - Expanded for maximum horizontal space */
+/* Single Stacked Column Container - Generous Width */
 .wrapper {
-   max-width: 95% !important;
-   width: 1400px;
+   max-width: 900px; /* Generous width for nice wide stacked boxes */
+   width: 92%;
    margin: 0 auto;
    padding: 20px;
    box-sizing: border-box;
 }
 
-/* ==========================================================================
-   2. Horizontal Grid & Box Layouts
-   ========================================================================== */
-.horizontal-row {
-   display: flex;
-   flex-direction: row;
-   gap: 20px;
-   width: 100%;
-   margin-bottom: 20px;
-}
-
-.horizontal-row .box {
-   flex: 1;
-   margin-bottom: 0;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-}
-
+/* Main content container box styling */
 .box {
    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent dark background */
    border: 2px solid #ff80df;            /* Pink retro border */
@@ -49,12 +29,12 @@ body {
    box-sizing: border-box;
 }
 
-/* Profile section styling */
+/* Profile flex layout */
 .profile-flex {
-   width: 100%;
    display: flex;
    align-items: center;
    gap: 20px;
+   width: 100%;
 }
 
 .profile-img {
@@ -66,9 +46,7 @@ body {
    flex-shrink: 0;
 }
 
-/* ==========================================================================
-   3. Buttons & Accessibility
-   ========================================================================== */
+/* Retro buttons */
 .pdf-button {
    display: inline-block;
    background-color: #000000;
@@ -88,79 +66,72 @@ body {
    color: #000000;
 }
 
-/* WCAG 2.2 Compliant Keyboard Focus States */
+/* Accessibility Focus States */
 a:focus-visible, button:focus-visible {
    outline: 3px solid #ff80df;
    outline-offset: 4px;
 }
 
-/* ==========================================================================
-   4. Flipbook / PDF Container Fixes
-   ========================================================================== */
+/* Flipbook Display Constraints */
 .flipbook-container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   width: 100%;
-   max-width: 500px; /* Limits container width so page doesn't stretch multi-spread */
-   height: 700px;
-   margin: 0 auto;
-   overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    height: 700px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 #book {
-   width: 100% !important;
-   height: 100% !important;
-   margin: 0 auto;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 auto;
 }
 
 .page {
-   width: 100% !important;
-   height: 100% !important;
-   background-color: #000000;
-   overflow: hidden;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: #000000;
+    overflow: hidden;
 }
 
 .page canvas {
-   width: 100% !important;
-   height: 100% !important;
-   object-fit: contain;
-   display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    display: block;
 }
 
+/* Navigation Controls */
 .nav-controls {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 15px;
-   margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 .nav-btn {
-   background-color: #000000;
-   color: #ff80df;
-   border: 2px solid #ff80df;
-   padding: 8px 14px;
-   font-family: 'Press Start 2P', monospace;
-   font-size: 10px;
-   cursor: pointer;
-   border-radius: 6px;
-   transition: all 0.2s ease-in-out;
+    background-color: #000000;
+    color: #ff80df;
+    border: 2px solid #ff80df;
+    padding: 8px 14px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
 }
 
 .nav-btn:hover {
-   background-color: #ff80df;
-   color: #000000;
+    background-color: #ff80df;
+    color: #000000;
 }
 
-/* ==========================================================================
-   5. Mobile Responsiveness
-   ========================================================================== */
-@media (max-width: 768px) {
-   .horizontal-row {
-       flex-direction: column;
-   }
-
+/* Responsive Mobile Layout */
+@media (max-width: 600px) {
    .profile-flex {
        flex-direction: column;
        text-align: center;

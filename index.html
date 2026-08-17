@@ -8,57 +8,11 @@
   <link rel="icon" href="https://images.emojiterra.com/google/android-12l/512px/1f98b.png" type="image/png">
   <!-- Import Quicksand and Press Start 2P Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-   <!-- Include PDF.js and StPageFlip libraries -->
+  <!-- Include PDF.js and StPageFlip libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
   <link rel="stylesheet" href="style.css">
-
-  <!-- Fixed Background & Layout Overrides -->
-  <style>
-      body {
-          background-image: url('https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
-          background-attachment: fixed;
-          background-repeat: repeat;
-      }
-
-      /* Expanded full-width wrapper */
-      .wrapper {
-          max-width: 95% !important;
-          width: 1400px;
-          margin: 0 auto;
-          padding: 20px;
-          box-sizing: border-box;
-      }
-
-      /* Horizontal layout logic */
-      .horizontal-row {
-          display: flex;
-          flex-direction: row;
-          gap: 20px;
-          width: 100%;
-          margin-bottom: 20px;
-      }
-
-      .horizontal-row .box {
-          flex: 1;
-          margin-bottom: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-      }
-
-      .profile-flex {
-          width: 100%;
-      }
-
-      /* Responsive stacking for phones */
-      @media (max-width: 768px) {
-          .horizontal-row {
-              flex-direction: column;
-          }
-      }
-  </style>
 </head>
 <body>
 
@@ -67,62 +21,58 @@
       <img src="https://text.glitter-graphics.net/heart/s.gif" alt="s" border="0"><img src="https://text.glitter-graphics.net/heart/o.gif" alt="o" border="0"><img src="https://text.glitter-graphics.net/heart/y.gif" alt="y" border="0"><img src="https://dl3.glitter-graphics.net/empty.gif" width="15" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/j.gif" alt="j" border="0"><img src="https://text.glitter-graphics.net/heart/a.gif" alt="a" border="0"><img src="https://text.glitter-graphics.net/heart/z.gif" alt="z" border="0">
   </div>
 
-  <!-- Main Container -->
+  <!-- Main Stacked Column Container -->
   <div class="wrapper">
 
-      <!-- Profile & Bio Row -->
-      <div class="profile-flex" style="margin-bottom: 20px; display: flex; align-items: center; gap: 20px;">
+      <!-- Profile Section: PFP outside, Bio in a box -->
+      <div class="profile-flex" style="margin-bottom: 20px;">
          <img src="pfp.png" alt="Profile Picture of jazzie holding a dog" class="profile-img">
          <div class="box" style="margin-bottom: 0; flex-grow: 1;">
              <p style="margin: 0; color: #ffffff;">Hello, and welcome! My name is jazzie terrell and I'm a PhD candidate in Rhetoric, Composition, and the Teaching of English</p>
          </div>
       </div>
 
-      <!-- Horizontal Row 1: Research Interests & Dissertation -->
-      <div class="horizontal-row">
-          <div class="box">
-              <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 8px;">✨ Research Interests ✨</p>
-              <p class="research-interests-text" style="margin: 0; font-size: 15px; line-height: 1.6; color: #ffffff;">
-                  Feminist Pedagogy &nbsp;&nbsp;|&nbsp;&nbsp; Digital Literacy &nbsp;&nbsp;|&nbsp;&nbsp; Borderland Rhetorics &nbsp;&nbsp;|&nbsp;&nbsp; Community-Led Research
-              </p>
-          </div>
+      <!-- Research Interests Section wrapped in a box -->
+      <div class="box">
+          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px;">✨ Research Interests ✨</p>
+          <p class="research-interests-text" style="margin: 0; font-size: 15px; line-height: 1.6; color: #ffffff;">
+              Feminist Pedagogy &nbsp;&nbsp;|&nbsp;&nbsp; Digital Literacy &nbsp;&nbsp;|&nbsp;&nbsp; Borderland Rhetorics &nbsp;&nbsp;|&nbsp;&nbsp; Community-Led Research
+          </p>
+      </div>
 
-          <div class="box research-box">
-              <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 8px;">✨ Dissertation Collection ✨</p>
-              <p style="margin: 0; font-size: 15px; line-height: 1.6; text-align: left;">
-                  jazzie's dissertation collection examines the history of border enforcement and state violence, starting with the 1917 Bath Riots. It also looks at why traditional school and university systems need a critical update, and explores how community zines and mutual aid sustain grassroots resistance.
-              </p>
+      <!-- Dissertation Collection Box -->
+      <div class="box research-box">
+          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 5px;">✨ Dissertation Collection ✨</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; text-align: left;">
+              jazzie's dissertation collection examines the history of border enforcement and state violence, starting with the 1917 Bath Riots. It also looks at why traditional school and university systems need a critical update, and explores how community zines and mutual aid sustain grassroots resistance.
+          </p>
+      </div>
+
+      <!-- Explore My Work Box -->
+      <div class="box" style="text-align: center;">
+          <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 12px;">✨ Explore My Work ✨</p>
+          <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; flex-wrap: wrap;">
+              <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document">
+                  VIEW CV PDF
+              </a>
+              <a class="pdf-button" href="portfolio.html">
+                  Instructional Design Portfolio
+              </a>
           </div>
       </div>
 
-      <!-- Horizontal Row 2: Explore Work & Contact -->
-      <div class="horizontal-row">
-          <div class="box" style="text-align: center;">
-              <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; margin-bottom: 12px;">✨ Explore My Work ✨</p>
-              <div style="display: flex; flex-direction: row; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                  <a class="pdf-button" href="terrell-cv.pdf" target="_blank" aria-label="Open PDF CV Document">
-                      VIEW CV PDF
-                  </a>
-                  <a class="pdf-button" href="portfolio.html">
-                      Instructional Design Portfolio
-                  </a>
-              </div>
+      <!-- Contact Section -->
+      <div class="box" style="text-align: center;">
+          <p style="margin-bottom: 8px; color: #ff80df; font-weight: 700;">✨ Get in touch! ✨</p>
+          <div style="margin: 10px 0;" aria-hidden="true">
+              <img src="https://dl4.glitter-graphics.net/pub/536/536374qelg9xv2hk.gif" alt="" width="38" height="35" border="0">
           </div>
-
-          <div class="box" style="text-align: center;">
-              <p style="margin-top: 0; margin-bottom: 8px; color: #ff80df; font-weight: 700;">✨ Get in touch! ✨</p>
-              <div style="margin: 6px 0;" aria-hidden="true">
-                  <img src="https://dl4.glitter-graphics.net/pub/536/536374qelg9xv2hk.gif" alt="" width="38" height="35" border="0">
-              </div>
-              <div>
-                  <a class="pdf-button" href="mailto:jterrell1@arizona.edu" style="font-weight: 700;" aria-label="Send me an email">
-                      SEND ME AN EMAIL
-                  </a>
-              </div>
-          </div>
+          <a class="pdf-button" href="mailto:jterrell1@arizona.edu" style="font-weight: 700;" aria-label="Send me an email">
+              SEND ME AN EMAIL
+          </a>
       </div>
 
-      <!-- CV Flipbook Section (Unboxed) -->
+      <!-- Flipbook Section (UNBOXED) -->
       <div style="margin-bottom: 30px; text-align: center;">
           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 16px; margin-bottom: 5px;">✨ Interactive CV Flipbook ✨</p>
           <p style="font-size: 11px; color: #ffffff; margin-top: 0; margin-bottom: 15px; font-style: italic;">
@@ -141,12 +91,12 @@
           </div>
       </div>
 
-      <!-- Land Acknowledgement Section (Unboxed) -->
+      <!-- Land Acknowledgement Section (UNBOXED) -->
       <div style="margin-bottom: 15px; text-align: center;">
           <p style="margin: 0; font-size: 13px; color: #ffffff;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
       </div>
 
-      <!-- WCAG Compliance Notice (Unboxed) -->
+      <!-- WCAG Compliance Notice (UNBOXED) -->
       <div style="margin-bottom: 35px; text-align: center;">
           <p style="margin: 0; font-size: 12px; color: #ffffff; font-style: italic;">Note: This website is optimized for accessibility in alignment with WCAG 2.2 guidelines.</p>
       </div>
