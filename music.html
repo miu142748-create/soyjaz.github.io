@@ -12,6 +12,7 @@
    <link rel="stylesheet" href="style.css">
    
    <style>
+       /* Fixed full-screen background image */
        body {
            background-image: url('background.gif');
            background-size: cover;
@@ -29,7 +30,7 @@
            outline: none;
        }
 
-       /* Caption Display Container */
+       /* Dynamic Caption Screen Display Box */
        .caption-box {
            background: rgba(0, 0, 0, 0.6);
            border: 1px dashed #ff99e6;
@@ -54,40 +55,42 @@
 </head>
 <body>
 
-   <!-- Glitter Header -->
+   <!-- Glitter Header ("MUSIC") -->
    <div style="margin-top: 25px; margin-bottom: 20px; text-align: center;" aria-hidden="true">
        <img src="https://text.glitter-graphics.net/heart/m.gif" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/u.gif" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/s.gif" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/i.gif" alt="" border="0"><img src="https://text.glitter-graphics.net/heart/c.gif" alt="" border="0">
    </div>
 
+   <!-- Main Stacked Column Container -->
    <div class="wrapper">
 
+       <!-- Screen Reader Accessible Main Title (Visually Hidden) -->
        <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">jazzie terrell - Music Player</h1>
 
-       <!-- Back to Home Button -->
+       <!-- Back to Home Link Box (Centered) -->
        <div class="box" style="text-align: center;">
            <a class="pdf-button" href="index.html" aria-label="Return to homepage">
                [ BACK TO HOME ]
            </a>
        </div>
 
-       <!-- Music Player Box -->
+       <!-- Audio Player & Live Caption Box -->
        <div class="box" style="text-align: center;">
            <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 16px;">✨ Now Playing: Track Title ✨</p>
 
-           <!-- Native HTML5 Audio Player with WebVTT Track -->
+           <!-- Native Audio Element with VTT Subtitle Track -->
            <audio id="audio-player" controls preload="metadata">
                <source src="your-audio-file.mp3" type="audio/mpeg">
                <track id="audio-track" kind="subtitles" src="captions.vtt" srclang="en" label="English Captions" default>
                Your browser does not support the audio element.
            </audio>
 
-           <!-- Live Captions Screen Area -->
+           <!-- Live Captions Screen Display -->
            <div class="caption-box" aria-live="polite">
                <span id="caption-display" class="caption-text">[ Captions will appear here when playing ]</span>
            </div>
        </div>
 
-       <!-- Accessible Transcript Box (Best Practice for WCAG 2.2) -->
+       <!-- Accessible Full Transcript Box (WCAG 2.2 Best Practice) -->
        <div class="box">
            <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; text-align: center;">📜 Full Audio Transcript</p>
            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin: 0;">
@@ -97,25 +100,50 @@
            </p>
        </div>
 
+       <!-- Contact Section -->
+       <div class="box" style="text-align: center;">
+           <p style="margin-bottom: 8px; color: #ff80df; font-weight: 700;">✨ Get in touch! ✨</p>
+           <div style="margin: 10px 0;" aria-hidden="true">
+               <img src="http://dl4.glitter-graphics.net/pub/536/536374qelg9xv2hk.gif" alt="" width="38" height="35" border="0">
+           </div>
+           <a class="pdf-button" href="mailto:jterrell1@arizona.edu" style="font-weight: 700;" aria-label="Send me an email">
+               [ SEND ME AN EMAIL ]
+           </a>
+       </div>
+
+       <!-- Land Acknowledgement Section -->
+       <div class="box">
+           <p style="margin: 0; font-size: 13px; color: #ffffff;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
+       </div>
+
+       <!-- WCAG Compliance Notice -->
+       <div class="box" style="margin-bottom: 35px;">
+           <p style="margin: 0; font-size: 12px; color: #ffffff; font-style: italic; text-align: center;">Note: This website is consistently being updated for accessibility alignment with WCAG 2.2 guidelines</p>
+       </div>
+
    </div>
 
-   <!-- Script to extract and render track cues into the caption box -->
+   <!-- Cross-browser script to handle live cue rendering -->
    <script>
        document.addEventListener('DOMContentLoaded', () => {
            const audio = document.getElementById('audio-player');
-           const track = document.getElementById('audio-track');
            const captionDisplay = document.getElementById('caption-display');
+           
+           function setupTrackProcessing() {
+               const textTrack = audio.textTracks[0];
+               if (textTrack) {
+                   textTrack.mode = 'hidden'; // Enables cue monitoring without relying on browser default UI
+                   textTrack.oncuechange = () => {
+                       const activeCue = textTrack.activeCues[0];
+                       captionDisplay.textContent = activeCue ? activeCue.text : '...';
+                   };
+               }
+           }
 
-           if (track && track.track) {
-               // Show active text cue on screen as audio plays
-               track.track.oncuechange = function () {
-                   const activeCue = this.activeCues[0];
-                   if (activeCue) {
-                       captionDisplay.textContent = activeCue.text;
-                   } else {
-                       captionDisplay.textContent = '...';
-                   }
-               };
+           if (audio.readyState >= 1) {
+               setupTrackProcessing();
+           } else {
+               audio.addEventListener('loadedmetadata', setupTrackProcessing);
            }
        });
    </script>
