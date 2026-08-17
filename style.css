@@ -1,91 +1,133 @@
-/* General Body and Background Setup */
+/* ==========================================
+   1. GLOBAL STYLES & FONTS
+   ========================================== */
+* {
+    box-sizing: border-box;
+}
+
 body {
-   font-family: 'Quicksand', sans-serif;
-   color: #ffffff;
-   margin: 0;
-   padding: 0;
-   /* Note: Background image is handled via inline style in index.html, but you can also place it here */
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    color: #ffffff;
 }
 
-
-/* Main Stacked Column Container */
+/* ==========================================
+   2. MAIN WRAPPER CONTAINER
+   ========================================== */
 .wrapper {
-   max-width: 700px;
-   margin: 0 auto;
-   padding: 20px;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 15px 40px 15px;
 }
 
-
-/* Main content container box styling */
+/* ==========================================
+   3. RETRO PINK BOX CONTAINERS
+   ========================================== */
 .box {
-   background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent dark background */
-   border: 2px solid #ff80df;            /* Pink retro border */
-   border-radius: 8px;
-   padding: 20px;
-   margin-bottom: 20px;
-   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: rgba(20, 10, 25, 0.75);
+    border: 2px solid #ff80df;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 12px rgba(255, 128, 223, 0.3);
+    backdrop-filter: blur(3px);
 }
 
-
-/* Flexbox layout for profile picture and bio side-by-side */
+/* Profile Flex Layout */
 .profile-flex {
-   display: flex;
-   align-items: center;
-   gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-
-/* Profile picture styling */
 .profile-img {
-   width: 120px;
-   height: 120px;
-   border-radius: 50%;
-   object-fit: cover;
-   border: 2px solid #ff80df;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3px solid #ff80df;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(255, 128, 223, 0.4);
+    flex-shrink: 0;
 }
 
-
-/* Custom retro buttons / links */
-.pdf-button {
-   display: inline-block;
-   background-color: #000000;
-   color: #ff80df;
-   border: 2px solid #ff80df;
-   padding: 10px 15px;
-   text-decoration: none;
-   font-family: 'Press Start 2P', monospace;
-   font-size: 10px;
-   cursor: pointer;
-   border-radius: 6px;
-   transition: all 0.2s ease-in-out;
+/* ==========================================
+   4. UNIFIED BUTTON STYLES (.pdf-button & .nav-btn)
+   ========================================== */
+.pdf-button, 
+.nav-btn {
+    font-family: 'Press Start 2P', monospace; /* Matching retro pixel font */
+    font-size: 11px;
+    color: #ffffff !important;
+    background: linear-gradient(180deg, #ff80df 0%, #cc0088 100%);
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #000000, 0 0 8px rgba(255, 128, 223, 0.5);
+    transition: all 0.15s ease-in-out;
+    text-transform: uppercase;
+    line-height: 1.2;
 }
 
-
-.pdf-button:hover {
-   background-color: #ff80df;
-   color: #000000;
+/* Hover State for Links & Buttons */
+.pdf-button:hover, 
+.nav-btn:hover {
+    background: linear-gradient(180deg, #ff99e6 0%, #e60099 100%);
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0px #000000, 0 0 12px rgba(255, 128, 223, 0.8);
 }
 
-
-/* WCAG 2.2 Compliant Keyboard Focus States */
-a:focus-visible, button:focus-visible {
-   outline: 3px solid #ff80df;
-   outline-offset: 4px;
+/* Active / Pressed State */
+.pdf-button:active, 
+.nav-btn:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 0px #000000;
 }
 
-
-/* Responsive adjustments for mobile */
-@media (max-width: 600px) {
-   .profile-flex {
-       flex-direction: column;
-       text-align: center;
-   }
-
-
-   .profile-img {
-       margin-bottom: 10px;
-   }
+/* ==========================================
+   5. FLIPBOOK & NAVIGATION CONTROLS
+   ========================================== */
+.flipbook-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
 }
 
+#book {
+    box-shadow: 0 0 15px rgba(255, 128, 223, 0.4);
+}
 
+.nav-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
 
+/* ==========================================
+   6. RESPONSIVE MOBILE TWEAKS
+   ========================================== */
+@media (max-width: 500px) {
+    .profile-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .pdf-button, 
+    .nav-btn {
+        font-size: 9px;
+        padding: 8px 12px;
+    }
+}
