@@ -17,18 +17,14 @@ function initFlipbook() {
         return;
     }
 
-    // Single-page initialization configuration
+    // Single-page fixed configuration (CSS matrix scaling handles mobile responsiveness)
     pageFlip = new St.PageFlip(bookElement, {
         width: 600,
         height: 775,
-        size: "stretch",           // Dynamic resizing
-        minWidth: 280,
-        maxWidth: 600,
-        minHeight: 360,
-        maxHeight: 775,
+        size: "fixed",
         showCover: false,          // Prevents page-flip from splitting pages into a spread
         usePortrait: true,
-        singlePageMode: true,      // Forces strict single-page rendering across all screen sizes
+        singlePageMode: true,      // Forces strict single-page rendering
         startPage: 0,
         drawShadow: false,
         flippingTime: 500,
@@ -83,11 +79,32 @@ function initFlipbook() {
             if (nextBtn) {
                 nextBtn.onclick = () => pageFlip.turnToNextPage();
             }
+            
+            // Adjust container height for mobile transform scaling initial load
+            resizeFlipbookWrapper();
         });
     }).catch(error => {
         if (pageInfoElement) pageInfoElement.textContent = 'PDF Error';
         console.error('Error loading PDF:', error);
     });
+}
+
+// Adjust parent wrapper dimensions so scaled flipbook doesn't leave trailing empty space
+function resizeFlipbookWrapper() {
+    const container = document.querySelector('.flipbook-container');
+    const book = document.getElementById('book');
+    if (!container || !book) return;
+
+    if (window.innerWidth <= 650) {
+        const currentWidth = container.clientWidth;
+        const scale = currentWidth / 600;
+        book.style.transform = `scale(${scale})`;
+        book.style.transformOrigin = 'top center';
+        container.style.height = `${775 * scale}px`;
+    } else {
+        book.style.transform = 'none';
+        container.style.height = 'auto';
+    }
 }
 
 if (document.readyState === 'loading') {
@@ -96,12 +113,4 @@ if (document.readyState === 'loading') {
     initFlipbook();
 }
 
-// Dynamically scale flipbook layout when changing window/screen dimensions
-window.addEventListener('resize', () => {
-    if (pageFlip) {
-        const bookElement = document.getElementById('book');
-        if (bookElement) {
-            pageFlip.updateFromHtml(document.querySelectorAll('.page'));
-        }
-    }
-});
+window.addEventListener('resize', resizeFlipbookWrapper);
