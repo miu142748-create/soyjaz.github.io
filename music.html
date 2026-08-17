@@ -21,35 +21,25 @@
            background-attachment: fixed;
        }
 
-       /* Y2K Styled Native Audio Player */
-       audio {
-           width: 100%;
-           max-width: 500px;
+       /* Responsive Video/Audio Container (16:9 Aspect Ratio) */
+       .media-container {
+           position: relative;
+           padding-bottom: 56.25%;
+           height: 0;
+           overflow: hidden;
+           border-radius: 8px;
+           border: 2px solid #ff80df;
            margin: 15px 0;
-           border-radius: 8px;
-           outline: none;
+           background: #000000;
        }
 
-       /* Dynamic Caption Screen Display Box */
-       .caption-box {
-           background: rgba(0, 0, 0, 0.6);
-           border: 1px dashed #ff99e6;
-           border-radius: 8px;
-           padding: 15px;
-           margin-top: 15px;
-           min-height: 60px;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           text-align: center;
-       }
-
-       .caption-text {
-           font-family: 'Quicksand', sans-serif;
-           font-size: 15px;
-           font-weight: 700;
-           color: #ff99e6;
-           line-height: 1.4;
+       .media-container iframe {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           border: 0;
        }
    </style>
 </head>
@@ -73,30 +63,26 @@
            </a>
        </div>
 
-       <!-- Audio Player & Live Caption Box -->
+       <!-- Media Player Box -->
        <div class="box" style="text-align: center;">
-           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 16px;">✨ Now Playing: Track Title ✨</p>
+           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 16px;">✨ Featured Track ✨</p>
 
-           <!-- Native Audio Element with VTT Subtitle Track -->
-           <audio id="audio-player" controls preload="metadata">
-               <source src="your-audio-file.mp3" type="audio/mpeg">
-               <track id="audio-track" kind="subtitles" src="captions.vtt" srclang="en" label="English Captions" default>
-               Your browser does not support the audio element.
-           </audio>
-
-           <!-- Live Captions Screen Display -->
-           <div class="caption-box" aria-live="polite">
-               <span id="caption-display" class="caption-text">[ Captions will appear here when playing ]</span>
+           <!-- Embedded Responsive YouTube Player -->
+           <div class="media-container">
+               <iframe 
+                   src="https://www.youtube.com/embed/k-1jhOtyNVM" 
+                   title="YouTube Audio Player"
+                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                   allowfullscreen>
+               </iframe>
            </div>
        </div>
 
-       <!-- Accessible Full Transcript Box (WCAG 2.2 Best Practice) -->
+       <!-- Accessible Full Transcript / Lyrics Box (WCAG 2.2 Best Practice) -->
        <div class="box">
-           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; text-align: center;">📜 Full Audio Transcript</p>
+           <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px; text-align: center;">📜 Full Track Transcript & Captions</p>
            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin: 0;">
-               <strong>[00:00]</strong> [Upbeat Y2K electronic synth intro plays]<br>
-               <strong>[00:05]</strong> Welcome to my audio showcase page!<br>
-               <strong>[00:10]</strong> ♪ Singing along to the rhythm of the track ♪
+               Add your full text transcript, audio notes, or lyrics here for screen-reader accessibility and WCAG compliance.
            </p>
        </div>
 
@@ -122,31 +108,6 @@
        </div>
 
    </div>
-
-   <!-- Cross-browser script to handle live cue rendering -->
-   <script>
-       document.addEventListener('DOMContentLoaded', () => {
-           const audio = document.getElementById('audio-player');
-           const captionDisplay = document.getElementById('caption-display');
-           
-           function setupTrackProcessing() {
-               const textTrack = audio.textTracks[0];
-               if (textTrack) {
-                   textTrack.mode = 'hidden'; // Enables cue monitoring without relying on browser default UI
-                   textTrack.oncuechange = () => {
-                       const activeCue = textTrack.activeCues[0];
-                       captionDisplay.textContent = activeCue ? activeCue.text : '...';
-                   };
-               }
-           }
-
-           if (audio.readyState >= 1) {
-               setupTrackProcessing();
-           } else {
-               audio.addEventListener('loadedmetadata', setupTrackProcessing);
-           }
-       });
-   </script>
 
 </body>
 </html>
