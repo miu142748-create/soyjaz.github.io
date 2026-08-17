@@ -148,20 +148,20 @@ a:focus-visible, button:focus-visible {
    outline-offset: 4px;
 }
 
-/* Single-Page Flipbook Outer Container (Expanded Width for Larger Display) */
+/* Single-Page Flipbook Outer Container */
 .flipbook-container {
    width: 100%;
-   max-width: 680px; /* Increased from 480px to make PDF wider */
-   margin: 20px auto;
+   max-width: 650px;
+   margin: 10px auto;
    display: flex;
    justify-content: center;
    align-items: center;
 }
 
-/* Flipbook Inner Box - NO Pink Border Frame & High Height for Reading */
+/* Flipbook Inner Box - Tight Fit, High Readability */
 #book {
    width: 100% !important;
-   height: 900px !important; /* Increased from 620px so text is large and clear */
+   height: 840px !important;
    border: none !important;
    outline: none !important;
    border-radius: 0px !important;
@@ -187,13 +187,13 @@ a:focus-visible, button:focus-visible {
    justify-content: center;
    align-items: center;
    margin: 0 auto !important;
-   padding: 0;
+   padding: 0 !important;
 }
 
 .page canvas {
    width: 100% !important;
    height: 100% !important;
-   object-fit: contain !important;
+   object-fit: fill !important; /* Force page canvas to fill container width without side padding */
    display: block;
    margin: 0 auto;
 }
@@ -244,7 +244,7 @@ a:focus-visible, button:focus-visible {
    }
 
    #book {
-       height: 520px !important; /* Mobile readable height */
+       height: 480px !important;
    }
 
    .nav-controls {
