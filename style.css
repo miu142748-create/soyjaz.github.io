@@ -1,16 +1,22 @@
-/* Global Reset and Mobile Font Size Locking */
-* {
-    box-sizing: border-box;
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-}
-
-/* General Body and Background Setup */
+/* Custom Left-Hand Cursor */
 body {
    font-family: 'Quicksand', sans-serif;
    color: #ffffff;
    margin: 0;
    padding: 0;
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">👈</text></svg>') 0 12, auto !important;
+}
+
+/* Hover Cursor for Interactive Elements */
+a, button, .pdf-button, .nav-btn, .profile-img {
+   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">👈</text></svg>') 0 12, pointer !important;
+}
+
+/* Global Reset and Mobile Font Size Locking */
+* {
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 /* Focus State for Accessibility */
@@ -79,7 +85,6 @@ a.pdf-button {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   cursor: pointer;
    box-shadow: 2px 2px 0px #000000, 0 0 8px rgba(255, 128, 223, 0.5);
    transition: all 0.15s ease-in-out;
    text-transform: uppercase;
@@ -120,7 +125,6 @@ a.pdf-button:active {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   cursor: pointer;
    box-shadow: 2px 2px 0px #000000, 0 0 6px rgba(255, 128, 223, 0.4);
    transition: all 0.15s ease-in-out;
    text-transform: uppercase;
