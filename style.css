@@ -13,10 +13,11 @@ body {
 }
 
 /* ==========================================
-   2. MAIN WRAPPER CONTAINER
+   2. MAIN WRAPPER CONTAINER (WIDER)
    ========================================== */
 .wrapper {
-    max-width: 650px;
+    max-width: 900px; /* Increased from 650px to stretch boxes horizontally */
+    width: 90%;
     margin: 0 auto;
     padding: 0 15px 40px 15px;
 }
@@ -28,10 +29,11 @@ body {
     background-color: rgba(20, 10, 25, 0.75);
     border: 2px solid #ff80df;
     border-radius: 12px;
-    padding: 18px 20px;
+    padding: 22px 28px; /* Extra padding for wider boxes */
     margin-bottom: 20px;
     box-shadow: 0 0 12px rgba(255, 128, 223, 0.3);
     backdrop-filter: blur(3px);
+    width: 100%;
 }
 
 /* Profile Flex Layout */
@@ -39,6 +41,7 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
+    width: 100%;
 }
 
 .profile-img {
@@ -56,13 +59,13 @@ body {
    ========================================== */
 .pdf-button, 
 .nav-btn {
-    font-family: 'Press Start 2P', monospace; /* Matching retro pixel font */
+    font-family: 'Press Start 2P', monospace;
     font-size: 11px;
     color: #ffffff !important;
     background: linear-gradient(180deg, #ff80df 0%, #cc0088 100%);
     border: 2px solid #ffffff;
     border-radius: 8px;
-    padding: 10px 16px;
+    padding: 12px 20px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -74,7 +77,6 @@ body {
     line-height: 1.2;
 }
 
-/* Hover State for Links & Buttons */
 .pdf-button:hover, 
 .nav-btn:hover {
     background: linear-gradient(180deg, #ff99e6 0%, #e60099 100%);
@@ -82,7 +84,6 @@ body {
     box-shadow: 3px 3px 0px #000000, 0 0 12px rgba(255, 128, 223, 0.8);
 }
 
-/* Active / Pressed State */
 .pdf-button:active, 
 .nav-btn:active {
     transform: translateY(1px);
@@ -90,17 +91,18 @@ body {
 }
 
 /* ==========================================
-   5. FLIPBOOK & NAVIGATION CONTROLS
+   5. LARGER FLIPBOOK & CONTROLS
    ========================================== */
 .flipbook-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 15px 0;
+    align-items: center;
+    margin: 20px 0;
 }
 
 #book {
-    box-shadow: 0 0 15px rgba(255, 128, 223, 0.4);
+    box-shadow: 0 0 20px rgba(255, 128, 223, 0.5);
 }
 
 .nav-controls {
@@ -112,9 +114,13 @@ body {
 }
 
 /* ==========================================
-   6. RESPONSIVE MOBILE TWEAKS
+   6. RESPONSIVE MOBILE ADJUSTMENTS
    ========================================== */
-@media (max-width: 500px) {
+@media (max-width: 650px) {
+    .wrapper {
+        width: 95%;
+    }
+
     .profile-flex {
         flex-direction: column;
         text-align: center;

@@ -29,7 +29,7 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
 
     for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const page = await pdfDoc_.getPage(pageNum);
-        // Render at higher resolution scale for clear rendering
+        // High-resolution rendering scale for sharp text on larger displays
         const viewport = page.getViewport({ scale: 2.0 });
 
         const pageDiv = document.createElement('div');
@@ -46,14 +46,14 @@ pdfjsLib.getDocument(url).promise.then(async function(pdfDoc_) {
         bookElement.appendChild(pageDiv);
     }
 
-    // Initialize PageFlip with strict single-page settings
+    // Initialize PageFlip with expanded single-page dimensions
     pageFlip = new St.PageFlip(bookElement, {
-        width: 450,           // Width of a single page
-        height: 600,          // Height of a single page
-        size: "fixed",        // Prevents automatic expansion into spreads
-        mode: "single",       // Forces single page orientation
+        width: 600,           // Expanded single-page width
+        height: 775,          // Expanded single-page height
+        size: "fixed",        // Prevents expansion into side-by-side spreads
+        mode: "single",       // Forces single-page rendering
         showCover: false,     // Keeps single flow consistent from page 1
-        usePortrait: true,    // Locks portrait display
+        usePortrait: true,    // Locks orientation
         mobileScrollSupport: true
     });
 
