@@ -15,7 +15,6 @@ body {
     scrollbar-color: #ffffff transparent;
 }
 
-/* Ensure all elements inherit border-box so padding/borders don't cause overflow */
 *, *:before, *:after {
     box-sizing: inherit;
 }
@@ -35,10 +34,10 @@ body {
     border: 2px solid #000000;
 }
 
-/* Main Container */
+/* Main Container - Restored to a clean, readable width */
 .wrapper {
     width: 90%;
-    max-width: 1000px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -157,7 +156,7 @@ a:focus-visible, button:focus-visible {
 }
 
 /* Responsive adjustments for mobile screens */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .wrapper {
         width: 95%;
         gap: 15px;
