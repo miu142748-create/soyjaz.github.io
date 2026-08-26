@@ -1,0 +1,160 @@
+<div class="audio-player-card">
+  <div class="player-info">
+    <p class="track-title">Pyramids (Instrumental)</p>
+    <p class="track-status" id="sr-announcements" aria-live="polite"></p>
+  </div>
+
+  <audio id="audio-element" src="your-audio-file.mp3" preload="metadata"></audio>
+
+  <div class="player-controls">
+    <button id="play-pause-btn" type="button" aria-label="Play Track" aria-pressed="false">
+      <span id="play-icon" aria-hidden="true">▶</span>
+    </button>
+
+    <div class="time-container">
+      <span id="current-time">0:00</span>
+      <input type="range" id="seek-slider" value="0" min="0" max="100" aria-label="Audio progress slider">
+      <span id="duration">0:00</span>
+    </div>
+
+    <div class="volume-container">
+      <button id="mute-btn" type="button" aria-label="Mute Audio" aria-pressed="false">🔊</button>
+      <input type="range" id="volume-slider" value="1" min="0" max="1" step="0.05" aria-label="Volume control">
+    </div>
+  </div>
+</div>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('audio-element');
+  const playPauseBtn = document.getElementById('play-pause-btn');
+  const playIcon = document.getElementById('play-icon');
+  const seekSlider = document.getElementById('seek-slider');
+  const volumeSlider = document.getElementById('volume-slider');
+  const muteBtn = document.getElementById('mute-btn');
+  const currentTimeEl = document.getElementById('current-time');
+  const durationEl = document.getElementById('duration');
+  const srAnnouncements = document.getElementById('sr-announcements');
+
+  const formatTime = (secs) => {
+    if (isNaN(secs)) return '0:00';
+    const minutes = Math.floor(secs / 60);
+    const seconds = Math.floor(secs % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
+
+  // Play / Pause Toggle
+  playPauseBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().then(() => {
+        playIcon.textContent = '❚❚';
+        playPauseBtn.setAttribute('aria-label', 'Pause Track');
+        playPauseBtn.setAttribute('aria-pressed', 'true');
+        srAnnouncements.textContent = 'Audio playing';
+      }).catch(err => {
+        console.error('Playback failed:', err);
+        srAnnouncements.textContent = 'Error playing audio file';
+      });
+    } else {
+      audio.pause();
+      playIcon.textContent = '▶';
+      playPauseBtn.setAttribute('aria-label', 'Play Track');
+      playPauseBtn.setAttribute('aria-pressed', 'false');
+      srAnnouncements.textContent = 'Audio paused';
+    }
+  });
+
+  // Update Duration Once Metadata Loads
+  audio.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = formatTime(audio.duration);
+    seekSlider.max = Math.floor(audio.duration);
+  });
+
+  // Update Slider & Time Display as Audio Plays
+  audio.addEventListener('timeupdate', () => {
+    seekSlider.value = Math.floor(audio.currentTime);
+    currentTimeEl.textContent = formatTime(audio.currentTime);
+  });
+
+  // Seeking
+  seekSlider.addEventListener('input', () => {
+    audio.currentTime = seekSlider.value;
+  });
+
+  // Volume Control
+  volumeSlider.addEventListener('input', () => {
+    audio.volume = volumeSlider.value;
+    audio.muted = (parseFloat(volumeSlider.value) === 0);
+    muteBtn.setAttribute('aria-pressed', audio.muted ? 'true' : 'false');
+  });
+
+  // Mute Button Toggle
+  muteBtn.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+    muteBtn.setAttribute('aria-pressed', audio.muted ? 'true' : 'false');
+    muteBtn.textContent = audio.muted ? '🔇' : '🔊';
+  });
+});
+
+.audio-player-card {
+  background-color: #1a1a1a;
+  border: 2px solid #ff80df;
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: #ffffff;
+  max-width: 500px;
+  margin: 20px auto;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.track-title {
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #ff80df;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#play-pause-btn, #mute-btn {
+  background: #ff80df;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#play-pause-btn:focus-visible, #mute-btn:focus-visible {
+  outline: 3px solid #ffffff;
+}
+
+.time-container, .volume-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+input[type="range"] {
+  accent-color: #ff80df;
+  cursor: pointer;
+}
+
+.sr-only, .track-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
