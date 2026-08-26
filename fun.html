@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music & Media Showcase</title>
+  <title>Music & Media Showcase - Pyramids</title>
   <link rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAXIpcAHPR/wBhq/8ALk8uAL/w8gBksv8AdLX/ANL7/ACn6u0AQmNCADpc+wCp4/8ATW5NAFCD/gAAAAAAC7u7tEu7u7C7u7u6S7u7u7u7u7pLu7u77u7u6k7u7u7u7uqqTu7u7nd3qqpDMzN3czPaNKSjMzcjM9E9oaoiIiJj0z1DFCIiIiLSLUIUIiLMzMzNTMrMzJmZmZ1JnZmZmZmZkdmZmZmZmZmZmZmZmmVVVVVVVVVVVCIiIiIiIiICAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAA" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -18,6 +18,7 @@
       margin: 20px auto;
       color: #ffffff;
       box-shadow: 0 4px 15px rgba(255, 128, 223, 0.2);
+      box-sizing: border-box;
     }
     .track-info {
       text-align: center;
@@ -37,7 +38,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 12px;
       margin-bottom: 15px;
     }
     .btn-control {
@@ -54,6 +55,7 @@
       justify-content: center;
       font-size: 1.1rem;
       transition: transform 0.1s ease, background-color 0.2s ease;
+      flex-shrink: 0;
     }
     .btn-control:hover, .btn-control:focus {
       background: #ffffff;
@@ -69,6 +71,7 @@
       gap: 10px;
       font-size: 0.85rem;
       color: #aaaaaa;
+      margin-bottom: 15px;
     }
     .slider {
       flex: 1;
@@ -76,21 +79,44 @@
       border-radius: 3px;
       accent-color: #ff80df;
       cursor: pointer;
+      min-width: 0;
     }
+    /* Compact Volume Section */
     .volume-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-top: 15px;
       justify-content: flex-end;
+      gap: 8px;
+      padding-top: 5px;
+      border-top: 1px solid #2a2a32;
     }
-    .volume-row label {
-      font-size: 0.85rem;
-      color: #cccccc;
+    .btn-volume {
+      background: transparent;
+      border: 1px solid #ff80df;
+      color: #ff80df;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 0;
+    }
+    .btn-volume:hover, .btn-volume:focus {
+      background: rgba(255, 128, 223, 0.2);
+    }
+    .volume-label {
+      font-size: 0.75rem;
+      color: #aaaaaa;
     }
     .volume-slider {
-      width: 100px;
+      width: 70px;
+      height: 4px;
       accent-color: #ff80df;
+      cursor: pointer;
     }
     /* Lyrics Accordion */
     .lyrics-section {
@@ -142,6 +168,13 @@
       height: 100%;
       border: 0;
     }
+    .hidden-player {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
     /* Screen Reader Only Utility */
     .sr-only {
       position: absolute;
@@ -164,61 +197,59 @@
       <a class="pdf-button" href="index.html" aria-label="Return to homepage">[ BACK TO HOME ]</a>
     </header>
 
-    <!-- Accessible Custom Audio Player -->
+    <!-- Hidden iframe for background audio playback -->
+    <div id="audio-player-container" class="hidden-player"></div>
+
+    <!-- Custom Audio Player Card -->
     <section aria-labelledby="audio-player-heading">
       <h2 id="audio-player-heading" class="sr-only">Audio Player</h2>
       
       <div class="audio-player-card">
-        <audio id="audio-element" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="metadata"></audio>
-
         <div class="track-info">
-          <div class="track-title" id="track-title">SoundHelix Song 1</div>
-          <div class="track-artist" id="track-artist">Demo Artist</div>
+          <div class="track-title" id="track-title">Pyramids (Instrumental)</div>
+          <div class="track-artist" id="track-artist">Frank Ocean</div>
         </div>
 
         <div class="controls-row">
-          <button id="prev-btn" class="btn-control" aria-label="Previous Track">⏮</button>
           <button id="play-pause-btn" class="btn-control" aria-label="Play Track" aria-pressed="false">▶</button>
-          <button id="next-btn" class="btn-control" aria-label="Next Track">⏭</button>
         </div>
 
         <div class="time-row">
           <span id="current-time">0:00</span>
-          <input type="range" id="seek-slider" class="slider" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Slider" aria-valuetext="0 percent elapsed">
+          <input type="range" id="seek-slider" class="slider" value="0" min="0" max="100" step="1" aria-label="Audio Seek Slider" aria-valuetext="0 percent elapsed">
           <span id="total-duration">0:00</span>
         </div>
 
+        <!-- Compact volume control fitting neatly within card bounds -->
         <div class="volume-row">
-          <button id="mute-btn" class="btn-control" style="width:32px; height:32px; font-size:0.8rem;" aria-label="Mute Audio" aria-pressed="false">🔊</button>
-          <label for="volume-slider">Volume</label>
-          <input type="range" id="volume-slider" class="volume-slider" value="1" min="0" max="1" step="0.05" aria-label="Volume Slider">
+          <button id="mute-btn" class="btn-volume" aria-label="Mute Audio" aria-pressed="false">🔊</button>
+          <label for="volume-slider" class="volume-label">Vol</label>
+          <input type="range" id="volume-slider" class="volume-slider" value="100" min="0" max="100" step="1" aria-label="Volume Slider">
         </div>
 
         <!-- Lyrics Accordion -->
         <div class="lyrics-section">
           <button id="lyrics-toggle-btn" class="lyrics-toggle" aria-expanded="false" aria-controls="lyrics-panel">
-            📜 Toggle Lyrics / Transcript
+            📜 Toggle Lyrics / Notes
           </button>
           <div id="lyrics-panel" class="lyrics-content" role="region" aria-labelledby="lyrics-toggle-btn">
-            [Instrumental Track - Demo Lyrics]
-            Verse 1:
-            Exploring sound and melody,
-            Building accessible web experiences,
-            WCAG 2.2 compliant media players,
-            Designed for everyone to enjoy.
+            [Pyramids - Instrumental Track]
+            
+            Part I: Ancient Egypt & Royalty
+            Part II: Modern Era & Transformation
           </div>
         </div>
       </div>
     </section>
 
-    <!-- YouTube Embed Section -->
+    <!-- Featured YouTube Video Section -->
     <section aria-labelledby="youtube-section-heading" style="margin-top: 40px;">
-      <h2 id="youtube-section-heading" style="color: #ff80df; text-align: center;">Featured Video</h2>
+      <h2 id="youtube-section-heading" style="color: #ff80df; text-align: center;">Featured Video: Pyramids</h2>
       
       <div class="video-container">
         <iframe 
-          src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" 
-          title="Featured YouTube Video" 
+          src="https://www.youtube-nocookie.com/embed/G678nf7U6as" 
+          title="Frank Ocean - Pyramids" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
         </iframe>
@@ -230,405 +261,136 @@
 
   </div>
 
+  <!-- Load YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    const playlist = [
-      {
-        title: "SoundHelix Song 1",
-        artist: "Demo Artist 1",
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        lyrics: "[Track 1]\nVerse 1:\nExploring sound and melody,\nBuilding accessible web experiences."
-      },
-      {
-        title: "SoundHelix Song 2",
-        artist: "Demo Artist 2",
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        lyrics: "[Track 2]\nVerse 1:\nMoving forward through the soundscape,\nTesting user controls and feedback."
-      }
-    ];
+    let player;
+    let updateTimer;
+    let isMuted = false;
 
-    let currentTrackIndex = 0;
-    const audio = document.getElementById('audio-element');
     const playPauseBtn = document.getElementById('play-pause-btn');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
     const seekSlider = document.getElementById('seek-slider');
     const volumeSlider = document.getElementById('volume-slider');
     const muteBtn = document.getElementById('mute-btn');
     const currentTimeEl = document.getElementById('current-time');
     const totalDurationEl = document.getElementById('total-duration');
-    const trackTitleEl = document.getElementById('track-title');
-    const trackArtistEl = document.getElementById('track-artist');
     const lyricsPanel = document.getElementById('lyrics-panel');
     const lyricsToggleBtn = document.getElementById('lyrics-toggle-btn');
     const srAnnouncements = document.getElementById('sr-announcement');
 
     function formatTime(seconds) {
-      if (isNaN(seconds)) return "0:00";
+      if (isNaN(seconds) || seconds === 0) return "0:00";
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
-    function loadTrack(index) {
-      const track = playlist[index];
-      audio.src = track.src;
-      trackTitleEl.textContent = track.title;
-      trackArtistEl.textContent = track.artist;
-      lyricsPanel.textContent = track.lyrics;
-      seekSlider.value = 0;
-      currentTimeEl.textContent = "0:00";
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('audio-player-container', {
+        height: '0',
+        width: '0',
+        videoId: 'G678nf7U6as',
+        playerVars: {
+          'playsinline': 1
+        },
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
     }
 
-    playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
+    function onPlayerReady(event) {
+      const duration = player.getDuration();
+      totalDurationEl.textContent = formatTime(duration);
+      seekSlider.max = Math.floor(duration);
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
         playPauseBtn.textContent = '⏸';
         playPauseBtn.setAttribute('aria-label', 'Pause Track');
         playPauseBtn.setAttribute('aria-pressed', 'true');
-        srAnnouncements.textContent = `Playing ${playlist[currentTrackIndex].title}`;
+        srAnnouncements.textContent = "Playing Pyramids Instrumental";
+        startTimer();
       } else {
-        audio.pause();
         playPauseBtn.textContent = '▶';
         playPauseBtn.setAttribute('aria-label', 'Play Track');
         playPauseBtn.setAttribute('aria-pressed', 'false');
-        srAnnouncements.textContent = "Audio paused";
+        if (event.data === YT.PlayerState.PAUSED) {
+          srAnnouncements.textContent = "Audio paused";
+        }
+        stopTimer();
+      }
+    }
+
+    function startTimer() {
+      stopTimer();
+      updateTimer = setInterval(() => {
+        if (player && player.getCurrentTime) {
+          const current = player.getCurrentTime();
+          const duration = player.getDuration();
+          seekSlider.value = Math.floor(current);
+          currentTimeEl.textContent = formatTime(current);
+          const progressPercent = Math.round((current / duration) * 100) || 0;
+          seekSlider.setAttribute('aria-valuetext', `${progressPercent} percent elapsed`);
+        }
+      }, 500);
+    }
+
+    function stopTimer() {
+      clearInterval(updateTimer);
+    }
+
+    playPauseBtn.addEventListener('click', () => {
+      if (!player) return;
+      const state = player.getPlayerState();
+      if (state === YT.PlayerState.PLAYING) {
+        player.pauseVideo();
+      } else {
+        player.playVideo();
       }
     });
 
-    prevBtn.addEventListener('click', () => {
-      currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
-      loadTrack(currentTrackIndex);
-      audio.play();
-      playPauseBtn.textContent = '⏸';
-      playPauseBtn.setAttribute('aria-pressed', 'true');
-      srAnnouncements.textContent = `Switched to ${playlist[currentTrackIndex].title}`;
-    });
-
-    nextBtn.addEventListener('click', () => {
-      currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-      loadTrack(currentTrackIndex);
-      audio.play();
-      playPauseBtn.textContent = '⏸';
-      playPauseBtn.setAttribute('aria-pressed', 'true');
-      srAnnouncements.textContent = `Switched to ${playlist[currentTrackIndex].title}`;
-    });
-
-    audio.addEventListener('loadedmetadata', () => {
-      totalDurationEl.textContent = formatTime(audio.duration);
-      seekSlider.max = audio.duration;
-    });
-
-    audio.addEventListener('timeupdate', () => {
-      seekSlider.value = audio.currentTime;
-      currentTimeEl.textContent = formatTime(audio.currentTime);
-      const progressPercent = Math.round((audio.currentTime / audio.duration) * 100) || 0;
-      seekSlider.setAttribute('aria-valuetext', `${progressPercent} percent elapsed`);
-    });
-
     seekSlider.addEventListener('input', () => {
-      audio.currentTime = seekSlider.value;
+      if (player && player.seekTo) {
+        player.seekTo(seekSlider.value, true);
+        currentTimeEl.textContent = formatTime(seekSlider.value);
+      }
     });
 
     volumeSlider.addEventListener('input', () => {
-      audio.volume = volumeSlider.value;
-      if (parseFloat(volumeSlider.value) === 0) {
-        muteBtn.setAttribute('aria-pressed', 'true');
-        muteBtn.setAttribute('aria-label', 'Unmute Audio');
-      } else {
-        muteBtn.setAttribute('aria-pressed', 'false');
-        muteBtn.setAttribute('aria-label', 'Mute Audio');
+      if (player && player.setVolume) {
+        const vol = parseInt(volumeSlider.value);
+        player.setVolume(vol);
+        if (vol === 0) {
+          muteBtn.textContent = '🔇';
+          muteBtn.setAttribute('aria-pressed', 'true');
+        } else {
+          muteBtn.textContent = '🔊';
+          muteBtn.setAttribute('aria-pressed', 'false');
+        }
       }
     });
 
     muteBtn.addEventListener('click', () => {
-      audio.muted = !audio.muted;
-      if (audio.muted) {
-        muteBtn.setAttribute('aria-pressed', 'true');
-        muteBtn.setAttribute('aria-label', 'Unmute Audio');
-        srAnnouncements.textContent = "Audio muted";
-      } else {
+      if (!player) return;
+      if (player.isMuted()) {
+        player.unMute();
+        muteBtn.textContent = '🔊';
         muteBtn.setAttribute('aria-pressed', 'false');
-        muteBtn.setAttribute('aria-label', 'Mute Audio');
         srAnnouncements.textContent = "Audio unmuted";
+      } else {
+        player.mute();
+        muteBtn.textContent = '🔇';
+        muteBtn.setAttribute('aria-pressed', 'true');
+        srAnnouncements.textContent = "Audio muted";
       }
     });
 
     lyricsToggleBtn.addEventListener('click', () => {
       const isOpen = lyricsPanel.classList.toggle('open');
       lyricsToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-  </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fun & Accessible Audio</title>
-  <style>
-    /* Screen Reader Only Utility */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 1rem;
-    }
-
-    h1 {
-      margin-bottom: 0.5rem;
-      font-size: 1.75rem;
-    }
-
-    p.subtitle {
-      color: #94a3b8;
-      margin-bottom: 2rem;
-    }
-
-    .accessible-player-wrapper {
-      width: 100%;
-      max-width: 500px;
-    }
-
-    .player-container {
-      background: #1e293b;
-      border: 2px solid #334155;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-    }
-
-    .track-meta {
-      margin-bottom: 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .track-title {
-      font-weight: 700;
-      font-size: 1.125rem;
-      color: #f8fafc;
-    }
-
-    .track-artist {
-      font-size: 0.875rem;
-      color: #94a3b8;
-    }
-
-    .controls-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    button, input[type="range"] {
-      outline: none;
-    }
-
-    button:focus-visible, input[type="range"]:focus-visible {
-      outline: 3px solid #38bdf8;
-      outline-offset: 3px;
-    }
-
-    .control-btn {
-      background: #334155;
-      border: 2px solid #f8fafc;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #f8fafc;
-      transition: background 0.2s;
-    }
-
-    .control-btn:hover {
-      background: #475569;
-    }
-
-    .progress-container {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      gap: 0.75rem;
-      font-size: 0.875rem;
-      color: #cbd5e1;
-    }
-
-    input[type="range"] {
-      flex: 1;
-      accent-color: #38bdf8;
-      height: 8px;
-      cursor: pointer;
-    }
-
-    .volume-container {
-      width: 80px;
-      display: flex;
-      align-items: center;
-    }
-
-    .back-link {
-      margin-top: 2rem;
-      color: #38bdf8;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>WCAG 2.2 Audio Component</h1>
-  <p class="subtitle">Fully accessible, keyboard-operable custom audio player.</p>
-
-  <section class="accessible-player-wrapper" aria-labelledby="player-heading">
-    <h2 id="player-heading" class="sr-only">Audio Player: Ambient Focus Track</h2>
-
-    <div class="player-container" role="region" aria-label="Music Player Controls">
-      
-      <div class="track-meta">
-        <span class="track-title" id="track-name">Ambient Flow State</span>
-        <span class="track-artist">Open-Access Track</span>
-      </div>
-
-      <audio id="audio-element" preload="metadata">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
-
-      <div class="controls-row">
-        
-        <button id="play-btn" class="control-btn" aria-label="Play" aria-pressed="false" aria-controls="audio-element">
-          <svg class="icon-play" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-          <svg class="icon-pause" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none;">
-            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-          </svg>
-        </button>
-
-        <div class="progress-container">
-          <span id="current-time" aria-hidden="true">0:00</span>
-          
-          <label for="seek-slider" class="sr-only">Seek Audio Progress</label>
-          <input type="range" id="seek-slider" min="0" max="100" value="0" step="0.1" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 percent elapsed">
-          
-          <span id="duration" aria-hidden="true">0:00</span>
-        </div>
-
-        <button id="mute-btn" class="control-btn" aria-label="Mute Audio" aria-pressed="false">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77-2.99-7.86-7-8.77z"/>
-          </svg>
-        </button>
-
-        <div class="volume-container">
-          <label for="volume-slider" class="sr-only">Volume Control</label>
-          <input type="range" id="volume-slider" min="0" max="1" value="1" step="0.01" aria-label="Volume">
-        </div>
-
-      </div>
-
-      <div id="sr-announcements" class="sr-only" aria-live="polite"></div>
-
-    </div>
-  </section>
-
-  <a href="index.html" class="back-link">← Return Home</a>
-
-  <script>
-    const audio = document.getElementById('audio-element');
-    const playBtn = document.getElementById('play-btn');
-    const muteBtn = document.getElementById('mute-btn');
-    const seekSlider = document.getElementById('seek-slider');
-    const volumeSlider = document.getElementById('volume-slider');
-    const currentTimeEl = document.getElementById('current-time');
-    const durationEl = document.getElementById('duration');
-    const srAnnouncements = document.getElementById('sr-announcements');
-
-    const playIcon = playBtn.querySelector('.icon-play');
-    const pauseIcon = playBtn.querySelector('.icon-pause');
-
-    function formatTime(seconds) {
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-    }
-
-    audio.addEventListener('loadedmetadata', () => {
-      durationEl.textContent = formatTime(audio.duration);
-      seekSlider.max = audio.duration;
-    });
-
-    function togglePlay() {
-      if (audio.paused) {
-        audio.play();
-        playIcon.style.display = 'none';
-        pauseIcon.style.display = 'block';
-        playBtn.setAttribute('aria-label', 'Pause');
-        playBtn.setAttribute('aria-pressed', 'true');
-        srAnnouncements.textContent = "Audio playing";
-      } else {
-        audio.pause();
-        playIcon.style.display = 'block';
-        pauseIcon.style.display = 'none';
-        playBtn.setAttribute('aria-label', 'Play');
-        playBtn.setAttribute('aria-pressed', 'false');
-        srAnnouncements.textContent = "Audio paused";
-      }
-    }
-
-    playBtn.addEventListener('click', togglePlay);
-
-    audio.addEventListener('timeupdate', () => {
-      seekSlider.value = audio.currentTime;
-      currentTimeEl.textContent = formatTime(audio.currentTime);
-      const progressPercent = Math.round((audio.currentTime / audio.duration) * 100) || 0;
-      seekSlider.setAttribute('aria-valuetext', `${progressPercent} percent elapsed`);
-    });
-
-    seekSlider.addEventListener('input', () => {
-      audio.currentTime = seekSlider.value;
-    });
-
-    volumeSlider.addEventListener('input', () => {
-      audio.volume = volumeSlider.value;
-    });
-
-    muteBtn.addEventListener('click', () => {
-      audio.muted = !audio.muted;
-      if (audio.muted) {
-        muteBtn.setAttribute('aria-pressed', 'true');
-        muteBtn.setAttribute('aria-label', 'Unmute Audio');
-        srAnnouncements.textContent = "Audio muted";
-      } else {
-        muteBtn.setAttribute('aria-pressed', 'false');
-        muteBtn.setAttribute('aria-label', 'Mute Audio');
-        srAnnouncements.textContent = "Audio unmuted";
-      }
     });
   </script>
 </body>
