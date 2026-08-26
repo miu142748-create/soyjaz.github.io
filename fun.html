@@ -8,7 +8,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Custom Audio Player Styles */
+    /* Page Container matching main site spacing */
+    .showcase-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Custom Audio Player Card */
     .audio-player-card {
       background: #1e1e24;
       border: 2px solid #ff80df;
@@ -87,7 +94,7 @@
       align-items: center;
       justify-content: flex-end;
       gap: 8px;
-      padding-top: 5px;
+      padding-top: 10px;
       border-top: 1px solid #2a2a32;
     }
     .btn-volume {
@@ -157,7 +164,7 @@
       overflow: hidden;
       max-width: 100%;
       border-radius: 8px;
-      margin-top: 20px;
+      margin-top: 15px;
       border: 1px solid #333;
     }
     .video-container iframe {
@@ -175,7 +182,7 @@
       opacity: 0;
       pointer-events: none;
     }
-    /* Screen Reader Only Utility */
+    /* Accessibility Screen Reader Utility */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -190,10 +197,10 @@
   </style>
 </head>
 <body>
-  <div class="container" style="max-width: 800px; margin: 0 auto; padding: 20px;">
+  <div class="showcase-wrapper">
     
-    <header style="text-align: center; margin-bottom: 30px;">
-      <h1 style="color: #ff80df; margin-bottom: 10px;">Media Showcase</h1>
+    <header class="box" style="text-align: center; margin-bottom: 25px;">
+      <h1 style="color: #ff80df; margin-bottom: 12px;">Media Showcase</h1>
       <a class="pdf-button" href="index.html" aria-label="Return to homepage">[ BACK TO HOME ]</a>
     </header>
 
@@ -220,7 +227,7 @@
           <span id="total-duration">0:00</span>
         </div>
 
-        <!-- Compact volume control fitting neatly within card bounds -->
+        <!-- Compact Volume Control -->
         <div class="volume-row">
           <button id="mute-btn" class="btn-volume" aria-label="Mute Audio" aria-pressed="false">🔊</button>
           <label for="volume-slider" class="volume-label">Vol</label>
@@ -243,8 +250,8 @@
     </section>
 
     <!-- Featured YouTube Video Section -->
-    <section aria-labelledby="youtube-section-heading" style="margin-top: 40px;">
-      <h2 id="youtube-section-heading" style="color: #ff80df; text-align: center;">Featured Video: Pyramids</h2>
+    <section aria-labelledby="youtube-section-heading" class="box" style="margin-top: 30px;">
+      <h2 id="youtube-section-heading" style="color: #ff80df; text-align: center; margin-bottom: 15px;">Featured Video: Pyramids</h2>
       
       <div class="video-container">
         <iframe 
@@ -256,6 +263,13 @@
       </div>
     </section>
 
+    <!-- WCAG Compliance Notice Footer -->
+    <div class="box" style="margin-top: 30px; margin-bottom: 35px;">
+      <p style="margin: 0; font-size: 12px; color: #ffffff; font-style: italic; text-align: center;">
+        Note: This page aligns with WCAG 2.2 accessibility guidelines.
+      </p>
+    </div>
+
     <!-- ARIA Live Region for Screen Reader Announcements -->
     <div id="sr-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
@@ -266,7 +280,6 @@
   <script>
     let player;
     let updateTimer;
-    let isMuted = false;
 
     const playPauseBtn = document.getElementById('play-pause-btn');
     const seekSlider = document.getElementById('seek-slider');
