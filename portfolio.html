@@ -8,9 +8,6 @@
     <!-- Imported Google Fonts: Press Start 2P (Pixel) and Fira Code (Tech/Monospace) -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Required Scripts for Flipbook Rendering -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
     <style>
     body {
         background-image: url('https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
@@ -84,7 +81,7 @@
         </div>
         <script src="https://player.vimeo.com/api/player.js"></script>
 
-        <!-- Needs and Learner Analysis Flipbook Section -->
+        <!-- Needs and Learner Analysis Section (Standard iframe Preview) -->
         <div class="box" style="text-align: left; background: #1e1e1e; padding: 25px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #333;">
             <div style="text-align: center; margin-bottom: 15px;">
                 <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px;">✨ Needs and Learner Analysis ✨</p>
@@ -96,16 +93,9 @@
             
             <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 8px;"><strong>Design Impact:</strong> Shaped the development of modular content, built-in feedback loops, and targeted information literacy resources.</p>
             
-            <!-- Flipbook Container for Needs Analysis -->
-            <div class="flipbook-container" style="margin-top: 20px;">
-                <div id="needs-book"></div>
-            </div>
-
-            <!-- Flipbook Navigation Controls -->
-            <div class="nav-controls" style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 15px;">
-                <button id="needs-prev-btn" class="nav-btn" aria-label="Previous Page">PREV</button>
-                <span id="needs-page-info" style="font-family: 'Press Start 2P', monospace; font-size: 8pt; color: #ffffff;">Loading...</span>
-                <button id="needs-next-btn" class="nav-btn" aria-label="Next Page">NEXT</button>
+            <!-- Document Preview Iframe -->
+            <div style="width: 100%; height: 500px; border: 2px dashed #ff80df; background: #000000; border-radius: 4px; overflow: hidden; margin-top: 20px;">
+                <iframe src="Needs-And-Learner-Analysis.pdf" width="100%" height="100%" style="border: none;"></iframe>
             </div>
 
             <!-- Open / Download Button -->
@@ -120,76 +110,5 @@
         </div>
 
     </div>
-
-    <!-- Script to Render the PDF into the Flipbook Viewer -->
-    <script>
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-
-        const needsPdfUrl = 'Needs-And-Learner-Analysis.pdf'; 
-
-        async function renderNeedsFlipbook() {
-            try {
-                const loadingTask = pdfjsLib.getDocument(needsPdfUrl);
-                const pdf = await loadingTask.promise;
-                const bookElement = document.getElementById('needs-book');
-                bookElement.innerHTML = '';
-
-                for (let i = 1; i <= pdf.numPages; i++) {
-                    const page = await pdf.getPage(i);
-                    const viewport = page.getViewport({ scale: 1.5 });
-                    
-                    const pageDiv = document.createElement('div');
-                    pageDiv.className = 'page';
-                    
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-                    canvas.height = viewport.height;
-                    canvas.width = viewport.width;
-                    canvas.style.width = '100%';
-                    canvas.style.height = '100%';
-
-                    await page.render({ canvasContext: context, viewport: viewport }).promise;
-                    pageDiv.appendChild(canvas);
-                    bookElement.appendChild(pageDiv);
-                }
-
-                const pageFlip = new St.PageFlip(bookElement, {
-                    width: 400,
-                    height: 550,
-                    size: 'stretch',
-                    minWidth: 280,
-                    maxWidth: 500,
-                    minHeight: 400,
-                    maxHeight: 700,
-                    maxShadowOpacity: 0.5,
-                    showCover: true,
-                    mobileScrollSupport: false
-                });
-
-                pageFlip.loadFromHTML(bookElement.querySelectorAll('.page'));
-
-                const pageInfo = document.getElementById('needs-page-info');
-                pageFlip.on('change', (e) => {
-                    pageInfo.textContent = `Page ${e.data + 1} of ${pdf.numPages}`;
-                });
-                pageInfo.textContent = `Page 1 of ${pdf.numPages}`;
-
-                document.getElementById('needs-prev-btn').addEventListener('click', () => {
-                    pageFlip.flipPrev();
-                });
-
-                document.getElementById('needs-next-btn').addEventListener('click', () => {
-                    pageFlip.flipNext();
-                });
-
-            } catch (error) {
-                console.error('Error rendering needs analysis flipbook:', error);
-                document.getElementById('needs-book').innerHTML = '<p style="text-align:center; padding: 40px; color: #ff80df; font-size: 12px;">Flipbook preview unavailable. Use the button below to open the file directly!</p>';
-                document.getElementById('needs-page-info').textContent = 'Error loading preview';
-            }
-        }
-
-        renderNeedsFlipbook();
-    </script>
 </body>
 </html>
