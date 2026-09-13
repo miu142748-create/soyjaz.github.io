@@ -13,6 +13,21 @@
         background-attachment: fixed;
         background-repeat: repeat;
     }
+    /* Responsive styling for mobile PDF preview frame */
+    .pdf-preview-container {
+        width: 100%;
+        height: 500px;
+        border: 2px dashed #ff80df;
+        background: #000000;
+        border-radius: 4px;
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+    @media (max-width: 768px) {
+        .pdf-preview-container {
+            height: 350px;
+        }
+    }
    </style>
 </head>
 <body>
@@ -31,12 +46,15 @@
        </div>
        <div class="box" style="text-align: center;">
            <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 16px;">✨ Presentation Preview ✨</p>
-           <p style="font-size: 13px; color: #ffffff; margin-bottom: 15px; font-style: italic;">Scroll through the slide deck below:</p>
-           <div style="width: 100%; height: 500px; border: 2px dashed #ff80df; background: #000000; border-radius: 4px; overflow: hidden;">
-               <iframe src="FINAL, Innovating Online Learning in Technical and Professional Communication.pptx.pdf" width="100%" height="100%" style="border: none;"></iframe>
+           <p style="font-size: 13px; color: #ffffff; margin-bottom: 15px; font-style: italic;">Scroll through or view the slide deck below:</p>
+           
+           <!-- Top download button for optimal mobile experience -->
+           <div style="margin-bottom: 15px;">
+               <a class="pdf-button" href="FINAL, Innovating Online Learning in Technical and Professional Communication.pptx.pdf" target="_blank" aria-label="Open presentation PDF in new tab">[ OPEN FULL SCREEN / DOWNLOAD PDF ]</a>
            </div>
-           <div style="margin-top: 20px;">
-               <a class="pdf-button" href="FINAL, Innovating Online Learning in Technical and Professional Communication.pptx.pdf" target="_blank" aria-label="Open presentation PDF in new tab">[ OPEN / DOWNLOAD PDF ]</a>
+
+           <div class="pdf-preview-container">
+               <iframe src="FINAL, Innovating Online Learning in Technical and Professional Communication.pptx.pdf" width="100%" height="100%" style="border: none;"></iframe>
            </div>
        </div>
        <div class="box" style="text-align: center; display: flex; justify-content: center; align-items: center;">
