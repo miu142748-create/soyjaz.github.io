@@ -20,7 +20,7 @@
     }
     @media screen and (max-width: 768px) {
         body {
-            padding: 10px;
+            padding: 10px !important;
         }
         .wrapper {
             max-width: 100% !important;
@@ -28,8 +28,9 @@
         .box {
             padding: 15px !important;
         }
+        /* Shrink the 500px PDF/presentation containers on mobile */
         div[style*="height: 500px"] {
-            height: 320px !important;
+            height: 300px !important;
         }
     }
     </style>
