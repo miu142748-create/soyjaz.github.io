@@ -3,119 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>soy jaz</title>
-    <link rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAXIpcAHPR/wBhq/8ALk8uAL/w8gBksv8AdLX/ANL7/ACn6u0AQmNCADpc+wCp4/8ATW5NAFCD/gAAAAAAC7u7tEu7u7C7u7u6S7u7u7u7u7pLu7u77u7u6k7u7u7u7uqqTu7u7nd3qqpDMzN3czPaNKSjMzcjM9E9oaoiIiJj0z1DFCIiIiLSLUIUIiLMzMzNTMrMzJmZmZ1JnZmZmZmZkdmZmZmZmZmZmZmZmVVVVVVVVVVVCIiIiIiIiICAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAQAA" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Portfolio - Check-In Design</title>
     <style>
-    body {
-        background-image: url('https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif');
-        background-attachment: fixed;
-        background-repeat: repeat;
-        background-color: #121212; 
-        color: #ffffff; 
-        font-family: 'Fira Code', monospace; 
-        margin: 0; 
-        padding: 20px;
-    }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .main-container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .box {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .pdf-container {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            min-height: 400px;
+            max-height: 600px;
+            border: 2px dashed #ff80df;
+            background: #000000;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .box {
+                padding: 15px;
+            }
+            .pdf-button {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <div class="wrapper" style="max-width: 800px; margin: 0 auto;">
-
-        <div class="box" style="text-align: center; margin-bottom: 25px;">
-            <h1 style="margin: 0; color: #ff80df; font-family: 'Press Start 2P', monospace; font-size: 24px; letter-spacing: 2px; text-shadow: 2px 2px #ff007f33;">PORTFOLIO</h1>
+    <div class="main-container">
+        <div class="box" style="text-align: center;">
+            <p style="margin: 0; color: #ff80df; font-weight: 700; font-size: 18px;">✨ Check-In Design ✨</p>
         </div>
-
-        <div class="box" style="text-align: center; margin-bottom: 25px;">
-            <a class="pdf-button" href="index.html" aria-label="Return to homepage" style="color: #ff80df; border: 1.5px solid #ff80df; padding: 6px 14px; text-decoration: none; border-radius: 4px; font-weight: 700; display: inline-block; font-size: 12px;">[ BACK TO HOME ]</a>
-        </div>
-
-        <div class="box" style="text-align: left; background: #1e1e1e; padding: 25px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #333;">
-            <h2 style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 18px; text-align: center;">Innovating Online Learning in Technical and Professional Communication</h2>
-
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff;"><strong>The Goal:</strong> Engineered an end-to-end asynchronous learning module using the ADDIE framework to fix navigation bottlenecks and modernize digital literacy training in D2L Brightspace.</p>
-
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;"><strong>Stack & Frameworks:</strong> D2L Brightspace LMS, ADDIE Model, Multimodal UDL Strategies</p>
-
-            <div style="text-align: center;">
-                <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px;">✨ Presentation Preview ✨</p>
-                <p style="font-size: 12px; color: #ffffff; margin-bottom: 15px; font-style: italic;">Scroll through the slide deck below:</p>
-            </div>
-
-            <div style="width: 100%; height: 500px; border: 2px dashed #ff80df; background: #000000; border-radius: 4px; overflow: hidden;">
-                <iframe src="FINAL, Innovating Online Learning in Technical and Professional Communication.pptx.pdf" width="100%" height="100%" style="border: none;"></iframe>
-            </div>
-
-            <div style="margin-top: 20px; text-align: center;">
-                <a class="pdf-button" href="FINAL, Innovating Online Learning in Technical and Professional Communication.pptx.pdf" target="_blank" aria-label="Open presentation PDF in new tab" style="color: #ff80df; border: 1.5px solid #ff80df; padding: 6px 14px; text-decoration: none; border-radius: 4px; font-weight: 700; display: inline-block; font-size: 12px;">[ OPEN / DOWNLOAD PDF ]</a>
-            </div>
-        </div>
-
-        <div class="box" style="text-align: left; background: #1e1e1e; padding: 25px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #333;">
-            <div style="text-align: center; margin-bottom: 15px;">
-                <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px;">✨ Usability Testing Video ✨</p>
-            </div>
-
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>The Test:</strong> Put real users in the driver's seat to stress-test the module's layout, cut out friction points, and make sure the content actually flows for a Professional & Technical Writing audience.</p>
-
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>What it is:</strong> Usability testing is a hands-on evaluation method used to see how intuitively users can navigate a digital environment without getting lost or overwhelmed.</p>
-
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 8px;"><strong>Key Breakdown:</strong></p>
-            <ul style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-top: 0; margin-bottom: 20px; padding-left: 20px;">
-                <li>Live observation of users completing core tasks inside D2L Brightspace.</li>
-                <li>Pinpointing clunky menus, hidden instructions, or broken design loops.</li>
-                <li>Iterating on user feedback to streamline the overall experience.</li>
-            </ul>
-
-            <div style="padding:56.25% 0 0 0; position:relative; border-radius: 4px; overflow: hidden;">
-                <iframe src="https://player.vimeo.com/video/1226350271?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Usability Testing"></iframe>
-            </div>
-        </div>
-        <script src="https://player.vimeo.com/api/player.js"></script>
-
-        <!-- Needs and Learner Analysis Section with standard aspect-ratio box -->
-        <div class="box" style="text-align: left; background: #1e1e1e; padding: 25px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #333;">
-            <div style="text-align: center; margin-bottom: 15px;">
-                <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px;">✨ Needs and Learner Analysis ✨</p>
-            </div>
-
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>The Research:</strong> Analyzed student surveys, LMS metrics, and course materials to restructure Technical and Professional Communication courses into a streamlined General Education format.</p>
-            
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>Key Takeaways:</strong> While learners brought strong motivation and tech skills, they varied in prior writing experience and self-regulated pacing.</p>
-            
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 15px;"><strong>Design Impact:</strong> Shaped the development of modular content, built-in feedback loops, and targeted information literacy resources.</p>
-            
-            <div style="width: 100%; height: 400px; border: 2px dashed #ff80df; background: #000000; border-radius: 4px; overflow: hidden; margin-bottom: 15px;">
-              <iframe loading="lazy" style="width: 100%; height: 100%; border: none;"
-                src="https://www.canva.com/design/DAHVHRxn1iE/HewHstP-LIKeRfttGrk2rQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-              </iframe>
-            </div>
-
-            <div style="text-align: center; font-size: 12px;">
-                <a href="https://www.canva.com/design/DAHVHRxn1iE/HewHstP-LIKeRfttGrk2rQ/view?utm_content=DAHVHRxn1iE&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener" style="color: #ff80df; border: 1.5px solid #ff80df; padding: 6px 14px; text-decoration: none; border-radius: 4px; font-weight: 700; display: inline-block;">[ OPEN FULL CANVA PRESENTATION ]</a>
-            </div>
-        </div>
-
-        <div class="box" style="text-align: left; background: #1e1e1e; padding: 25px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #333;">
-            <div style="text-align: center; margin-bottom: 15px;">
-                <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px;">✨ Check-In Design ✨</p>
-            </div>
-            
-            <div style="width: 100%; height: 500px; border: 2px dashed #ff80df; background: #000000; border-radius: 4px; overflow: hidden;">
+        <div class="box">
+            <div class="pdf-container">
                 <iframe src="Check-In.pdf" width="100%" height="100%" style="border: none;"></iframe>
             </div>
-
             <div style="margin-top: 20px; text-align: center;">
-                <a class="pdf-button" href="Check-In.pdf" target="_blank" aria-label="Open Check-In PDF in new tab" style="color: #ff80df; border: 1.5px solid #ff80df; padding: 6px 14px; text-decoration: none; border-radius: 4px; font-weight: 700; display: inline-block; font-size: 12px;">[ OPEN / DOWNLOAD CHECK-IN PDF ]</a>
+                <a class="pdf-button" href="Check-In.pdf" target="_blank" aria-label="Open Check-In PDF in new tab" style="color: #ff80df; border: 1.5px solid #ff80df; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: 700; display: inline-block; font-size: 14px;">[ OPEN / DOWNLOAD CHECK-IN PDF ]</a>
             </div>
         </div>
-
-        <div class="box" style="text-align: center; display: flex; justify-content: center; align-items: center; background: #1e1e1e; padding: 15px; border-radius: 8px; border: 1px solid #333;">
+        <div class="box" style="text-align: center; display: flex; justify-content: center; align-items: center; padding: 15px;">
             <p style="margin: 0; font-size: 12px; color: #ffffff; text-align: center; width: 100%;"><strong>Land Acknowledgement:</strong> Located on unceded Tohono O'Odham and Yoeme land</p>
         </div>
-
     </div>
 </body>
 </html>
