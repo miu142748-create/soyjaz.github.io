@@ -216,13 +216,13 @@
         <!-- Artifact 4: Usability Testing Video -->
         <div class="box">
             <h2 class="title-text">Usability Testing Video</h2>
-            <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>The Test:</strong> Put real users in the driver's seat to stress-test the module's layout, cut out friction points, and make sure the content actually flows for a Professional &amp; Technical Writing audience.</p>
-            <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>What it is:</strong> Usability testing is a hands-on evaluation method used to see how intuitively users can navigate a digital environment without getting lost or overwhelmed.</p>
+            <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>The Test:</strong> Evaluated user navigation within the course module to identify layout friction points and refine content flow for students in Professional &amp; Technical Writing.</p>
+            <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>Methodology:</strong> Usability testing observes how learners navigate a digital course environment to find where instructions or layout structures need clarification.</p>
             <p style="margin: 0 0 5px 0; font-size: 14px;"><strong>Breakdown:</strong></p>
             <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px; line-height: 1.5;">
-                <li>Live observation of users completing core tasks inside D2L Brightspace.</li>
-                <li>Pinpointing clunky menus, hidden instructions, or broken design loops.</li>
-                <li>Iterating on user feedback to streamline the overall experience.</li>
+                <li>Observed students performing core tasks in D2L Brightspace.</li>
+                <li>Identified unclear navigation, missing instructions, and visual layout issues.</li>
+                <li>Updated the course structure based on direct user feedback.</li>
             </ul>
 
             <div class="embed-responsive">
@@ -319,7 +319,7 @@
                 }
             }
 
-            pdfjsLib.getDocument(encodeURI(url)).promise.then(pdfDoc_ => {
+            pdfjsLib.getDocument({ url: encodeURI(url) }).promise.then(pdfDoc_ => {
                 pdfDoc = pdfDoc_;
                 document.getElementById(pageCountId).textContent = pdfDoc.numPages;
                 document.getElementById(nextBtnId).disabled = (pdfDoc.numPages <= 1);
