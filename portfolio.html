@@ -72,12 +72,18 @@
             border: 0;
         }
         .pdf-container {
+            position: relative;
             width: 100%;
-            height: 500px;
+            height: 600px;
             border: 2px dashed #ff80df;
             background: #000000;
             border-radius: 4px;
             overflow: hidden;
+        }
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         .pdf-button {
             color: #ff80df;
@@ -97,7 +103,7 @@
         }
         @media (max-width: 768px) {
             .pdf-container {
-                height: 350px;
+                height: 450px;
             }
         }
     </style>
@@ -192,7 +198,7 @@
             <p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.5;"><strong>Features:</strong> Structured self-reflection prompts, bite-sized assessment loops, and accessible submission formats designed to reduce cognitive load while keeping students on track.</p>
             
             <div class="pdf-container">
-                <iframe src="Check-In.pdf" width="100%" height="100%" style="border: none;"></iframe>
+                <iframe src="Check-In.pdf#view=FitH"></iframe>
             </div>
             <div style="margin-top: 15px; text-align: center;">
                 <a class="pdf-button" href="Check-In.pdf" target="_blank" aria-label="Open Check-In PDF in new tab">[ OPEN / DOWNLOAD CHECK-IN PDF ]</a>
@@ -211,7 +217,7 @@
             <p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.5;"><strong>Highlights:</strong> Practical visual layout guidelines, plain language strategies, actionable editing checklists, and real-world documentation examples.</p>
             
             <div class="pdf-container">
-                <iframe src="Technical Writing Guide.pdf" width="100%" height="100%" style="border: none;"></iframe>
+                <iframe src="Technical Writing Guide.pdf#view=FitH"></iframe>
             </div>
 
             <div style="margin-top: 15px; text-align: center;">
