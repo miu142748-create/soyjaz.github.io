@@ -16,34 +16,29 @@
         color: #ffffff; 
         font-family: 'Fira Code', monospace; 
         margin: 0; 
-        padding: 20px;
+        padding: 15px;
     }
-    @media screen and (max-width: 768px) {
+    .pdf-frame-container {
+        width: 100%;
+        height: 500px;
+        border: 2px dashed #ff80df;
+        background: #000000;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    @media (max-width: 768px) {
         body {
-            padding: 10px !important;
-        }
-        .wrapper {
-            max-width: 100% !important;
+            padding: 10px;
         }
         .box {
             padding: 15px !important;
         }
-        /* Shrink the 500px PDF/presentation containers on mobile */
-        div[style*="height: 500px"] {
-            height: 300px !important;
+        .pdf-frame-container {
+            height: 380px;
         }
     }
     </style>
-
-    <style>
-        @media (max-width: 768px) {
-            div[style*="height: 500px"] {
-                height: 350px !important;
-            }
-        }
-    </style>
 </head>
-
 <body>
 
     <div class="wrapper" style="max-width: 800px; margin: 0 auto;">
@@ -61,15 +56,15 @@
 
             <p style="font-size: 13px; line-height: 1.6; color: #ffffff;"><strong>The Goal:</strong> Engineered an end-to-end asynchronous learning module using the ADDIE framework to fix navigation bottlenecks and modernize digital literacy training in D2L Brightspace.</p>
 
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;"><strong>Stack & Frameworks:</strong> D2L Brightspace LMS, ADDIE Model, Multimodal UDL Strategies</p>
+            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;"><strong>Frameworks & Tools:</strong> D2L Brightspace LMS, ADDIE Model, Multimodal UDL Strategies</p>
 
             <div style="text-align: center;">
                 <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px;">✨ Presentation Preview ✨</p>
                 <p style="font-size: 12px; color: #ffffff; margin-bottom: 15px; font-style: italic;">Scroll through the slide deck below:</p>
             </div>
 
-            <div style="width: 100%; height: 500px; border: 2px dashed #ff80df; background: #000000; border-radius: 4px; overflow: hidden;">
-                <iframe src="FINAL, Innovating Online Learning in Technical and Professional Communication.pptx.pdf" width="100%" height="100%" style="border: none;"></iframe>
+            <div class="pdf-frame-container">
+                <iframe src="https://docs.google.com/viewer?url=https://www.soyjaz.com/FINAL,%20Innovating%20Online%20Learning%20in%20Technical%20and%20Professional%20Communication.pptx.pdf&embedded=true" width="100%" height="100%" style="border: none;"></iframe>
             </div>
 
             <div style="margin-top: 20px; text-align: center;">
@@ -86,7 +81,7 @@
 
             <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>What it is:</strong> Usability testing is a hands-on evaluation method used to see how intuitively users can navigate a digital environment without getting lost or overwhelmed.</p>
 
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 8px;"><strong>Key Breakdown:</strong></p>
+            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 8px;"><strong>Breakdown:</strong></p>
             <ul style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-top: 0; margin-bottom: 20px; padding-left: 20px;">
                 <li>Live observation of users completing core tasks inside D2L Brightspace.</li>
                 <li>Pinpointing clunky menus, hidden instructions, or broken design loops.</li>
@@ -106,11 +101,11 @@
 
             <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>The Research:</strong> Analyzed student surveys, LMS metrics, and course materials to restructure Technical and Professional Communication courses into a streamlined General Education format.</p>
             
-            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>Key Takeaways:</strong> While learners brought strong motivation and tech skills, they varied in prior writing experience and self-regulated pacing.</p>
+            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>Takeaways:</strong> While learners brought strong motivation and tech skills, they varied in prior writing experience and self-regulated pacing.</p>
             
             <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>Design Impact:</strong> Shaped the development of modular content, built-in feedback loops, and targeted information literacy resources.</p>
             
-            <div style="position: relative; width: 100%; height: 0; padding-top: 133.3333%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
+            <div style="position: relative; width: 100%; height: 0; padding-top: 133.3333%; margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px;">
               <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
                 src="https://www.canva.com/design/DAHVHRxn1iE/HewHstP-LIKeRfttGrk2rQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
               </iframe>
@@ -125,13 +120,39 @@
             <div style="text-align: center; margin-bottom: 15px;">
                 <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px;">✨ Check-In Design ✨</p>
             </div>
+
+            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>The Overview:</strong> Designed low-stakes formative evaluation checkpoints to track learner comprehension, maintain engagement, and give instructors real-time feedback throughout the course module.</p>
+
+            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;"><strong>Features:</strong> Structured self-reflection prompts, bite-sized assessment loops, and accessible submission formats designed to reduce cognitive load while keeping students on track.</p>
             
-            <div style="width: 100%; height: 500px; border: 2px dashed #ff80df; background: #000000; border-radius: 4px; overflow: hidden;">
-                <iframe src="Check-In.pdf" width="100%" height="100%" style="border: none;"></iframe>
+            <div class="pdf-frame-container">
+                <iframe src="https://docs.google.com/viewer?url=https://www.soyjaz.com/Check-In.pdf&embedded=true" width="100%" height="100%" style="border: none;"></iframe>
             </div>
 
             <div style="margin-top: 20px; text-align: center;">
                 <a class="pdf-button" href="Check-In.pdf" target="_blank" aria-label="Open Check-In PDF in new tab" style="color: #ff80df; border: 1.5px solid #ff80df; padding: 6px 14px; text-decoration: none; border-radius: 4px; font-weight: 700; display: inline-block; font-size: 12px;">[ OPEN / DOWNLOAD CHECK-IN PDF ]</a>
+            </div>
+        </div>
+
+        <div class="box" style="text-align: left; background: #1e1e1e; padding: 25px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #333;">
+            <div style="text-align: center; margin-bottom: 15px;">
+                <p style="margin-top: 0; color: #ff80df; font-weight: 700; font-size: 15px;">✨ Technical Writing Guide ✨</p>
+            </div>
+
+            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>The Goal:</strong> Authored an introductory reference manual covering core principles of clarity, audience analysis, document architecture, and visual hierarchy in technical communication.</p>
+
+            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 12px;"><strong>Target Audience:</strong> Designed as an accessible desk reference for students, instructional designers, and emerging technical communicators.</p>
+
+            <p style="font-size: 13px; line-height: 1.6; color: #ffffff; margin-bottom: 20px;"><strong>Highlights:</strong> Practical visual layout guidelines, plain language strategies, actionable editing checklists, and real-world documentation examples.</p>
+
+            <p style="font-size: 12px; color: #ffffff; margin-bottom: 15px; font-style: italic; text-align: center;">Flip through the interactive guide below:</p>
+
+            <div style="width: 100%; border: 2px dashed #ff80df; border-radius: 6px; overflow: hidden; background: #000000;">
+                <iframe allowfullscreen="allowfullscreen" allow="autoplay; fullscreen; clipboard-write" scrolling="no" style="width: 100%; height: 450px; border: none; display: block;" src="https://heyzine.com/flip-book/701fd6f368.html"></iframe>
+            </div>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <a class="pdf-button" href="Technical Writing Guide.pdf" target="_blank" aria-label="Open Technical Writing Guide PDF in new tab" style="color: #ff80df; border: 1.5px solid #ff80df; padding: 6px 14px; text-decoration: none; border-radius: 4px; font-weight: 700; display: inline-block; font-size: 12px;">[ OPEN / DOWNLOAD PDF ]</a>
             </div>
         </div>
 
