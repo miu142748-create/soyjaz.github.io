@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Portfolio - Technical & Professional Communication</title>
+    <!-- PDF.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs" type="module"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -42,16 +44,21 @@
             background-color: #1e1e1e;
         }
         .title-text {
-            margin: 0;
+            margin: 0 0 15px 0;
             color: #ff80df;
             font-weight: 700;
             font-size: 18px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        .glitterfly-gif {
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+            fill: #ff80df;
             vertical-align: middle;
-            height: 24px;
-            margin: 0 6px;
         }
         .embed-responsive {
             position: relative;
@@ -71,24 +78,55 @@
             height: 100%;
             border: 0;
         }
-        .pdf-container {
-            position: relative;
+        /* PDF.js Viewer Styling */
+        .pdf-viewer-wrapper {
             width: 100%;
-            height: 600px;
             border: 2px dashed #ff80df;
-            background: #000000;
+            background-color: #000000;
             border-radius: 4px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .pdf-canvas-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
             overflow: hidden;
         }
-        .pdf-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .pdf-canvas-container canvas {
+            max-width: 100%;
+            height: auto !important;
+            display: block;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
+        }
+        .pdf-controls {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: #ffffff;
+        }
+        .nav-btn {
+            background: #1e1e1e;
+            color: #ff80df;
+            border: 1px solid #ff80df;
+            border-radius: 4px;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
         }
         .pdf-button {
             color: #ff80df;
             border: 1.5px solid #ff80df;
-            padding: 6px 14px;
+            padding: 8px 16px;
             text-decoration: none;
             border-radius: 4px;
             font-weight: 700;
@@ -100,11 +138,6 @@
         .pdf-button:hover {
             background-color: #ff80df;
             color: #000000;
-        }
-        @media (max-width: 768px) {
-            .pdf-container {
-                height: 450px;
-            }
         }
     </style>
 </head>
@@ -126,66 +159,88 @@
 
         <!-- Artifact 1: Needs and Learner Analysis -->
         <div class="box">
-            <p class="title-text" style="margin-bottom: 15px;">
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+            <p class="title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
                 Needs and Learner Analysis
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
             </p>
-            <p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.5;"><strong>Overview:</strong> Analyzed student surveys and LMS metrics to restructure Technical &amp; Professional Communication into a General Education format, shaping modular content and information literacy resources.</p>
+            <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>Overview:</strong> Evaluated student entry-level competencies and LMS interaction metrics to restructure Technical &amp; Professional Communication into an accessible General Education format.</p>
+            <p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.5;"><strong>Target Population:</strong> Undergraduate general education students from diverse non-technical disciplines, prioritizing multimodal support and plain-language guidance.</p>
             
-            <div class="pdf-container">
-                <iframe src="Needs-And-Learner-Analysis.pdf#view=FitH"></iframe>
+            <div class="pdf-viewer-wrapper">
+                <div class="pdf-canvas-container" id="container-needs">
+                    <canvas id="canvas-needs"></canvas>
+                </div>
+                <div class="pdf-controls">
+                    <button class="nav-btn" id="prev-needs">◄ Prev</button>
+                    <span>Page <span id="num-needs">1</span> of <span id="count-needs">-</span></span>
+                    <button class="nav-btn" id="next-needs">Next ►</button>
+                </div>
             </div>
 
             <div style="margin-top: 15px; text-align: center;">
-                <a class="pdf-button" href="Needs-And-Learner-Analysis.pdf" target="_blank" aria-label="Open Needs and Learner Analysis PDF in new tab">[ OPEN / DOWNLOAD NEEDS &amp; LEARNER ANALYSIS PDF ]</a>
+                <a class="pdf-button" href="Needs-And-Learner-Analysis.pdf" target="_blank">[ OPEN / DOWNLOAD NEEDS &amp; LEARNER ANALYSIS PDF ]</a>
             </div>
         </div>
 
         <!-- Artifact 2: Technical Writing Guide -->
         <div class="box">
-            <p class="title-text" style="margin-bottom: 15px;">
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+            <p class="title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
                 Technical Writing Guide
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
             </p>
             <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>The Goal:</strong> Authored an introductory reference manual covering core principles of clarity, audience analysis, document architecture, and visual hierarchy in technical communication.</p>
             <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>Target Audience:</strong> Designed as an accessible desk reference for students, instructional designers, and emerging technical communicators.</p>
             <p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.5;"><strong>Highlights:</strong> Practical visual layout guidelines, plain language strategies, actionable editing checklists, and real-world documentation examples.</p>
             
-            <div class="pdf-container">
-                <iframe src="Technical Writing Guide.pdf#view=FitH"></iframe>
+            <div class="pdf-viewer-wrapper">
+                <div class="pdf-canvas-container" id="container-guide">
+                    <canvas id="canvas-guide"></canvas>
+                </div>
+                <div class="pdf-controls">
+                    <button class="nav-btn" id="prev-guide">◄ Prev</button>
+                    <span>Page <span id="num-guide">1</span> of <span id="count-guide">-</span></span>
+                    <button class="nav-btn" id="next-guide">Next ►</button>
+                </div>
             </div>
 
             <div style="margin-top: 15px; text-align: center;">
-                <a class="pdf-button" href="Technical Writing Guide.pdf" target="_blank" aria-label="Open Technical Writing Guide PDF in new tab">[ OPEN / DOWNLOAD PDF ]</a>
+                <a class="pdf-button" href="Technical Writing Guide.pdf" target="_blank">[ OPEN / DOWNLOAD TECHNICAL WRITING GUIDE PDF ]</a>
             </div>
         </div>
 
         <!-- Artifact 3: Check-In Design -->
         <div class="box">
-            <p class="title-text" style="margin-bottom: 15px;">
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+            <p class="title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                 Check-In Design
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
             </p>
             <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>The Overview:</strong> Designed low-stakes formative evaluation checkpoints to track learner comprehension, maintain engagement, and give instructors real-time feedback throughout the course module.</p>
             <p style="margin: 0 0 15px 0; font-size: 14px; line-height: 1.5;"><strong>Features:</strong> Structured self-reflection prompts, bite-sized assessment loops, and accessible submission formats designed to reduce cognitive load while keeping students on track.</p>
             
-            <div class="pdf-container">
-                <iframe src="Check-In.pdf#view=FitH"></iframe>
+            <div class="pdf-viewer-wrapper">
+                <div class="pdf-canvas-container" id="container-checkin">
+                    <canvas id="canvas-checkin"></canvas>
+                </div>
+                <div class="pdf-controls">
+                    <button class="nav-btn" id="prev-checkin">◄ Prev</button>
+                    <span>Page <span id="num-checkin">1</span> of <span id="count-checkin">-</span></span>
+                    <button class="nav-btn" id="next-checkin">Next ►</button>
+                </div>
             </div>
             <div style="margin-top: 15px; text-align: center;">
-                <a class="pdf-button" href="Check-In.pdf" target="_blank" aria-label="Open Check-In PDF in new tab">[ OPEN / DOWNLOAD CHECK-IN PDF ]</a>
+                <a class="pdf-button" href="Check-In.pdf" target="_blank">[ OPEN / DOWNLOAD CHECK-IN PDF ]</a>
             </div>
         </div>
 
         <!-- Artifact 4: Usability Testing Video -->
         <div class="box">
-            <p class="title-text" style="margin-bottom: 15px;">
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+            <p class="title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
                 Usability Testing Video
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
             </p>
             <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>The Test:</strong> Put real users in the driver's seat to stress-test the module's layout, cut out friction points, and make sure the content actually flows for a Professional &amp; Technical Writing audience.</p>
             <p style="margin: 0 0 10px 0; font-size: 14px; line-height: 1.5;"><strong>What it is:</strong> Usability testing is a hands-on evaluation method used to see how intuitively users can navigate a digital environment without getting lost or overwhelmed.</p>
@@ -196,7 +251,6 @@
                 <li>Iterating on user feedback to streamline the overall experience.</li>
             </ul>
 
-            <!-- Vimeo Video Embed -->
             <div class="embed-responsive">
                 <iframe 
                     src="https://player.vimeo.com/video/1226350271?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
@@ -210,10 +264,10 @@
 
         <!-- Artifact 5: Presentation Preview -->
         <div class="box">
-            <p class="title-text" style="margin-bottom: 15px;">
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+            <p class="title-text">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
                 Presentation Preview
-                <img src="https://dl3.glitter-graphics.net/pub/514/514873kwpj8sc5kp.gif" class="glitterfly-gif" alt="Glitter Butterfly Graphic" />
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
             </p>
             <p style="margin: 0 0 15px 0; font-size: 14px;">Scroll through the slide deck below:</p>
             
@@ -227,7 +281,7 @@
             </div>
 
             <div style="margin-top: 15px; text-align: center;">
-                <a class="pdf-button" href="https://docs.google.com/presentation/d/1xQzb_uChN5RYm7seO8-4Xl6-nW20MRwe/present?start=false&loop=false&delayms=3000" target="_blank" aria-label="Open presentation in new tab">
+                <a class="pdf-button" href="https://docs.google.com/presentation/d/1xQzb_uChN5RYm7seO8-4Xl6-nW20MRwe/present?start=false&loop=false&delayms=3000" target="_blank">
                     [ OPEN PRESENTATION IN NEW TAB ]
                 </a>
             </div>
@@ -240,5 +294,96 @@
 
     </div>
 
+    <!-- Script to autoscale and render PDFs using PDF.js -->
+    <script type="module">
+        import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.mjs';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.worker.min.mjs';
+
+        function setupPDFViewer(url, canvasId, containerId, prevBtnId, nextBtnId, pageNumId, pageCountId) {
+            let pdfDoc = null;
+            let pageNum = 1;
+            let pageRendering = false;
+            let pageNumPending = null;
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            const container = document.getElementById(containerId);
+
+            function renderPage(num) {
+                pageRendering = true;
+                pdfDoc.getPage(num).then(page => {
+                    const containerWidth = container.clientWidth - 20; // Padding offset
+                    const unscaledViewport = page.getViewport({ scale: 1 });
+                    const scale = containerWidth / unscaledViewport.width;
+                    const viewport = page.getViewport({ scale: scale });
+
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    const renderContext = {
+                        canvasContext: ctx,
+                        viewport: viewport
+                    };
+                    const renderTask = page.render(renderContext);
+
+                    renderTask.promise.then(() => {
+                        pageRendering = false;
+                        if (pageNumPending !== null) {
+                            renderPage(pageNumPending);
+                            pageNumPending = null;
+                        }
+                    });
+                });
+
+                document.getElementById(pageNumId).textContent = num;
+                document.getElementById(prevBtnId).disabled = (num <= 1);
+                if (pdfDoc) {
+                    document.getElementById(nextBtnId).disabled = (num >= pdfDoc.numPages);
+                }
+            }
+
+            function queueRenderPage(num) {
+                if (pageRendering) {
+                    pageNumPending = num;
+                } else {
+                    renderPage(num);
+                }
+            }
+
+            pdfjsLib.getDocument(encodeURI(url)).promise.then(pdfDoc_ => {
+                pdfDoc = pdfDoc_;
+                document.getElementById(pageCountId).textContent = pdfDoc.numPages;
+                document.getElementById(nextBtnId).disabled = (pdfDoc.numPages <= 1);
+                renderPage(pageNum);
+            }).catch(err => {
+                console.error("PDF load error:", err);
+                container.innerHTML = "<p style='color:#ff80df; text-align:center;'>Unable to load embedded preview. Please use the download button below.</p>";
+            });
+
+            document.getElementById(prevBtnId).addEventListener('click', () => {
+                if (pageNum <= 1) return;
+                pageNum--;
+                queueRenderPage(pageNum);
+            });
+
+            document.getElementById(nextBtnId).addEventListener('click', () => {
+                if (pageNum >= pdfDoc.numPages) return;
+                pageNum++;
+                queueRenderPage(pageNum);
+            });
+
+            window.addEventListener('resize', () => {
+                if (pdfDoc) {
+                    queueRenderPage(pageNum);
+                }
+            });
+        }
+
+        // Initialize PDF viewers
+        window.addEventListener('DOMContentLoaded', () => {
+            setupPDFViewer('Needs-And-Learner-Analysis.pdf', 'canvas-needs', 'container-needs', 'prev-needs', 'next-needs', 'num-needs', 'count-needs');
+            setupPDFViewer('Technical Writing Guide.pdf', 'canvas-guide', 'container-guide', 'prev-guide', 'next-guide', 'num-guide', 'count-guide');
+            setupPDFViewer('Check-In.pdf', 'canvas-checkin', 'container-checkin', 'prev-checkin', 'next-checkin', 'num-checkin', 'count-checkin');
+        });
+    </script>
 </body>
 </html>
